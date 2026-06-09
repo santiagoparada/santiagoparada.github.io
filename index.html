@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<title>SANTIAGOPARADA</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
+<style>
+/* ── THEMES ─────────────────────────────────────────── */
+:root{
+  --bg:#0c0c0c;--bg2:#111;--bg3:#181818;
+  --fg:#d8d4c8;--dim:#6a6560;--dimmer:#302c28;
+  --accent:#c8ff32;
+  --line:rgba(216,212,200,.08);--line2:rgba(216,212,200,.15);
+  --shadow:rgba(0,0,0,.6);
+  --gr:#ff3366;--gb:#33aaff;
+  --cw:#c87941;--cd:#c8ff32;--cda:#60a5fa;
+}
+[data-theme="light"]{
+  --bg:#F9F7F2;--bg2:#F0EDE6;--bg3:#E8E4DC;
+  --fg:#1C1C1A;--dim:#888075;--dimmer:#ccc6be;
+  --accent:#3a6f00;
+  --line:rgba(28,28,26,.09);--line2:rgba(28,28,26,.18);
+  --shadow:rgba(0,0,0,.12);
+  --gr:#cc0033;--gb:#0055cc;
+  --cw:#8a4a18;--cd:#3a6f00;--cda:#1d4ed8;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--fg);
+  font-family:'Space Mono','Courier New',monospace;
+  font-size:13px;line-height:1.6;overflow-x:hidden;
+  transition:background .3s,color .3s}
+a{color:var(--fg);text-decoration:none;border-bottom:1px solid var(--dim);
+  transition:color .15s,border-color .15s}
+a:hover{color:var(--accent);border-color:var(--accent)}
+
+/* ── GRAIN + SCANLINES ── */
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:9990;
+  background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.025) 2px,rgba(0,0,0,.025) 4px)}
+body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9989;opacity:.3;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E")}
+
+/* ── NAV ── */
+nav{position:sticky;top:0;z-index:600;background:var(--bg);
+  border-bottom:1px solid var(--line);padding:11px 32px;
+  display:flex;align-items:center;gap:20px;transition:background .3s}
+.nav-mark{font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--accent);border:none;transition:opacity .15s}
+.nav-mark:hover{opacity:.65;color:var(--accent)}
+.nav-links{display:flex;gap:22px;list-style:none;flex:1}
+.nav-links a{font-size:9px;letter-spacing:.14em;text-transform:uppercase;border:none;color:var(--dim)}
+.nav-links a:hover{color:var(--accent)}
+.nav-ctrl{display:flex;align-items:center;gap:10px;margin-left:auto}
+.nav-dis{font-size:9px;letter-spacing:.06em;color:var(--dim);flex:1;text-align:center}
+.nav-dis em{color:var(--fg);font-style:normal}
+.lang-sw{display:flex;align-items:center}
+.lbtn{font-family:'Space Mono',monospace;font-size:9px;font-weight:700;letter-spacing:.12em;
+  text-transform:uppercase;background:none;border:none;color:var(--dim);
+  cursor:pointer;padding:3px 5px;transition:color .15s}
+.lbtn:hover{color:var(--fg)}.lbtn.on{color:var(--accent)}
+.lsep{font-size:8px;color:var(--dimmer)}
+.tbtn{font-size:13px;background:none;border:1px solid var(--line2);color:var(--dim);
+  cursor:pointer;width:26px;height:22px;display:flex;align-items:center;
+  justify-content:center;border-radius:2px;transition:all .15s}
+.tbtn:hover{color:var(--fg);border-color:var(--dim)}
+
+/* ── HERO ── */
+header{display:flex;flex-direction:column;justify-content:flex-start;
+  padding:52px 40px 0;max-width:1100px}
+.htag{display:inline-flex;align-items:center;gap:12px;margin-bottom:10px}
+.hline{width:36px;height:2px;background:var(--accent);opacity:.4}
+.stag{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);
+  border:1px solid var(--dimmer);padding:3px 8px;border-radius:2px}
+.gt{font-size:clamp(36px,7vw,84px);font-weight:700;line-height:1.0;letter-spacing:-.02em;
+  position:relative;display:inline-block;animation:ambg 9s infinite 3s}
+.gt::before,.gt::after{content:attr(data-text);position:absolute;inset:0;opacity:0}
+.gt::before{color:var(--gr)}.gt::after{color:var(--gb)}
+.gt:hover::before{animation:glr .32s steps(2) forwards;opacity:1}
+.gt:hover::after {animation:glb .32s steps(2) .05s forwards;opacity:1}
+@keyframes glr{
+  0%  {clip-path:inset(8% 0 82% 0);transform:translateX(-3px)}
+  33% {clip-path:inset(58% 0 22% 0);transform:translateX(3px)}
+  66% {clip-path:inset(28% 0 52% 0);transform:translateX(-2px)}
+  100%{clip-path:inset(0 0 100% 0);opacity:0}}
+@keyframes glb{
+  0%  {clip-path:inset(42% 0 38% 0);transform:translateX(3px)}
+  33% {clip-path:inset(68% 0 12% 0);transform:translateX(-3px)}
+  66% {clip-path:inset(13% 0 67% 0);transform:translateX(2px)}
+  100%{clip-path:inset(0 0 100% 0);opacity:0}}
+@keyframes ambg{
+  0%,87%,100%{text-shadow:none}
+  88%{text-shadow:-2px 0 var(--gr),2px 0 var(--gb)}
+  89%{text-shadow:2px 0 var(--gr),-2px 0 var(--gb)}
+  90%{text-shadow:none}91%{text-shadow:-1px 0 var(--gb)}92%{text-shadow:none}}
+.hsub{margin-top:10px;font-size:10px;letter-spacing:.07em;line-height:1.9;
+  color:var(--dim);max-width:54ch}
+.hsub em{color:var(--fg);font-style:normal}
+.scr{margin-top:20px;display:flex;align-items:center;gap:10px;opacity:.22}
+.scrl{width:1px;height:32px;background:var(--fg)}
+.scrt{font-size:8px;letter-spacing:.18em;text-transform:uppercase}
+
+/* ── MANIFESTO ── */
+.mf{padding:24px 40px 40px;border-bottom:1px solid var(--line);max-width:1100px}
+.mf-text{font-size:11px;line-height:2;color:var(--dim);max-width:72ch}
+.mf-text em{color:var(--fg);font-style:italic}
+.mf-text strong{color:var(--fg);font-weight:700;font-style:normal}
+
+/* ── SECTIONS ── */
+.section{padding:52px 40px;border-bottom:1px solid var(--line);max-width:1100px}
+.shd{display:flex;align-items:baseline;justify-content:space-between;
+  flex-wrap:wrap;gap:10px;margin-bottom:28px}
+.slbl{font-size:9px;letter-spacing:.2em;text-transform:uppercase;font-weight:700}
+.ssub{font-size:9px;color:var(--dim);letter-spacing:.1em;text-transform:uppercase}
+.snote{font-size:9px;color:var(--dimmer);letter-spacing:.04em;width:100%;margin-top:4px}
+
+/* ── PROJECT ROWS ── */
+.plist{display:flex;flex-direction:column}
+.prow{display:grid;grid-template-columns:28px 1fr auto 56px 18px;
+  align-items:start;padding:13px 6px 13px 0;border-top:1px solid var(--line);
+  gap:12px;cursor:pointer;transition:background .12s;border-radius:2px}
+.prow:last-child{border-bottom:1px solid var(--line)}
+.prow:hover{background:var(--bg2)}
+.prow:hover .ptit{color:var(--accent)}
+.prow:hover .parr{opacity:1;color:var(--accent)}
+.pidx{font-size:9px;color:var(--dimmer);font-style:italic;padding-top:2px}
+.ptit{font-size:11px;font-weight:700;letter-spacing:.03em;transition:color .15s}
+.pdsc{font-size:10px;color:var(--dim);margin-top:4px;line-height:1.65}
+.ptags{margin-top:6px;display:flex;gap:5px;flex-wrap:wrap}
+.pt{font-size:8px;letter-spacing:.12em;text-transform:uppercase;padding:2px 6px;
+  border-radius:2px;border:1px solid var(--dimmer);color:var(--dimmer)}
+.pt.live{border-color:var(--cd);color:var(--cd)}
+.pt.wip{border-color:#c89010;color:#c89010}
+[data-theme="light"] .pt.wip{border-color:#8a6000;color:#8a6000}
+.pyr{font-size:9px;color:var(--dimmer);text-align:right;padding-top:2px;letter-spacing:.05em}
+.parr{font-size:10px;color:var(--dimmer);opacity:.35;padding-top:2px;
+  transition:opacity .15s,color .15s;user-select:none}
+
+/* ── ABOUT ── */
+.abp{font-size:11px;line-height:1.9;color:var(--dim);max-width:56ch}
+.abgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+  background:var(--line);border:1px solid var(--line);margin-top:20px}
+.abcell{background:var(--bg);padding:14px 18px}
+.ablbl{font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);margin-bottom:5px}
+.abval{font-size:11px;line-height:1.5}
+
+/* ── FOOTER ── */
+footer{padding:24px 40px;display:flex;justify-content:space-between;align-items:center;
+  border-top:1px solid var(--line);max-width:1100px}
+.fcp{font-size:9px;color:var(--dim);letter-spacing:.08em}
+.flnks{display:flex;gap:16px}
+.flnks a{font-size:9px;color:var(--dim);border-color:transparent;letter-spacing:.06em}
+.flnks a:hover{color:var(--accent)}
+
+/* ── TREE OVERLAY ── */
+#ov{position:fixed;inset:0;z-index:800;background:var(--bg);
+  display:flex;flex-direction:column;opacity:0;pointer-events:none;
+  transition:opacity .22s ease}
+#ov.open{opacity:1;pointer-events:all}
+
+/* top bar */
+#ovtop{height:44px;min-height:44px;border-bottom:1px solid var(--line2);
+  background:var(--bg2);display:flex;align-items:center;padding:0 18px;gap:12px}
+#ovdot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+#ovname{font-size:11px;font-weight:700;letter-spacing:.05em;flex:1}
+#ovhint{font-size:9px;color:var(--dimmer);letter-spacing:.05em}
+#ovcls{font-family:'Space Mono',monospace;font-size:9px;font-weight:700;
+  letter-spacing:.12em;text-transform:uppercase;background:none;
+  border:1px solid var(--line2);color:var(--dim);cursor:pointer;
+  padding:4px 10px;border-radius:2px;transition:all .15s}
+#ovcls:hover{color:var(--fg);border-color:var(--dim)}
+
+/* body: 50 / 50 */
+#ovmain{display:flex;flex:1;overflow:hidden}
+
+#ovtree{width:50%;position:relative;overflow:hidden;border-right:1px solid var(--line2)}
+#ovsvg{width:100%;height:100%;cursor:grab;display:block}
+#ovsvg:active{cursor:grabbing}
+#ovctrl{position:absolute;bottom:14px;left:14px;display:flex;gap:5px;z-index:10}
+.oc{background:var(--bg2);border:1px solid var(--line2);color:var(--dim);
+  width:26px;height:26px;border-radius:2px;cursor:pointer;display:flex;
+  align-items:center;justify-content:center;font-size:13px;
+  font-family:'Space Mono',monospace;transition:all .15s}
+.oc:hover{color:var(--fg);border-color:var(--dim)}
+
+/* info panel */
+#ovinfo{width:50%;overflow-y:auto;padding:32px 28px;display:flex;flex-direction:column;gap:0}
+.info-id{font-size:9px;color:var(--dimmer);letter-spacing:.12em;margin-bottom:6px}
+.info-title{font-size:17px;font-weight:700;letter-spacing:.02em;
+  line-height:1.25;margin-bottom:12px}
+.info-badges{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:18px}
+.ibadge{font-size:8px;padding:2px 7px;border-radius:2px;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase}
+.ib-live{background:rgba(200,255,50,.07);color:var(--cd);border:1px solid rgba(200,255,50,.2)}
+.ib-wip {background:rgba(200,160,10,.07);color:#c89010;border:1px solid rgba(200,160,10,.2)}
+[data-theme="light"] .ib-wip{color:#8a6000;background:rgba(200,150,0,.07);border-color:rgba(200,150,0,.2)}
+.ib-dim {background:rgba(100,96,90,.08);color:var(--dim);border:1px solid var(--line2)}
+.info-desc{font-size:11px;line-height:1.85;color:var(--dim);margin-bottom:24px}
+.info-div{border:none;border-top:1px solid var(--line);margin:0 0 20px}
+
+/* image slots */
+.imgslots{display:flex;flex-direction:column;gap:10px}
+.imgslot{width:100%;aspect-ratio:16/9;border-radius:3px;border:1px dashed;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:5px;position:relative;overflow:hidden}
+.imgslot.has-img{border-style:solid;background:var(--bg2)}
+.imgslot.has-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:scale-down;
+  object-position:center;background:var(--bg2)}
+.imgslot.has-img::after{content:'';position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 62%,rgba(0,0,0,.62));z-index:1;
+  pointer-events:none}
+.imgslot-bg{position:absolute;inset:0;opacity:.04;
+  background-image:repeating-linear-gradient(-45deg,currentColor 0,currentColor 1px,transparent 0,transparent 50%);
+  background-size:7px 7px}
+.imgslot-lbl{font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  position:relative;z-index:1}
+.imgslot.has-img .imgslot-lbl{position:absolute;left:12px;right:12px;bottom:10px;color:#fff;
+  text-shadow:0 1px 8px rgba(0,0,0,.65);z-index:2;text-align:left}
+.imgslot-add{font-size:8px;letter-spacing:.08em;color:var(--dimmer);position:relative;z-index:1}
+
+/* tree svg classes */
+.tlink{fill:none;stroke-width:1}
+.tnode circle{cursor:pointer}
+.tnode text{font-family:'Space Mono','Courier New',monospace;
+  pointer-events:none;dominant-baseline:central}
+.tnode--item:hover circle{r:5.5!important}
+
+/* tooltip */
+#tip{position:fixed;background:var(--bg2);border:1px solid var(--line2);border-radius:3px;
+  padding:4px 10px;font-size:10px;font-family:'Space Mono',monospace;color:var(--fg);
+  pointer-events:none;display:none;z-index:9980;max-width:240px;letter-spacing:.02em;
+  box-shadow:0 6px 20px var(--shadow)}
+
+/* ── RESPONSIVE ── */
+
+/* Tablet */
+@media(max-width:960px){
+  .mf{gap:32px}
+  #ovinfo{padding:24px 20px}
+}
+
+/* Mobile ≤ 700px */
+@media(max-width:700px){
+
+  /* nav */
+  nav{padding:10px 16px;gap:10px}
+  .nav-links{display:none}
+  .nav-dis{display:none}
+  .nav-ctrl{gap:8px}
+  .lbtn{padding:5px 6px;min-height:36px}
+  .tbtn{width:32px;height:32px}
+
+  /* hero */
+  header{padding:52px 20px 0}
+  .hsub{font-size:10px;max-width:100%}
+  .scr{margin-top:36px}
+
+  /* manifesto */
+  .mf{padding:24px 20px 36px}
+
+  /* sections */
+  .section{padding:36px 20px}
+  .shd{margin-bottom:20px}
+  .snote{display:none}
+
+  /* project rows — touch-friendly */
+  .prow{
+    grid-template-columns:24px 1fr 16px;
+    padding:16px 4px 16px 0;
+    gap:10px;
+    min-height:52px
+  }
+  .pyr{display:none}
+  .parr{font-size:13px;padding-top:2px}
+  .ptit{font-size:12px}
+  .pdsc{font-size:10px}
+  .ptags{gap:4px}
+  .pt{font-size:8px;padding:2px 5px}
+
+  /* about */
+  .abgrid{grid-template-columns:1fr}
+  .abp{font-size:11px}
+
+  /* footer */
+  footer{padding:20px;flex-direction:column;gap:12px;align-items:flex-start}
+  .flnks{flex-wrap:wrap;gap:12px}
+
+  /* overlay — stacked vertically */
+  #ov{-webkit-overflow-scrolling:touch}
+  #ovtop{padding:0 12px;gap:8px;height:48px;min-height:48px}
+  #ovdot{width:6px;height:6px}
+  #ovname{
+    font-size:10px;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+    max-width:180px
+  }
+  #ovhint{display:none}
+  #ovcls{padding:5px 10px;font-size:8px}
+
+  #ovmain{flex-direction:column}
+  #ovtree{
+    width:100%;height:56%;
+    border-right:none;
+    border-bottom:1px solid var(--line2)
+  }
+  #ovsvg{touch-action:none}
+  #ovinfo{
+    width:100%;height:44%;
+    border-left:none;border-top:none;
+    padding:16px 18px;
+    overflow-y:auto;
+    -webkit-overflow-scrolling:touch
+  }
+
+  /* info panel on mobile */
+  .info-id{font-size:8px}
+  .info-title{font-size:14px;margin-bottom:8px}
+  .info-badges{margin-bottom:12px}
+  .info-desc{font-size:10px;line-height:1.7;margin-bottom:16px}
+  .info-div{margin:0 0 14px}
+
+  /* image slots: 2-up grid */
+  .imgslots{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:8px
+  }
+  .imgslot{aspect-ratio:4/3}
+  .imgslot-lbl{font-size:8px}
+  .imgslot-add{font-size:7px}
+
+  /* zoom controls */
+  #ovctrl{bottom:10px;left:10px}
+  .oc{width:32px;height:32px;font-size:14px}
+}
+
+/* Very small phones ≤ 400px */
+@media(max-width:400px){
+  nav{padding:10px 12px}
+  header{padding:64px 16px 36px}
+  .section{padding:28px 16px}
+  footer{padding:16px}
+  #ovtop{height:44px;min-height:44px}
+  #ovname{max-width:130px;font-size:9px}
+  .imgslots{grid-template-columns:1fr}
+  .imgslot{aspect-ratio:16/9}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-mark" href="#">SANTIAGOPARADA</a>
+  <span class="nav-dis" data-k="hsub"></span>
+  <div class="nav-ctrl">
+    <div class="lang-sw">
+      <button class="lbtn on" onclick="setLang('en')">EN</button>
+      <span class="lsep">/</span>
+      <button class="lbtn"    onclick="setLang('es')">ES</button>
+      <span class="lsep">/</span>
+      <button class="lbtn"    onclick="setLang('fr')">FR</button>
+    </div>
+    <button class="tbtn" id="tbtn" onclick="toggleTheme()" title="toggle theme">◑</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header>
+  <div class="htag">
+    <div class="hline"></div>
+    <span class="stag" data-k="htag"></span>
+  </div>
+  <h1 class="gt" data-k="htitle">Building analytical systems for complex phenomena.</h1>
+
+</header>
+
+<!-- MANIFESTO -->
+<div class="mf">
+  <p class="mf-text" data-k="mftext"></p>
+</div>
+
+<!-- 01 DATA SCIENCE / APPS -->
+<div class="section" id="data">
+  <div class="shd">
+    <span class="slbl" style="color:var(--cda)" data-k="sda"></span>
+    <span class="ssub" data-k="sdasub"></span>
+    <span class="snote" data-k="snote"></span>
+  </div>
+  <div class="plist" id="list-data"></div>
+</div>
+
+<!-- 02 ARTE GENERATIVO -->
+<div class="section" id="dig">
+  <div class="shd">
+    <span class="slbl" style="color:var(--cd)" data-k="sd"></span>
+    <span class="ssub" data-k="sdsub"></span>
+    <span class="snote" data-k="snote"></span>
+  </div>
+  <div class="plist" id="list-dig"></div>
+</div>
+
+<!-- 03 CARPINTERÍA -->
+<div class="section" id="wood">
+  <div class="shd">
+    <span class="slbl" style="color:var(--cw)" data-k="sw"></span>
+    <span class="ssub" data-k="swsub"></span>
+    <span class="snote" data-k="snote"></span>
+  </div>
+  <div class="plist" id="list-wood"></div>
+</div>
+
+<!-- ABOUT -->
+<div class="section" id="about">
+  <div class="shd"><span class="slbl" data-k="sab"></span></div>
+  <p class="abp" data-k="abp"></p>
+  <div class="abgrid">
+    <div class="abcell">
+      <div class="ablbl" data-k="ab1l"></div>
+      <div class="abval">Bogotá, CO</div>
+    </div>
+    <div class="abcell">
+      <div class="ablbl" data-k="ab2l"></div>
+      <div class="abval" data-k="ab2v"></div>
+    </div>
+    <div class="abcell">
+      <div class="ablbl" data-k="ab3l"></div>
+      <div class="abval" data-k="ab3v"></div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span class="fcp" data-k="fcp"></span>
+  <div class="flnks">
+    <a href="mailto:parada.santi@gmail.com" data-k="fe"></a>
+    <a href="https://instagram.com/arcaica_lab" target="_blank">instagram</a>
+    <a href="https://objkt.com/users/tz2VFLV73CMFhHG4osnLCsUfd87Nin5ouKqn/created" target="_blank">objkt</a>
+    <a href="https://github.com/santiagoparada" target="_blank">github</a>
+  </div>
+</footer>
+
+<!-- TREE OVERLAY -->
+<div id="ov">
+  <div id="ovtop">
+    <div id="ovdot"></div>
+    <div id="ovname"></div>
+    <div id="ovhint" data-k="ovhint"></div>
+    <button id="ovcls" onclick="closeTree()" data-k="ovcls"></button>
+  </div>
+  <div id="ovmain">
+    <!-- LEFT: D3 tree -->
+    <div id="ovtree">
+      <svg id="ovsvg"></svg>
+      <div id="ovctrl">
+        <button class="oc" onclick="tZoom(-1)">−</button>
+        <button class="oc" onclick="tZoom(1)">+</button>
+        <button class="oc" onclick="tReset()">⊡</button>
+      </div>
+    </div>
+    <!-- RIGHT: info + images -->
+    <div id="ovinfo"></div>
+  </div>
+</div>
+<div id="tip"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<script>
+/* ══ LANGUAGE ═══════════════════════════════════════════ */
+const LANG = {
+  en:{
+    nw:"wood", nda:"data", nd:"gen. art", na:"about",
+    htag:"portfolio · Bogotá, CO",
+    htitle:"Building analytical systems for complex phenomena.",
+    hsub:"<em>data science</em> · <em>generative art</em> · <em>woodworking</em>",
+    scr:"scroll",
+    mftext:"Computational Systems · Data Science · Python · SQL · PostgreSQL · Signal &amp; Spatial Analysis",
+    sda:"01 — data science / apps", sdasub:"patterns",
+    sd:"02 — generative art",       sdsub:"experiments",
+    sw:"03 — woodworking",          swsub:"objects",
+    snote:"click any project to open its data tree →",
+    sab:"04 — about",
+    abp:"I work with data, code, and physical materials to explore how patterns emerge, persist, and evolve. My practice combines statistical analysis, computational modeling, and systems design with a long-standing interest in making, observation, and experimentation. Based in Bogotá.",
+    ab1l:"location", ab2l:"currently",  ab2v:"clouds #— · daily",
+    ab3l:"also",     ab3v:"Maker Rituals workshop",
+    fcp:"SANTIAGOPARADA · 2026 · all work original", fe:"email",
+    ovhint:"click nodes to expand · drag to pan · scroll to zoom",
+    ovcls:"close",
+    stlive:"live", stwip:"in progress", stdone:"done",
+    imgadd:"+ add image",
+    images:"images",
+    cats:{
+      Materials:"Materials",Process:"Process",Specs:"Specs",Reference:"Reference",
+      Status:"Status",Joinery:"Joinery",Concept:"Concept",Notes:"Notes",Format:"Format",
+      Exercises:"Exercises",Output:"Output",Pipeline:"Pipeline",Attributes:"Attributes",
+      Platform:"Platform",Stack:"Stack",Philosophy:"Philosophy",Medium:"Medium",
+      Content:"Content",Research:"Research",Question:"Question",Tools:"Tools",Dataset:"Dataset",Method:"Method",
+      Finding:"Finding",Technique:"Technique"
+    }
+  },
+  es:{
+    nw:"madera", nda:"datos", nd:"arte gen.", na:"sobre mí",
+    htag:"portafolio · Bogotá, CO",
+    htitle:"Construyendo sistemas analíticos para fenómenos complejos.",
+    hsub:"<em>ciencia de datos</em> · <em>arte generativo</em> · <em>carpintería</em>",
+    scr:"desplázate",
+    mftext:"Sistemas Computacionales · Ciencia de Datos · Python · SQL · PostgreSQL · Análisis de Señales y Espacial",
+    sda:"01 — ciencia de datos / apps", sdasub:"patrones",
+    sd:"02 — arte generativo",          sdsub:"experimentos",
+    sw:"03 — carpintería",              swsub:"objetos",
+    snote:"haz click en cualquier proyecto para abrir su árbol de datos →",
+    sab:"04 — sobre mí",
+    abp:"Trabajo con datos, código y materiales físicos para explorar cómo los patrones emergen, persisten y evolucionan. Mi práctica combina análisis estadístico, modelado computacional y diseño de sistemas con un interés permanente en el hacer, la observación y la experimentación. Basado en Bogotá.",
+    ab1l:"ubicación", ab2l:"actualmente", ab2v:"clouds #— · diario",
+    ab3l:"también",   ab3v:"taller Maker Rituals",
+    fcp:"SANTIAGOPARADA · 2026 · todo el trabajo es original", fe:"correo",
+    ovhint:"click para expandir · arrastrar para mover · scroll para zoom",
+    ovcls:"cerrar",
+    stlive:"activo", stwip:"en proceso", stdone:"terminado",
+    imgadd:"+ agregar imagen",
+    images:"imágenes",
+    cats:{
+      Materials:"Materiales",Process:"Proceso",Specs:"Detalles",Reference:"Referencia",
+      Status:"Estado",Joinery:"Ensamble",Concept:"Concepto",Notes:"Notas",Format:"Formato",
+      Exercises:"Ejercicios",Output:"Te llevas",Pipeline:"Pipeline",Attributes:"Atributos",
+      Platform:"Plataforma",Stack:"Stack",Philosophy:"Filosofía",Medium:"Medio",
+      Content:"Contenido",Research:"Investigación",Question:"Pregunta",Tools:"Herramientas",Dataset:"Dataset",Method:"Método",
+      Finding:"Hallazgo",Technique:"Técnica"
+    }
+  },
+  fr:{
+    nw:"bois", nda:"données", nd:"art gén.", na:"à propos",
+    htag:"portfolio · Bogotá, CO",
+    htitle:"Construire des systèmes analytiques pour des phénomènes complexes.",
+    hsub:"<em>science des données</em> · <em>art génératif</em> · <em>menuiserie</em>",
+    scr:"défiler",
+    mftext:"Systèmes Computationnels · Science des Données · Python · SQL · PostgreSQL · Analyse de Signal &amp; Spatiale",
+    sda:"01 — science des données / apps", sdasub:"motifs",
+    sd:"02 — art génératif",               sdsub:"expériences",
+    sw:"03 — menuiserie",                  swsub:"objets",
+    snote:"cliquez sur un projet pour ouvrir son arbre de données →",
+    sab:"04 — à propos",
+    abp:"Je travaille avec des données, du code et des matériaux physiques pour explorer comment les patterns émergent, persistent et évoluent. Ma pratique combine analyse statistique, modélisation computationnelle et conception de systèmes avec un intérêt durable pour le faire, l'observation et l'expérimentation. Basé à Bogotá.",
+    ab1l:"lieu", ab2l:"actuellement", ab2v:"clouds #— · quotidien",
+    ab3l:"aussi", ab3v:"atelier Maker Rituals",
+    fcp:"SANTIAGOPARADA · 2026 · tout le travail est original", fe:"courriel",
+    ovhint:"clic pour étendre · glisser · molette pour zoom",
+    ovcls:"fermer",
+    stlive:"actif", stwip:"en cours", stdone:"terminé",
+    imgadd:"+ ajouter une image",
+    images:"images",
+    cats:{
+      Materials:"Matériaux",Process:"Processus",Specs:"Détails",Reference:"Référence",
+      Status:"Statut",Joinery:"Assemblage",Concept:"Concept",Notes:"Notes",Format:"Format",
+      Exercises:"Exercices",Output:"À emporter",Pipeline:"Pipeline",Attributes:"Attributs",
+      Platform:"Plateforme",Stack:"Stack",Philosophy:"Philosophie",Medium:"Médium",
+      Content:"Contenu",Research:"Recherche",Question:"Question",Tools:"Outils",Dataset:"Dataset",Method:"Méthode",
+      Finding:"Résultat",Technique:"Technique"
+    }
+  }
+};
+
+/* ══ PROJECT DATA ════════════════════════════════════════ */
+const MODULES = [
+  { id:"01", sec:"wood", cssColor:"--cw",
+    projects:[
+{ id:"01.05", status:"live", year:"2014—", type:"fine woodworking",
+        imgSlots:[
+          {src:"assets/arcaica-lab/arcaica-biblioteca-detalle.jpg",en:"bookshelf",es:"biblioteca",fr:"bibliothèque"},
+          {src:"assets/arcaica-lab/arcaica-mesa-centro.jpg",en:"center table",es:"mesa de centro",fr:"table basse"},
+          {src:"assets/arcaica-lab/arcaica-mesa-comedor.jpg",en:"dining table",es:"mesa de comedor",fr:"table à manger"}
+        ],
+        name:{en:"arcaica_lab",es:"arcaica_lab",fr:"arcaica_lab"},
+        desc:{en:"Arcaica_Lab is Santiago Parada's fine woodworking practice, built from more than ten years of custom furniture experience. The work combines contemporary carpentry, hand joinery, structural geometry and spatial exploration, while expanding toward sound research, pedagogy and computational systems applied to space and materials.",
+              es:"Arcaica_Lab es la práctica de Santiago Parada, ebanista con más de diez años de experiencia en mobiliario fino por encargo. Su trabajo combina carpintería contemporánea, ensambles manuales, geometría estructural y exploración espacial, mientras expande el hacer manual hacia investigación en sonido, pedagogía y sistemas computacionales aplicados al espacio y los materiales.",
+              fr:"Arcaica_Lab est la pratique d'ébénisterie de Santiago Parada, construite à partir de plus de dix ans d'expérience en mobilier fin sur commande. Le travail combine menuiserie contemporaine, assemblages manuels, géométrie structurelle et exploration spatiale, tout en s'étendant vers la recherche sonore, la pédagogie et les systèmes computationnels appliqués à l'espace et aux matériaux."},
+        tree:[
+          {n:"Concept",  c:[{n:"Custom fine furniture"},{n:"Contemporary carpentry + manual joinery"},{n:"Structural geometry as visual language"},{n:"Space, material and use as one system"}]},
+          {n:"Materials",c:[{n:"Solid wood"},{n:"Veneers and sheet goods when needed"},{n:"Hand-finished surfaces"},{n:"Hardware selected per commission"}]},
+          {n:"Process",  c:[{n:"Observation of use and space"},{n:"Sketches, measurements and proportion studies"},{n:"Structural geometry and joinery planning"},{n:"Manual fabrication and fit"},{n:"Finish, installation and long-term use"}]},
+          {n:"Research", c:[{n:"Parametric design tools"},{n:"Sound analysis as spatial input"},{n:"Data science for material and process systems"},{n:"Pedagogy through making"}]},
+          {n:"Platform", c:[{n:"Instagram — @arcaica_lab"},{n:"https://www.instagram.com/arcaica_lab/"}]},
+          {n:"Status",   d:{en:"Active practice · custom work and research",es:"Práctica activa · encargos e investigación",fr:"Pratique active · commandes et recherche"}}
+        ]
+      },
+
+      { id:"01.06", status:"live", year:"2025—", type:"CNC furniture",
+        imgSlots:[
+          {src:"assets/kye/frente.jpg",en:"front view",es:"vista frontal",fr:"vue de face"},
+          {src:"assets/kye/lateral.jpg",en:"side view",es:"vista lateral",fr:"vue latérale"},
+          {src:"assets/kye/armado.jpg",en:"assembly",es:"armado",fr:"assemblage"}
+        ],
+        name:{en:"KYE Minimal Bed",es:"Cama KYE Minimal",fr:"Lit KYE Minimal"},
+        desc:{
+          en:"Tool-free, hardware-free platform bed fabricated from 18mm pine plywood via CNC router. Assembles in under 10 minutes through a three-tier slot-and-tab joinery system. Multiple sizes (single to king). Industrial design registration in process at Colombia's SIC.",
+          es:"Cama plataforma sin herramientas ni tornillería, fabricada en triplex pino 18mm por corte CNC. Se arma en menos de 10 minutos mediante un sistema de ensambles de tres niveles. Disponible en múltiples tamaños. Registro de diseño industrial en trámite ante la SIC.",
+          fr:"Lit plateforme sans outils ni visserie, fabriqué en contreplaqué de pin 18mm par découpe CNC. S'assemble en moins de 10 minutes via un système d'assemblage à trois niveaux. Plusieurs tailles disponibles. Enregistrement design industriel en cours auprès de la SIC colombienne."
+        },
+        tree:[
+          {n:"Design",    c:[{n:"Low-profile platform — 16cm off floor"},{n:"Organic viga profile — double-curve side elevation"},{n:"28.20cm structural module — slatted deck"},{n:"3 component types: vigas · tablas · sujeciones piso"},{n:"5 size variants: sencilla to king"},{n:"Companion ecosystem: nightstand · table · bookshelf"}]},
+          {n:"Materials", c:[{n:"Triplex pino 18mm — pine plywood"},{n:"Sheet size 244×122cm"},{n:"Matte lacquer finish"},{n:"Flor morado variant — premium"},{n:"Local sourcing — Colombia"}]},
+          {n:"Process",   c:[{n:"Rhino 3DM — parametric CAD"},{n:"DXF export for CNC routing"},{n:"2.5-axis CNC router — Arte Ligero Colombia"},{n:"CutList optimization — 58% material utilization"},{n:"3-step tool-free assembly — under 10 min"}]},
+          {n:"Platform",  c:[{n:"Arcaica Lab — Santiago Parada Rodriguez"},{n:"Bogotá, Colombia"},{n:"SIC industrial design registration NC2025/0010176"},{n:"Pop-up retail — Gran Estación mall, Nov 2025"},{n:"Sales via Instagram · Servientrega delivery"}]},
+          {n:"Status",    d:{en:"Active · early commercial phase · 2025—",es:"Activo · fase comercial temprana · 2025—",fr:"Actif · phase commerciale précoce · 2025—"}}
+        ]
+      }
+    ]
+  },
+
+  { id:"02", sec:"data", cssColor:"--cda",
+    projects:[
+      { id:"02.04", status:"done", year:"2026", type:"web app",
+        imgSlots:[
+          {src:"assets/sofa2026/screenshot_01_dashboard_overview.png",en:"dashboard overview",es:"vista general del dashboard",fr:"vue générale du tableau de bord"},
+          {src:"assets/sofa2026/screenshot_02_pavilion_tracking.png",en:"pavilion tracking",es:"seguimiento de pabellones",fr:"suivi des pavillons"},
+          {src:"assets/sofa2026/screenshot_03_filtered_workflow.png",en:"filtered workflow",es:"flujo con filtros",fr:"flux filtré"}
+        ],
+        name:{en:"SOFA2026 — Data Tree",es:"SOFA2026 — Data Tree",fr:"SOFA2026 — Data Tree"},
+        desc:{
+          en:"Logistics visualization system for the SOFA 2026 fair pavilions. Reads a public Google Sheet from Drive and displays it as interactive cards on the web. Auto-refreshes every 60 seconds.",
+          es:"Sistema de visualización logística para los pabellones de la Feria SOFA 2026. Lee un Google Sheet público desde Drive y lo muestra como tarjetas interactivas en la web. Se actualiza automáticamente cada 60 segundos.",
+          fr:"Système de visualisation logistique pour les pavillons de la Foire SOFA 2026. Lit un Google Sheet public depuis Drive et l'affiche sous forme de cartes interactives. Actualisation automatique toutes les 60 secondes."
+        },
+        tree:[
+          {n:"Stack",        c:[{n:"Python"},{n:"Flask"},{n:"pandas"},{n:"requests"},{n:"Render.com"}]},
+          {n:"Architecture", c:[
+            {n:"Google Sheets — source of truth"},
+            {n:"Exported .xlsx via Drive public URL"},
+            {n:"server.py polls every 60 s"},
+            {n:"/api/* endpoints (Flask + pandas)"},
+            {n:"public/index.html — vanilla JS"}
+          ]},
+          {n:"Features",     c:[
+            {n:"Interactive pavilion cards"},
+            {n:"Auto-refresh every 60 s"},
+            {n:"No auth — public URL only"},
+            {n:"Zero-config data updates"}
+          ]},
+          {n:"Deploy",       c:[{n:"Render.com"},{n:"Web service + static files"}]},
+          {n:"Status",       d:{en:"Built · SOFA 2026",es:"Construido · SOFA 2026",fr:"Construit · SOFA 2026"}}
+        ]
+      },
+      { id:"03.01", status:"done", year:"2025", type:"analysis",
+        imgSlots:[
+          {src:"assets/ice/ice-platform-sales-concentration.png",en:"platform sales concentration",es:"concentración de ventas por plataforma",fr:"concentration des ventes par plateforme"},
+          {src:"assets/ice/ice-genre-sales-distribution.png",en:"total sales distribution by genre",es:"distribución de ventas totales por género",fr:"distribution des ventes totales par genre"},
+          {src:"assets/ice/ice-user-score-by-platform.png",en:"user score by platform",es:"user score por plataforma",fr:"user score par plateforme"}
+        ],
+        name:{en:"ICE — Video Game Market Analysis",
+              es:"ICE — Análisis de Mercado de Videojuegos",
+              fr:"ICE — Analyse du Marché des Jeux Vidéo"},
+        desc:{en:"Exploratory analysis of 16,715 video game titles to support advertising planning for 2017. Identifies commercially relevant patterns across platforms, genres, and regions using sales data through 2016.",
+              es:"Análisis exploratorio de 16.715 títulos de videojuegos para apoyar la planificación publicitaria de 2017. Identifica patrones comerciales relevantes por plataforma, género y región usando datos de ventas hasta 2016.",
+              fr:"Analyse exploratoire de 16 715 titres de jeux vidéo pour soutenir la planification publicitaire de 2017. Identifie des patterns commerciaux pertinents par plateforme, genre et région à partir des données de ventes jusqu'en 2016."},
+        tree:[
+          {n:"Dataset",  c:[{n:"16,715 game titles"},{n:"Source: ICE online retailer"},{n:"Sales data through 2016"},{n:"Fields: platform, genre, region sales, scores, ESRB"}]},
+          {n:"Method",   c:[{n:"Python · pandas · seaborn · scipy"},{n:"EDA — sales by platform, genre, region"},{n:"Platform lifecycle analysis"},{n:"Statistical tests: Welch t-test"}]},
+          {n:"Finding",  c:[{n:"Sales concentrated in PS, Xbox, Wii, DS families"},{n:"Platform median lifespan: 7 years"},{n:"Action & Sports lead total volume"},{n:"Platform & Shooter lead per-title sales"},{n:"Japan behaves differently from NA and EU"},{n:"Critic score: moderate correlation with sales"},{n:"User score: low predictive value alone"}]},
+          {n:"Stack",    c:[{n:"Python 3"},{n:"pandas · numpy · scipy"},{n:"seaborn · matplotlib"},{n:"Jupyter Notebook"}]},
+          {n:"Status",   d:{en:"Completed · 2025 · TripleTen bootcamp",es:"Completado · 2025 · bootcamp TripleTen",fr:"Complété · 2025 · bootcamp TripleTen"}}
+        ]
+      },
+      { id:"03.02", status:"wip", year:"2026", type:"analysis",
+        imgSlots:[
+          {en:"in progress",es:"en proceso",fr:"en cours"},
+          {en:"preliminary",es:"preliminar",fr:"préliminaire"}
+        ],
+        name:{en:"Project — [add title]",
+              es:"Proyecto — [agregar título]",
+              fr:"Projet — [ajouter un titre]"},
+        desc:{en:"Work in progress. Replace with your project description.",
+              es:"En proceso. Reemplaza con tu descripción.",
+              fr:"En cours. Remplacez avec votre description."},
+        tree:[
+          {n:"Stack",    c:[{n:"Python"},{n:"pandas"},{n:"Visualization — TBD"}]},
+          {n:"Question", c:[{n:"What you are asking the data"}]},
+          {n:"Status",   d:{en:"In progress · 2026",es:"En proceso · 2026",fr:"En cours · 2026"}}
+        ]
+      }
+    ]
+  },
+
+  { id:"03", sec:"dig", cssColor:"--cd",
+    projects:[
+      { id:"02.01", status:"live", year:"2026—", type:"audio-driven FBM",
+        imgSlots:[
+          {src:"assets/clouds/clouds-030-01.jpg",en:"clouds #030 — I",es:"clouds #030 — I",fr:"clouds #030 — I"},
+          {src:"assets/clouds/clouds-030-02.jpg",en:"clouds #030 — II",es:"clouds #030 — II",fr:"clouds #030 — II"},
+          {src:"assets/clouds/clouds-030-spectrogram-3d.jpg",en:"3D spectrogram",es:"espectrograma 3D",fr:"spectrogramme 3D"}
+        ],
+        name:{en:"clouds — Frameworks of Behaviour",
+              es:"clouds — Marcos de Comportamiento",
+              fr:"clouds — Cadres de Comportement"},
+        desc:{en:"Ongoing ritual practice where a live Tibetan singing bowl recording becomes an atmospheric image. Each iteration converts raw sound into spectral measurements, maps those measurements into an FBM cloud engine, and exports a high-resolution still with metadata for image, audio and process.",
+              es:"Práctica ritual en curso donde una grabación en vivo de cuenco tibetano se convierte en imagen atmosférica. Cada iteración transforma el sonido crudo en mediciones espectrales, mapea esas mediciones a un motor de nubes FBM y exporta una imagen de alta resolución con metadatos de imagen, audio y proceso.",
+              fr:"Pratique rituelle en cours où l'enregistrement en direct d'un bol tibétain devient une image atmosphérique. Chaque itération transforme le son brut en mesures spectrales, les mappe dans un moteur de nuages FBM et exporte une image haute résolution avec métadonnées d'image, audio et processus."},
+        tree:[
+          {n:"Pipeline",   c:[{n:"Live Tibetan bowl recording"},{n:"PCM WAV conversion — 48 kHz · 16-bit · stereo"},{n:"STFT analysis — 4096 window / 3072 overlap"},{n:"3D spectrogram views — ISO / FRONT / SIDE"},{n:"Audio parameters → FBM + audio particles"}]},
+          {n:"Attributes", c:[{n:"Iteration 030 — recorded 2026-05-24"},{n:"Duration — 196.3 s · analysis seconds 197"},{n:"Peak frequency — 179.7 Hz"},{n:"Spectral centroid — 2161.2 Hz"},{n:"RMS mean / max — 0.09987 / 0.20934"},{n:"Frequency range — 2–758 Hz"}]},
+          {n:"Output",     c:[{n:"2 images generated"},{n:"PNG 8000×8000 · 254 DPI"},{n:"Quality mode — ultra"},{n:"Seeds — 3190 / 3287"},{n:"S-curve · LAB grain · vignette · split-tone · unsharp mask"}]},
+          {n:"Platform",   c:[{n:"TZIP-21 metadata"},{n:"IPFS-ready image + audio artifacts"},{n:"SHA-256 hash per file"},{n:"Tezos / objkt publishing workflow"}]},
+          {n:"Concept",    c:[{n:"Impermanence of sound inside ritual structure"},{n:"Atmospheric light + acoustic data"},{n:"FBM gives the sky its breath"},{n:"Audio gives the cloud its body"},{n:"Volatile sound → fixed image"}]},
+          {n:"Stack",      c:[{n:"Python 3.11+ — cuenco_pipeline_v2.py v2.0"},{n:"pydub + ffmpeg"},{n:"STFT spectral decomposition"},{n:"Pillow + NumPy renderer"},{n:"Custom QA + metadata export"}]},
+          {n:"Status",     d:{en:"Ongoing ritual series · 30 iterations documented",es:"Serie ritual en curso · 30 iteraciones documentadas",fr:"Série rituelle en cours · 30 itérations documentées"}}
+        ]
+      },
+
+      { id:"03.02", status:"live", year:"2026", type:"generative app",
+        imgSlots:[
+          {src:"assets/luum/luum-render-01.png",en:"app state 01",es:"estado app 01",fr:"état app 01"},
+          {src:"assets/luum/luum-render-02.png",en:"app state 02",es:"estado app 02",fr:"état app 02"},
+          {src:"assets/luum/luum-render-03.png",en:"app state 03",es:"estado app 03",fr:"état app 03"}
+        ],
+        name:{en:"luum",es:"luum",fr:"luum"},
+        desc:{en:"Generative app for creative strategies with more than 170,000 possible combinations. Each tap crosses conceptual triggers, concrete action propositions and pop color states, producing a new prompt for artists, teachers, teams, improvisers and creative processes that need another angle.",
+              es:"App generativa de estrategias creativas con más de 170.000 combinaciones posibles. Cada toque cruza detonadores conceptuales, proposiciones concretas de acción y estados de color pop para producir un nuevo impulso para artistas, docentes, equipos, improvisadores y procesos creativos que necesitan otro ángulo.",
+              fr:"Application générative de stratégies créatives avec plus de 170 000 combinaisons possibles. Chaque toucher croise des déclencheurs conceptuels, des propositions d'action concrètes et des états de couleur pop pour produire une nouvelle impulsion pour artistes, enseignants, équipes, improvisateurs et processus créatifs."},
+        tree:[
+          {n:"Concept",  c:[{n:"Creative strategy generator"},{n:"I Ching logic: fixed tables, variable encounters"},{n:"Prompt as tool, not answer"},{n:"For unlocking, reframing and starting again"}]},
+          {n:"Content",  c:[{n:"90 trigger phrases — ES / EN"},{n:"64 artistic action propositions — ES / EN"},{n:"15 pop color states"},{n:"+170,000 possible combinations"}]},
+          {n:"Medium",   c:[{n:"Static web app"},{n:"PWA installable from browser"},{n:"Tap / click / swipe / keyboard interaction"},{n:"Free access, no subscriptions"}]},
+          {n:"Stack",    c:[{n:"HTML + CSS + vanilla JS"},{n:"manifest.json + service worker"},{n:"GitHub Pages"},{n:"No localStorage, no personal data"}]},
+          {n:"Reference",c:[{n:"Joseph Kosuth — Art after Philosophy"},{n:"Richard Sennett — The Craftsman"},{n:"McLuhan / Carpenter — Auditory Space"},{n:"Jean Baudrillard — objects"},{n:"Brian Eno / Peter Schmidt — Oblique Strategies"}]},
+          {n:"Status",   d:{en:"PWA published · 2026",es:"PWA publicada · 2026",fr:"PWA publiée · 2026"}}
+        ]
+      }
+    ]
+  }
+];
+
+/* ══ STATE ═══════════════════════════════════════════════ */
+let curLang = 'en';
+let curTheme = 'dark';
+let activeMod = null;
+let activeProj = null;
+let svgD3, gD3, zoomD3;
+
+/* ══ LANGUAGE ════════════════════════════════════════════ */
+function setLang(l) {
+  curLang = l;
+  document.documentElement.lang = l;
+  document.querySelectorAll('.lbtn').forEach(b =>
+    b.classList.toggle('on', b.textContent === l.toUpperCase()));
+  applyLang();
+  if(activeProj && document.getElementById('ov').classList.contains('open'))
+    openTree(activeMod, activeProj);
+}
+
+function applyLang() {
+  const L = LANG[curLang];
+  document.querySelectorAll('[data-k]').forEach(el => {
+    const v = L[el.dataset.k];
+    if(v !== undefined) el.innerHTML = v;
+  });
+  const h1 = document.querySelector('.gt');
+  if(h1 && L.htitle) h1.setAttribute('data-text', L.htitle);
+  renderLists();
+}
+
+function t(k)   { return LANG[curLang][k] || k; }
+function catN(n){ return (LANG[curLang].cats||{})[n] || n; }
+function rs(v)  { return (typeof v==='object'&&v!==null)?(v[curLang]||v.en||''):(v||''); }
+
+/* ══ RENDER PROJECT ROWS ═════════════════════════════════ */
+const secOrder = ['data','dig','wood'];
+const modMap   = { wood:'01', data:'02', dig:'03' };
+
+function renderLists() {
+  secOrder.forEach(sec => {
+    const mod = MODULES.find(m => m.id === modMap[sec]);
+    const el  = document.getElementById('list-'+sec);
+    if(!mod||!el) return;
+    el.innerHTML = '';
+    mod.projects.forEach((p,i) => {
+      const div = document.createElement('div');
+      div.className = 'prow';
+      div.onclick = () => openTree(mod, p);
+      const sc = p.status==='live'?'live':p.status==='wip'?'wip':'';
+      const sl = p.status==='live'?t('stlive'):p.status==='wip'?t('stwip'):t('stdone');
+      div.innerHTML =
+        `<span class="pidx">0${i+1}</span>
+         <div>
+           <div class="ptit">${rs(p.name)}</div>
+           <div class="pdsc">${rs(p.desc)}</div>
+           <div class="ptags">
+             <span class="pt ${sc}">${sl}</span>
+             <span class="pt">${p.type}</span>
+           </div>
+         </div>
+         <span class="pyr">${p.year}</span>
+         <span class="parr">⊞</span>`;
+      el.appendChild(div);
+    });
+  });
+  setupReveal();
+}
+
+/* ══ THEME ═══════════════════════════════════════════════ */
+function toggleTheme() {
+  curTheme = curTheme==='dark'?'light':'dark';
+  document.documentElement.setAttribute('data-theme', curTheme);
+  document.getElementById('tbtn').textContent = curTheme==='dark'?'◑':'◐';
+  if(activeProj && document.getElementById('ov').classList.contains('open'))
+    setTimeout(()=>openTree(activeMod,activeProj), 60);
+}
+
+/* ══ TREE OVERLAY ════════════════════════════════════════ */
+function cssCol(varName) {
+  return getComputedStyle(document.documentElement)
+    .getPropertyValue(varName).trim();
+}
+
+function openTree(mod, proj) {
+  activeMod = mod; activeProj = proj;
+  const col = cssCol(mod.cssColor);
+
+  document.getElementById('ovdot').style.background = col;
+  document.getElementById('ovname').textContent = rs(proj.name);
+  document.getElementById('ov').classList.add('open');
+  document.body.style.overflow = 'hidden';
+
+  buildInfoPanel(proj, col);
+  buildTree(proj, col);
+}
+
+function closeTree() {
+  document.getElementById('ov').classList.remove('open');
+  document.body.style.overflow = '';
+  activeMod = null; activeProj = null;
+}
+
+/* ── Info panel (right side) ── */
+function buildInfoPanel(proj, col) {
+  const el = document.getElementById('ovinfo');
+  const L  = LANG[curLang];
+  const sc = proj.status==='live'?'ib-live':proj.status==='wip'?'ib-wip':'ib-dim';
+  const sl = proj.status==='live'?L.stlive:proj.status==='wip'?L.stwip:L.stdone;
+
+  const slots = (proj.imgSlots||[]).map(lbl => {
+    const label = rs(lbl);
+    const img = lbl.src ? `<img src="${lbl.src}" alt="${label}" loading="lazy">` : '';
+    return `<div class="imgslot ${lbl.src?'has-img':''}" style="border-color:${col};color:${col}">
+      ${img || '<div class="imgslot-bg"></div>'}
+      <span class="imgslot-lbl">${label}</span>
+      ${lbl.src ? '' : `<span class="imgslot-add">${L.imgadd}</span>`}
+    </div>`;
+  }).join('');
+
+  el.innerHTML = `
+    <div class="info-id">${proj.id}</div>
+    <div class="info-title">${rs(proj.name)}</div>
+    <div class="info-badges">
+      ${proj.status?`<span class="ibadge ${sc}">${sl}</span>`:''}
+      ${proj.type ?`<span class="ibadge ib-dim">${proj.type}</span>`:''}
+      ${proj.year ?`<span class="ibadge ib-dim">${proj.year}</span>`:''}
+    </div>
+    <p class="info-desc">${rs(proj.desc)}</p>
+    <hr class="info-div">
+    <div style="font-size:9px;letter-spacing:.14em;text-transform:uppercase;
+      color:var(--dimmer);margin-bottom:12px">${L.images}</div>
+    <div class="imgslots">${slots}</div>`;
+}
+
+/* ── D3 Tree (left side) ── */
+function initSVG() {
+  svgD3 = d3.select('#ovsvg');
+  gD3 = svgD3.append('g');
+  zoomD3 = d3.zoom().scaleExtent([0.1,3])
+    .on('zoom', e => gD3.attr('transform', e.transform));
+  svgD3.call(zoomD3);
+}
+
+function tReset() {
+  const tEl = document.getElementById('ovtree');
+  const tw = tEl.clientWidth, th = tEl.clientHeight;
+  const tx = Math.round(tw * 0.52);
+  svgD3.transition().duration(340)
+    .call(zoomD3.transform, d3.zoomIdentity.translate(tx, th/2).scale(1));
+}
+function tZoom(d) {
+  svgD3.transition().duration(200).call(zoomD3.scaleBy, d>0?1.35:1/1.35);
+}
+
+let _ni=0;
+function buildTree(proj, col) {
+  if(!svgD3) initSVG();
+  gD3.selectAll('*').remove();
+
+  // flatten project.tree → D3 hierarchy
+  const rootDat = {
+    id: proj.id, name: rs(proj.name),
+    children: proj.tree.map(tn => {
+      const cat = { id:tn.n, name:catN(tn.n), desc:rs(tn.d) };
+      if(tn.c) cat.children = tn.c.map(ch => ({id:ch.n, name:ch.n, desc:rs(ch.d)}));
+      return cat;
+    })
+  };
+
+  const root = d3.hierarchy(rootDat, d => d.children);
+  // collapse all category children initially
+  root.children && root.children.forEach(collapse);
+
+  const tEl = document.getElementById('ovtree');
+  const tw = tEl.clientWidth, th = tEl.clientHeight;
+  const tx = Math.round(tw * 0.52);
+  svgD3.call(zoomD3.transform, d3.zoomIdentity.translate(tx, th/2).scale(1));
+  redraw(root, root, col, true);
+}
+
+function collapse(d) {
+  if(d.children){ d._children=d.children; d.children=null; }
+  if(d._children) d._children.forEach(collapse);
+}
+
+function redraw(src, root, col, init) {
+  const lay = d3.tree().nodeSize([30, 185]);
+  lay(root);
+  const nodes=root.descendants(), links=root.links();
+  const dur=init?0:250;
+
+  /* ── links ── */
+  const lk = gD3.selectAll('.tlink').data(links, d=>d.target.data.id+'_'+d.target.depth);
+  const lkE = lk.enter().append('path').attr('class','tlink')
+    .attr('d', d=>{ const o={x:src.x0||0,y:src.y0||0}; return bez(o,o); });
+  lk.merge(lkE).transition().duration(dur)
+    .attr('d', d=>bez(d.source,d.target))
+    .attr('stroke', d=>d.target.depth===1?col:mix(col,'#6a6560',.6))
+    .attr('opacity', d=>d.target.depth===1?.4:.22);
+  lk.exit().transition().duration(dur)
+    .attr('d',()=>{ const o={x:src.x,y:src.y}; return bez(o,o); })
+    .attr('opacity',0).remove();
+
+  /* ── nodes ── */
+  const nd = gD3.selectAll('.tnode').data(nodes, d=>d.data.id||(d.data.id=++_ni));
+  const ndE = nd.enter().append('g')
+    .attr('class', d=>`tnode tnode--${d.depth===0?'root':d.depth===1?'cat':'item'}`)
+    .attr('transform', d=>`translate(${src.y0||0},${src.x0||0})`)
+    .attr('opacity',0)
+    .on('click',(e,d)=>{
+      e.stopPropagation();
+      if(d.depth===0) return;
+      if(d.data.children||d.data._children){
+        if(d.children){d._children=d.children;d.children=null;}
+        else{d.children=d._children;d._children=null;}
+        redraw(d,root,col,false);
+      }
+    })
+    .on('mousemove',(e,d)=>{
+      if(d.depth===0) return;
+      const tp=document.getElementById('tip');
+      tp.style.display='block';
+      tp.style.left=(e.clientX+14)+'px';
+      tp.style.top=(e.clientY-8)+'px';
+      tp.textContent=d.data.name;
+    })
+    .on('mouseleave',()=>{ document.getElementById('tip').style.display='none'; });
+
+  const bgV=cssCol('--bg'), bg3V=cssCol('--bg3'), fgV=cssCol('--fg'), dimV=cssCol('--dim');
+
+  ndE.append('circle')
+    .attr('r', d=>d.depth===0?10:d.depth===1?5.5:4)
+    .attr('fill', d=>d.depth===0?col:d.depth===1?mix(col,bgV,.78):bg3V)
+    .attr('stroke', d=>{
+      if(d.depth===0) return col;
+      if(d.depth===1) return mix(col,'#6a6560',.4);
+      return d.data.desc?mix(col,'#6a6560',.68):'#3a3530';
+    })
+    .attr('stroke-width', d=>d.depth===0?2:1.5);
+
+  // expand dot on collapsible nodes
+  ndE.filter(d=>d.depth>0&&(d.data._children||d.data.children))
+    .append('circle').attr('r',2).attr('class','edot')
+    .attr('fill', d=>d.children?mix(col,'#fff',.35):'#3a3530');
+
+  ndE.append('text')
+    .attr('dy','0.35em')
+    .attr('x', d=>d.depth===0?-16:d.children||d._children?-10:9)
+    .attr('text-anchor', d=>(d.depth===0||d.children||d._children)?'end':'start')
+    .attr('font-size', d=>d.depth===0?11:d.depth===1?11:10)
+    .attr('font-weight', d=>d.depth<=1?700:400)
+    .attr('fill', d=>d.depth===0?col:d.depth===1?fgV:dimV)
+    .attr('letter-spacing', d=>d.depth===0?'.1em':d.depth===1?'.04em':'.02em')
+    .text(d=>{ const s=d.data.name; return s.length>30?s.slice(0,28)+'…':s; });
+
+  const all=nd.merge(ndE);
+  all.transition().duration(dur)
+    .attr('transform',d=>`translate(${d.y},${d.x})`).attr('opacity',1);
+  all.select('.edot').attr('fill',d=>d.children?mix(col,'#fff',.35):'#3a3530');
+  all.select('text')
+    .attr('x',d=>d.depth===0?-16:d.children||d._children?-10:9)
+    .attr('text-anchor',d=>(d.depth===0||d.children||d._children)?'end':'start');
+
+  nd.exit().transition().duration(dur)
+    .attr('transform',d=>`translate(${src.y},${src.x})`).attr('opacity',0).remove();
+  nodes.forEach(d=>{d.x0=d.x;d.y0=d.y;});
+}
+
+/* ══ HELPERS ═════════════════════════════════════════════ */
+function bez(s,t){
+  const mx=(s.y+t.y)/2;
+  return `M${s.y},${s.x}C${mx},${s.x} ${mx},${t.x} ${t.y},${t.x}`;
+}
+function mix(a,b,t){
+  try{
+    const p=c=>{const v=parseInt(c.replace(/[^0-9a-f]/gi,'').padEnd(6,'0').slice(0,6),16);return[v>>16,(v>>8)&255,v&255];};
+    const[ar,ag,ab]=p(a),[br,bg,bb]=p(b);
+    return '#'+[ar+(br-ar)*t,ag+(bg-ag)*t,ab+(bb-ab)*t]
+      .map(v=>{const i=Math.round(Math.max(0,Math.min(255,v)));return(i<16?'0':'')+i.toString(16);}).join('');
+  }catch(e){return a;}
+}
+
+/* ══ GLITCH AMBIENT LOOP ═════════════════════════════════ */
+(function loop(){
+  const el=document.querySelector('.gt');
+  if(!el) return;
+  el.style.animation='none';
+  requestAnimationFrame(()=>{
+    el.style.animation=`ambg ${(6+Math.random()*8).toFixed(1)}s infinite ${(Math.random()*4).toFixed(1)}s`;
+  });
+  setTimeout(loop,(10+Math.random()*14)*1000);
+})();
+
+/* ══ SCROLL REVEAL ═══════════════════════════════════════ */
+function setupReveal(){
+  const io=new IntersectionObserver(es=>{
+    es.forEach(e=>{if(e.isIntersecting){
+      e.target.style.opacity='1';e.target.style.transform='translateY(0)';
+    }});
+  },{threshold:.06});
+  document.querySelectorAll('.prow').forEach(el=>{
+    el.style.opacity='0';el.style.transform='translateY(12px)';
+    el.style.transition='opacity .45s ease, transform .45s ease';
+    io.observe(el);
+  });
+}
+
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeTree(); });
+
+/* ══ INIT ════════════════════════════════════════════════ */
+applyLang();
+</script>
+</body>
+</html>

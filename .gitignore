@@ -1,0 +1,9 @@
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Internal docs
+CLAUDE.md
+ESTADO_PROYECTO.md
+MEMORIA_CONTEXTO.md

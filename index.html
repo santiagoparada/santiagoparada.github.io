@@ -465,7 +465,7 @@ footer{padding:24px 40px;display:flex;justify-content:space-between;align-items:
 </div>
 <div id="tip"></div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js" onerror="window._d3Failed=true"></script>
 <script>
 /* ══ LANGUAGE ═══════════════════════════════════════════ */
 const LANG = {
@@ -565,7 +565,7 @@ const LANG = {
 const MODULES = [
   { id:"01", sec:"wood", cssColor:"--cw",
     projects:[
-{ id:"01.05", status:"live", year:"2014—", type:"fine woodworking",
+{ id:"01.01", status:"live", year:"2014—", type:"fine woodworking",
         imgSlots:[
           {src:"assets/arcaica-lab/arcaica-biblioteca-detalle.jpg",en:"bookshelf",es:"biblioteca",fr:"bibliothèque"},
           {src:"assets/arcaica-lab/arcaica-mesa-centro.jpg",en:"center table",es:"mesa de centro",fr:"table basse"},
@@ -585,7 +585,7 @@ const MODULES = [
         ]
       },
 
-      { id:"01.06", status:"live", year:"2025—", type:"CNC furniture",
+      { id:"01.02", status:"live", year:"2025—", type:"CNC furniture",
         imgSlots:[
           {src:"assets/kye/frente.jpg",en:"front view",es:"vista frontal",fr:"vue de face"},
           {src:"assets/kye/lateral.jpg",en:"side view",es:"vista lateral",fr:"vue latérale"},
@@ -610,7 +610,7 @@ const MODULES = [
 
   { id:"02", sec:"data", cssColor:"--cda",
     projects:[
-      { id:"02.04", status:"done", year:"2026", type:"web app",
+      { id:"02.01", status:"done", year:"2026", type:"web app",
         imgSlots:[
           {src:"assets/sofa2026/screenshot_01_dashboard_overview.png",en:"dashboard overview",es:"vista general del dashboard",fr:"vue générale du tableau de bord"},
           {src:"assets/sofa2026/screenshot_02_pavilion_tracking.png",en:"pavilion tracking",es:"seguimiento de pabellones",fr:"suivi des pavillons"},
@@ -641,7 +641,7 @@ const MODULES = [
           {n:"Status",       d:{en:"Built · SOFA 2026",es:"Construido · SOFA 2026",fr:"Construit · SOFA 2026"}}
         ]
       },
-      { id:"03.01", status:"done", year:"2025", type:"analysis",
+      { id:"02.02", status:"done", year:"2025", type:"analysis",
         imgSlots:[
           {src:"assets/ice/ice-platform-sales-concentration.png",en:"platform sales concentration",es:"concentración de ventas por plataforma",fr:"concentration des ventes par plateforme"},
           {src:"assets/ice/ice-genre-sales-distribution.png",en:"total sales distribution by genre",es:"distribución de ventas totales por género",fr:"distribution des ventes totales par genre"},
@@ -661,7 +661,7 @@ const MODULES = [
           {n:"Status",   d:{en:"Completed · 2025 · TripleTen bootcamp",es:"Completado · 2025 · bootcamp TripleTen",fr:"Complété · 2025 · bootcamp TripleTen"}}
         ]
       },
-      { id:"03.02", status:"wip", year:"2026", type:"analysis",
+      { id:"02.03", status:"wip", year:"2026", type:"analysis",
         imgSlots:[
           {en:"in progress",es:"en proceso",fr:"en cours"},
           {en:"preliminary",es:"preliminar",fr:"préliminaire"}
@@ -683,7 +683,7 @@ const MODULES = [
 
   { id:"03", sec:"dig", cssColor:"--cd",
     projects:[
-      { id:"02.01", status:"live", year:"2026—", type:"audio-driven FBM",
+      { id:"03.01", status:"live", year:"2026—", type:"audio-driven FBM",
         imgSlots:[
           {src:"assets/clouds/clouds-030-01.jpg",en:"clouds #030 — I",es:"clouds #030 — I",fr:"clouds #030 — I"},
           {src:"assets/clouds/clouds-030-02.jpg",en:"clouds #030 — II",es:"clouds #030 — II",fr:"clouds #030 — II"},
@@ -739,6 +739,7 @@ let svgD3, gD3, zoomD3;
 /* ══ LANGUAGE ════════════════════════════════════════════ */
 function setLang(l) {
   curLang = l;
+  localStorage.setItem('lang', l);
   document.documentElement.lang = l;
   document.querySelectorAll('.lbtn').forEach(b =>
     b.classList.toggle('on', b.textContent === l.toUpperCase()));
@@ -799,6 +800,7 @@ function renderLists() {
 /* ══ THEME ═══════════════════════════════════════════════ */
 function toggleTheme() {
   curTheme = curTheme==='dark'?'light':'dark';
+  localStorage.setItem('theme', curTheme);
   document.documentElement.setAttribute('data-theme', curTheme);
   document.getElementById('tbtn').textContent = curTheme==='dark'?'◑':'◐';
   if(activeProj && document.getElementById('ov').classList.contains('open'))
@@ -812,6 +814,18 @@ function cssCol(varName) {
 }
 
 function openTree(mod, proj) {
+  if(window._d3Failed || typeof d3 === 'undefined') {
+    activeMod = mod; activeProj = proj;
+    const col = cssCol(mod.cssColor);
+    document.getElementById('ovdot').style.background = col;
+    document.getElementById('ovname').textContent = rs(proj.name);
+    document.getElementById('ov').classList.add('open');
+    document.body.style.overflow = 'hidden';
+    buildInfoPanel(proj, col);
+    const svg = document.getElementById('ovsvg');
+    svg.innerHTML = `<text x="20" y="40" fill="var(--dim)" font-size="11" font-family="'Space Mono','Courier New',monospace">tree unavailable offline</text>`;
+    return;
+  }
   activeMod = mod; activeProj = proj;
   const col = cssCol(mod.cssColor);
 
@@ -886,6 +900,13 @@ let _ni=0;
 function buildTree(proj, col) {
   if(!svgD3) initSVG();
   gD3.selectAll('*').remove();
+  if(!proj.tree || !proj.tree.length) {
+    gD3.append('text').attr('x',20).attr('y',40)
+      .attr('fill','var(--dim)').attr('font-size',11)
+      .attr('font-family',"'Space Mono','Courier New',monospace")
+      .text('no tree data');
+    return;
+  }
 
   // flatten project.tree → D3 hierarchy
   const rootDat = {
@@ -1038,6 +1059,19 @@ function setupReveal(){
 document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeTree(); });
 
 /* ══ INIT ════════════════════════════════════════════════ */
+(function(){
+  const sl = localStorage.getItem('lang');
+  const st = localStorage.getItem('theme');
+  if(sl && LANG[sl]) curLang = sl;
+  if(st === 'light' || st === 'dark') {
+    curTheme = st;
+    document.documentElement.setAttribute('data-theme', st);
+    document.getElementById('tbtn').textContent = st==='dark'?'◑':'◐';
+  }
+  document.querySelectorAll('.lbtn').forEach(b =>
+    b.classList.toggle('on', b.textContent === curLang.toUpperCase()));
+  document.documentElement.lang = curLang;
+})();
 applyLang();
 </script>
 </body>

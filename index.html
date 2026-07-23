@@ -661,21 +661,42 @@ const MODULES = [
           {n:"Status",   d:{en:"Completed · 2025 · TripleTen bootcamp",es:"Completado · 2025 · bootcamp TripleTen",fr:"Complété · 2025 · bootcamp TripleTen"}}
         ]
       },
-      { id:"02.03", status:"wip", year:"2026", type:"analysis",
+      { id:"02.03", status:"done", year:"2026", type:"machine learning",
         imgSlots:[
-          {en:"in progress",es:"en proceso",fr:"en cours"},
-          {en:"preliminary",es:"preliminar",fr:"préliminaire"}
+          {src:"assets/ml-case-studies/ml-megaline-test-metrics.png",en:"Megaline — final test metrics",es:"Megaline — métricas finales de prueba",fr:"Megaline — métriques finales de test"},
+          {src:"assets/ml-case-studies/ml-betabank-roc-curve.png",en:"Beta Bank — ROC curve, test set",es:"Beta Bank — curva ROC, conjunto de prueba",fr:"Beta Bank — courbe ROC, jeu de test"},
+          {src:"assets/ml-case-studies/ml-oilygiant-bootstrap-profit.png",en:"OilyGiant — bootstrap profit distribution",es:"OilyGiant — distribución de ganancias por bootstrap",fr:"OilyGiant — distribution des profits par bootstrap"}
         ],
-        name:{en:"Project — [add title]",
-              es:"Proyecto — [agregar título]",
-              fr:"Projet — [ajouter un titre]"},
-        desc:{en:"Work in progress. Replace with your project description.",
-              es:"En proceso. Reemplaza con tu descripción.",
-              fr:"En cours. Remplacez avec votre description."},
+        name:{en:"Machine Learning — Business Case Studies",
+              es:"Machine Learning — Casos de Negocio",
+              fr:"Machine Learning — Études de Cas d'Affaires"},
+        desc:{en:"Three end-to-end machine-learning case studies turning business questions into modeling decisions: plan recommendation, churn prediction, and profit-risk region selection. Emphasis on validation discipline, interpretable metrics, and actionable conclusions.",
+              es:"Tres casos de negocio de machine learning de principio a fin que convierten preguntas de negocio en decisiones de modelado: recomendación de planes, predicción de abandono y selección de región por riesgo-ganancia. Énfasis en disciplina de validación, métricas interpretables y conclusiones accionables.",
+              fr:"Trois études de cas de machine learning de bout en bout transformant des questions d'affaires en décisions de modélisation : recommandation de forfait, prédiction de résiliation et sélection de région par profit-risque. Accent sur la rigueur de validation, des métriques interprétables et des conclusions exploitables."},
         tree:[
-          {n:"Stack",    c:[{n:"Python"},{n:"pandas"},{n:"Visualization — TBD"}]},
-          {n:"Question", c:[{n:"What you are asking the data"}]},
-          {n:"Status",   d:{en:"In progress · 2026",es:"En proceso · 2026",fr:"En cours · 2026"}}
+          {n:"Megaline — plan classification", c:[
+            {n:"3,214 customers · 4 behavioral features"},
+            {n:"Binary classification — Smart vs Ultra"},
+            {n:"Decision Tree, Random Forest, scaled Logistic Regression"},
+            {n:"Decision Tree (max_depth=5) selected"},
+            {n:"Test accuracy 0.7714 — exceeds 0.75 requirement and 0.6936 baseline"}
+          ]},
+          {n:"Beta Bank — churn prediction", c:[
+            {n:"10,000 customers · imbalanced binary target"},
+            {n:"Fold-safe pipeline — imputation, scaling, one-hot, oversampling"},
+            {n:"Random Forest · 5-fold CV · out-of-fold threshold selection"},
+            {n:"Test F1 0.6473 — exceeds 0.59 requirement"},
+            {n:"ROC-AUC 0.8714 · recall 0.6855 · precision 0.6132"}
+          ]},
+          {n:"OilyGiant — region selection", c:[
+            {n:"3 regions × 100,000 wells · regression + profit simulation"},
+            {n:"Linear Regression per region · 25,000-well validation split"},
+            {n:"1,000-sample bootstrap — expected profit, CI, loss risk"},
+            {n:"Region 1 — RMSE 0.893 · loss probability 1.5%"},
+            {n:"Recommendation: develop Region 1 — expected profit $4.56M"}
+          ]},
+          {n:"Stack",  c:[{n:"Python 3"},{n:"pandas · NumPy · scikit-learn"},{n:"Matplotlib"},{n:"JupyterLab"}]},
+          {n:"Status", d:{en:"Completed · 2026",es:"Completado · 2026",fr:"Complété · 2026"}}
         ]
       }
     ]

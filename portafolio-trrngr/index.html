@@ -1,0 +1,744 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Santiago Parada — obra (convocatorias)</title>
+<meta name="description" content="Santiago Parada (trrngr). Arte generativo, sonido y madera. Bogotá, Colombia.">
+<style>
+:root{--ink:#111;--mid:#6b6b6b;--hair:#dcdcdc;--bg:#fbfbfa;--max:1180px;
+ --blue:#3f92c4;--amber:#efa021;--red:#d24115}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);
+ font:400 16px/1.62 "Helvetica Neue",Helvetica,Arial,sans-serif;
+ -webkit-font-smoothing:antialiased;letter-spacing:.005em}
+.w{max-width:var(--max);margin:0 auto;padding:0 32px}
+a{color:inherit;text-decoration:none}
+.wtxt a,.wtec a,.cr a,.bio a{color:var(--blue);border-bottom:1px solid rgba(63,146,196,.35)}
+.wtxt a:hover,.wtec a:hover,.cr a:hover,.bio a:hover{color:var(--red);border-color:rgba(210,65,21,.45)}
+
+/* nav */
+nav{position:sticky;top:0;z-index:50;background:rgba(251,251,250,.94);
+ backdrop-filter:blur(9px);border-bottom:1px solid var(--hair)}
+nav .w{display:flex;align-items:center;gap:26px;height:52px;overflow-x:auto;scrollbar-width:none}
+nav .w::-webkit-scrollbar{display:none}
+nav .me{font-weight:600;letter-spacing:.01em;white-space:nowrap;margin-right:6px}
+nav a{font-size:11.5px;color:var(--mid);white-space:nowrap;letter-spacing:.02em}
+nav a:hover{color:var(--ink)}
+nav .sp{flex:1}
+nav .cta{font-size:11.5px;border-bottom:1px solid var(--ink);padding-bottom:1px}
+nav .langtoggle{font:inherit;font-size:11.5px;border-bottom:1px solid var(--ink);padding-bottom:1px;
+ background:none;border-top:none;border-left:none;border-right:none;cursor:pointer;color:var(--ink);
+ white-space:nowrap;letter-spacing:.02em;margin-left:6px}
+nav .langtoggle:hover{color:var(--mid)}
+
+/* hero */
+header{padding:96px 0 76px;border-bottom:1px solid var(--hair)}
+h1{font-size:clamp(34px,5.2vw,62px);line-height:1.03;font-weight:500;letter-spacing:-.028em;max-width:17ch}
+.tag{font-size:11px;letter-spacing:.19em;text-transform:uppercase;color:var(--mid);margin-bottom:26px}
+.state{display:grid;grid-template-columns:1fr 1fr;gap:52px;margin-top:48px;max-width:900px}
+.state p{font-size:16.5px;line-height:1.6}
+.state p+p{margin-top:14px}
+.state .r{font-size:13px;color:var(--mid);line-height:1.72}
+.state .r b{color:var(--ink);font-weight:500}
+.statement{font-size:16.5px;line-height:1.6;margin-top:48px;max-width:none}
+
+/* obra */
+.work{padding:104px 0;border-bottom:1px solid var(--hair)}
+.wh{display:flex;align-items:baseline;gap:18px;flex-wrap:wrap}
+.wn{font-size:11px;color:var(--mid);letter-spacing:.16em;padding-top:5px}
+h2{font-size:clamp(25px,3.5vw,40px);font-weight:500;letter-spacing:-.024em;line-height:1.08}
+.wy{font-size:13px;color:var(--mid);letter-spacing:.04em}
+.wmed{font-size:13.5px;color:var(--mid);line-height:1.55;margin:12px 0 34px;max-width:70ch}
+.wfmt{font-size:12.5px}
+figure img{display:block;width:100%;height:auto;background:#eee}
+figcaption{font-size:11.5px;color:var(--mid);margin-top:9px;line-height:1.45}
+.lead img{box-shadow:0 1px 0 rgba(0,0,0,.05)}
+.wbody{display:grid;grid-template-columns:1fr 340px;gap:56px;margin-top:46px;align-items:start}
+.wtxt p{font-size:16.5px;line-height:1.62;max-width:62ch}
+.wtxt p+p{margin-top:15px}
+.wtec{width:100%;border-collapse:collapse;font-size:12.5px}
+.wtec th{text-align:left;font-weight:400;color:var(--mid);padding:8px 14px 8px 0;
+ vertical-align:top;white-space:nowrap;border-top:1px solid var(--hair);width:42%}
+.wtec td{padding:8px 0;vertical-align:top;border-top:1px solid var(--hair)}
+.wtec tr:first-child th,.wtec tr:first-child td{border-top:1px solid var(--ink)}
+.plate{display:grid;gap:22px;margin-top:44px}
+.plate.two{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.plate.three{grid-template-columns:repeat(3,1fr)}
+
+/* placeholder svg box */
+.ph-box{display:block;width:100%;height:auto}
+
+/* crono + bio */
+.blk{padding:96px 0;border-bottom:1px solid var(--hair)}
+h3{font-size:11px;letter-spacing:.19em;text-transform:uppercase;color:var(--mid);margin-bottom:32px}
+.cr{width:100%;border-collapse:collapse;font-size:14.5px;max-width:900px}
+.cr th{text-align:left;font-weight:500;padding:13px 26px 13px 0;vertical-align:top;
+ white-space:nowrap;border-top:1px solid var(--hair);width:130px}
+.cr td{padding:13px 0;vertical-align:top;border-top:1px solid var(--hair);color:#333}
+.bio{display:grid;grid-template-columns:300px 1fr;gap:56px;align-items:start}
+.bio img{width:100%;height:auto}
+.bio p{font-size:16.5px;line-height:1.62;max-width:62ch}
+.bio p+p{margin-top:15px}
+footer{padding:80px 0 110px}
+.cx{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:30px;
+ font-size:14.5px;line-height:1.8}
+.cx b{display:block;font-size:11px;letter-spacing:.19em;text-transform:uppercase;
+ color:var(--mid);font-weight:400;margin-bottom:7px}
+.cx a{color:var(--blue);border-bottom:1px solid rgba(63,146,196,.35)}
+.cx a:hover{color:var(--red);border-color:rgba(210,65,21,.45)}
+.fin{margin-top:58px;font-size:11.5px;color:var(--mid);letter-spacing:.03em}
+@media(max-width:900px){
+ .w{padding:0 20px}
+ .state,.wbody,.bio{grid-template-columns:1fr;gap:30px}
+ .plate.three{grid-template-columns:1fr 1fr}
+ .work{padding:64px 0} header{padding:60px 0 48px} .blk{padding:64px 0}
+ .bio img{max-width:230px}
+}
+</style></head><body>
+
+<nav><div class="w">
+ <span class="me">Santiago Parada</span>
+ <span class="sp"></span>
+ <button class="langtoggle" id="langBtn" onclick="toggleLang()" data-k="langbtn">EN</button>
+ <a class="cta" href="#contacto" data-k="navcontact">Contacto</a>
+</div></nav>
+
+<header><div class="w">
+ <p class="tag" data-k="tag">Bogotá, Colombia</p>
+ <h1 data-k="h1">Poly-morph.ism.</h1>
+ <p class="statement" data-k="state1b">El cuerpo, la madera y los datos conforman mi material para explorar la tensión entre líneas: la disciplina y la intuición, lo tangible y lo volátil, el oficio y su consecuente disolución del ego. Es un trabajo multidisciplinario que tiene como trasfondo el rol del humano en la creación en distintos ámbitos de la percepción. Busco sistemas que se adapten y dialoguen con la naturaleza que me rodea. Una práctica entre lo material y la ficción, en una invitación a expandir el sentido de nuestra realidad.</p>
+</div></header>
+
+<div class="w">
+<h3 data-k="worksLbl" style="margin-top:96px">Trabajos seleccionados</h3>
+
+<section class="work" id="clouds">
+ <div class="wh">
+  <span class="wn">01</span>
+  <h2 data-k="p1-title">clouds — Frameworks of Behaviour</h2>
+  <span class="wy">2026 —</span>
+ </div>
+ <p class="wmed"><span data-k="p1-med">Pintura algorítmica atmosférica · ruido fractal (FBM) sembrado por audio · práctica en curso</span><br><span class="wfmt" data-k="p1-fmt">6000 × 6000 px / 8000 × 8000 px · 254 DPI · 1 de 1 · Tezos</span></p>
+ <figure class="lead"><img loading="lazy" src="assets/01-clouds/lead.jpg" alt="clouds — Frameworks of Behaviour"><figcaption data-k="p1-cap1">Iteración 030, 2026.</figcaption></figure>
+ <div class="wbody">
+  <div class="wtxt"><p data-k="p1-txt1">Investigo cómo transformar la vibración de dos cuencos tibetanos en un <i>dataframe</i> que alimenta un algoritmo generativo de nubes. El proyecto parte de una práctica diaria, personal y performativa, cuyo único propósito es aquietar la mente. Esta misma operación se traslada al ámbito computacional mediante código escrito en Python y un registro riguroso de los metadatos de cada sesión.</p><p data-k="p1-txt2">Es una práctica viva: atraviesa momentos de disciplina y otros de pausa. Hay sesiones dedicadas a investigar el código sin producir sonido, en las que busco el silencio dentro del ruido computacional contemporáneo. Hasta el momento se han creado treinta imágenes, mientras el código y el proyecto continúan expandiéndose.</p><p data-k="p1-txt3">Es un proyecto de investigación en ciencia de datos y <i>data engineering</i>, campos que constituyen mi práctica actual. Es también una búsqueda por articular mi espiritualidad con la permanencia y una nueva aproximación a las ideas que me inquietan: el polimorfismo y la conciencia.</p><p data-k="p1-txt4">El azar de la nube, el azar del cuenco, la meditación y el silencio atraviesan todo el trabajo.</p></div>
+  <table class="wtec"><tbody>
+   <tr><th data-k="p1-tec-k1">Formato de exhibición</th><td data-k="p1-tec-v1">impresión de gran formato · o pantalla individual</td></tr>
+   <tr><th data-k="p1-tec-k2">Edición</th><td data-k="p1-tec-v2">1/1 por iteración</td></tr>
+   <tr><th data-k="p1-tec-k3">Serie</th><td data-k="p1-tec-v3">abierta, sin número de cierre previsto</td></tr>
+   <tr><th data-k="p1-tec-k4">Procedencia</th><td data-k="p1-tec-v4">cada obra enlaza al WAV de su sesión y a su SHA-256</td></tr>
+   <tr><th data-k="p1-tec-k5">Software</th><td data-k="p1-tec-v5">Python · NumPy · Pillow · pipeline propio</td></tr>
+   <tr><th data-k="p1-tec-k6">Estado</th><td data-k="p1-tec-v6">práctica activa</td></tr>
+  </tbody></table>
+ </div>
+ <div class="plate two">
+  <figure><img loading="lazy" src="assets/01-clouds/plate-1.jpg" alt=""><figcaption data-k="p1-cap2">Iteración 030, detalle.</figcaption></figure>
+  <figure><img loading="lazy" src="assets/01-clouds/plate-2.jpg" alt=""><figcaption data-k="p1-cap3">Espectrograma tridimensional de la sesión de origen.</figcaption></figure>
+ </div>
+</section>
+
+<section class="work" id="arcaica">
+ <div class="wh">
+  <span class="wn">02</span>
+  <h2 data-k="p6-title">arcaica_lab</h2>
+  <span class="wy">2007 —</span>
+ </div>
+ <p class="wmed"><span data-k="p6-med">Ebanistería fina · madera maciza · producción propia</span><br><span class="wfmt" data-k="p6-fmt">Piezas únicas y series cortas</span></p>
+ <figure class="lead"><img loading="lazy" src="assets/06-arcaica-lab/plate-1.jpg" alt="arcaica_lab"><figcaption data-k="p6-cap1">Mesa de centro.</figcaption></figure>
+ <div class="wbody">
+  <div class="wtxt"><p data-k="p6-txt1"><i>arcaica lab</i> es mi taller de carpintería. Durante más de quince años he fabricado muebles y objetos a medida. Después de mi formación técnica en el oficio, inicié una práctica basada en el diálogo con quienes han encargado cada pieza. El propósito ha sido no estandarizar las ideas, sino permanecer abierto a resolver los espacios que otras personas imaginan y continuar aprendiendo el oficio a través del trabajo con la madera.</p><p data-k="p6-txt2">Mi fascinación por los árboles comenzó cuando era muy joven. Encuentro en sus estructuras una semejanza con nuestras neuronas y, por ello, los considero una de las formas de inteligencia más extraordinarias que he podido observar. La madera es expresiva hasta la médula, literalmente.</p><p data-k="p6-txt3">La carpintería es una investigación sobre el pensamiento estructurado, el ahorro de energía y movimiento, la precisión y el placer de percibir el paso del tiempo. También consiste, claramente, en hacer cosas hermosas. Ha sido —y continúa siendo— mi relación más tangible con el mundo de los objetos.</p><p data-k="p6-txt4">Como el resto de mi práctica, <i>arcaica lab</i> no pretende consolidarse como una marca <i>fancy</i>. Por el contrario, propone una práctica libertaria: una forma de conservar saberes ancestrales y ejercer un desaceleracionismo práctico. De este trabajo han derivado investigaciones digitales, pedagógicas, culturales y éticas.</p></div>
+  <table class="wtec"><tbody>
+   <tr><th data-k="p6-tec-k1">Inicio</th><td data-k="p6-tec-v1">2007 · Bogotá</td></tr>
+   <tr><th data-k="p6-tec-k2">Documentación</th><td data-k="p6-tec-v2">catálogo, planos y propuesta curatorial propia desde 2020</td></tr>
+   <tr><th data-k="p6-tec-k3">Líneas</th><td data-k="p6-tec-v3">mobiliario, escultura, mobiliario CNC (KYE)</td></tr>
+   <tr><th data-k="p6-tec-k5">Instagram</th><td><a href="https://www.instagram.com/arcaica_lab/" target="_blank" rel="noopener">instagram.com/arcaica_lab</a></td></tr>
+   <tr><th data-k="p6-tec-k4">Estado</th><td data-k="p6-tec-v4">taller activo</td></tr>
+  </tbody></table>
+ </div>
+ <div class="plate three">
+  <figure><img loading="lazy" src="assets/06-arcaica-lab/lead.jpg" alt=""><figcaption data-k="p6-cap2">Mesa de comedor.</figcaption></figure>
+  <figure><img loading="lazy" src="assets/06-arcaica-lab/plate-2.jpg" alt=""><figcaption data-k="p6-cap3">Biblioteca, detalle.</figcaption></figure>
+  <figure><img loading="lazy" src="assets/06-arcaica-lab/plate-3.jpg" alt=""><figcaption data-k="p6-cap4">Herramientas.</figcaption></figure>
+ </div>
+</section>
+
+<section class="work" id="majuy">
+ <div class="wh">
+  <span class="wn">03</span>
+  <h2 data-k="p3-title">Escultura — Majuy (P.arque Infantil)</h2>
+  <span class="wy">2023</span>
+ </div>
+ <p class="wmed"><span data-k="p3-med">Escultura pública · arcos de madera sobre estructura de vigas</span><br><span class="wfmt" data-k="p3-fmt">Proyecto ganador, Escultura Pública de Tenjo · Instituto Cultural de Tenjo, Cundinamarca</span></p>
+ <figure class="lead"><img loading="lazy" src="assets/03-escultura/lead.png" alt="Majuy, escultura instalada en el Instituto Cultural de Tenjo"><figcaption data-k="p3-cap1">Majuy (P.arque Infantil), instalada en el Instituto Cultural de Tenjo, Cundinamarca.</figcaption></figure>
+ <div class="wbody">
+  <div class="wtxt"><p data-k="p3-txt1">Majuy (P.arque Infantil) es un espacio de especulación entorno a la carpintería, el territorio y la arquitectura, basado en la resonancia de la montaña y los espacios de juego — nombre que remite al cerro sagrado muisca cercano a Tenjo.</p><p data-k="p3-txt2">Proyecto ganador de la convocatoria de Escultura Pública de Tenjo, Cundinamarca, instalado de forma permanente en el Instituto Cultural de Tenjo. Desarrollado en conjunto con Juliana Schönwald, Fabián Aristizábal y Ernesto Ramírez Casas, en casatrece.</p><p data-k="p3-txt3">Nos basamos en la topografía del cerro, representada mediante las curvas de nivel obtenidas en QGIS. A partir de ellas realizamos un estudio y seleccionamos aquellas que consideramos más viables para reproducir mediante el doblado de metal.</p><p data-k="p3-txt5">Al trasladar estas formas al taller, nos encontramos con una dificultad: reproducir nuestras curvas orgánicas dentro de las posibilidades que ofrecían las máquinas. Además, el tiempo y el presupuesto del proyecto no nos permitían experimentar demasiado, sino que nos exigían pasar directamente a la ejecución. Por ello, simplificamos los procesos y nos adaptamos a los recursos disponibles. Antes que perseguir la perfección, buscamos convertir el proceso en una oportunidad de aprendizaje para nuestro estudio.</p><p data-k="p3-txt4">Finalmente, quisimos plasmar en esta obra una pieza escultórica de carácter ambiental: una resonancia silente en el espectador.</p></div>
+  <table class="wtec"><tbody>
+   <tr><th data-k="p3-tec-k1">Ubicación</th><td data-k="p3-tec-v1">Instituto Cultural de Tenjo, Cundinamarca</td></tr>
+   <tr><th data-k="p3-tec-k2">Materiales</th><td data-k="p3-tec-v2">madera · estructura metálica de soporte</td></tr>
+   <tr><th data-k="p3-tec-k3">Colaboración</th><td data-k="p3-tec-v3">Juliana Schönwald · Fabián Aristizábal · Ernesto Ramírez Casas — casatrece</td></tr>
+   <tr><th data-k="p3-tec-k5">Dimensiones</th><td data-k="p3-tec-v5">5 × 3 × 2 m</td></tr>
+   <tr><th data-k="p3-tec-k4">Estado</th><td data-k="p3-tec-v4">proyecto ganador, Escultura Pública de Tenjo · obra instalada, permanente</td></tr>
+  </tbody></table>
+ </div>
+ <div class="plate two">
+  <figure><img loading="lazy" src="assets/03-escultura/plate-1.jpg" alt=""><figcaption data-k="p3-cap2">Estudio de diseño: arcos sobre vigas, variaciones de curvatura.</figcaption></figure>
+  <figure><img loading="lazy" src="assets/03-escultura/plate-2.jpg" alt=""><figcaption data-k="p3-cap3">Render frontal, perfil de montaña.</figcaption></figure>
+ </div>
+</section>
+
+<section class="work" id="analogias">
+ <div class="wh">
+  <span class="wn">04</span>
+  <h2 data-k="p4-title">Analogías sonoras</h2>
+  <span class="wy">2017</span>
+ </div>
+ <p class="wmed"><span data-k="p4-med">Objeto sonoro · madera de pino, audífonos, reproducción continua</span></p>
+ <figure class="lead"><img loading="lazy" src="assets/04-analogias-sonoras/lead.jpg" alt="Analogías sonoras"><figcaption data-k="p4-cap1">Analogías sonoras, 2017. Registro de instalación.</figcaption></figure>
+ <div class="wbody">
+  <div class="wtxt"><p data-k="p4-txt1"><i>Analogías sonoras</i> fue mi primer proyecto de arte sonoro. Después de trabajar con varios artistas de Bogotá en proyectos que implicaban enviar obras de un lugar a otro del mundo, comencé a cuestionar el sistema capitalista enmascarado detrás del arte contemporáneo y de sus procesos discursivos.</p><p data-k="p4-txt2">Siempre he estado en conflicto con la producción absurda de objetos, aunque amo la concepción artística. Por ello abracé el sonido como un elemento del que nadie puede apropiarse por completo. No puede colgarse en un muro: viaja por el espacio, nos afecta como cualquier otra manifestación de la materia y, al igual que el aire, no puede verse.</p><p data-k="p4-txt3">Estas reflexiones surgieron durante una serie de caminatas por Kennedy, en Bogotá, y me llevaron a crear una composición sonora contenida en un guacal: <i>Analogías sonoras</i>. El guacal se convirtió en un objeto contestatario dentro de la exposición. El contenedor era la obra de arte: ese objeto construido con extremo cuidado para proteger una pieza durante su transporte y que, una vez cumplida su función, suele almacenarse y ocultarse. También hacía visible al operario, al trabajador que sostiene toda la cadena de circulación del arte y que, sin embargo, permanece invisible.</p><p data-k="p4-txt4">La obra sonora, en cambio, una vez abierto el guacal, no podía contenerse: escapaba como un genio liberado de su botella. Solo podía escucharse mediante un gesto íntimo de proximidad.</p><p data-k="p4-txt5">La composición fue creada para existir únicamente durante aquella exposición, no para ser almacenada. De ella solo permanece el recuerdo contenido en estas imágenes.</p></div>
+  <table class="wtec"><tbody>
+   <tr><th data-k="p4-tec-k1">Formato de exhibición</th><td data-k="p4-tec-v1">exterior o sala · requiere alimentación</td></tr>
+   <tr><th data-k="p4-tec-k2">Materiales</th><td data-k="p4-tec-v2">pino, herrajes, audífonos, reproductor</td></tr>
+   <tr><th data-k="p4-tec-k3">Dimensiones</th><td>aprox. 45 × 32 × 30 cm</td></tr>
+   <tr><th data-k="p4-tec-k4">Exhibición</th><td data-k="p4-tec-v4">ArtBo Tutor, 2018 — primer proyecto sonoro exhibido</td></tr>
+  </tbody></table>
+ </div>
+ <div class="plate two"><figure style="max-width:340px"><img loading="lazy" src="assets/04-analogias-sonoras/plate-1.jpg" alt=""><figcaption data-k="p4-cap2">"Lugares invisibles", 2017 — publicación original, ArtBo Tutor CCB Kennedy.</figcaption></figure></div>
+</section>
+
+<section class="work" id="arquitecturas">
+ <div class="wh">
+  <span class="wn">05</span>
+  <h2 data-k="p7-title">Arquitecturas — modulario</h2>
+  <span class="wy">2026</span>
+ </div>
+ <p class="wmed"><span data-k="p7-med">Mobiliario escultórico modular para espacios culturales · madera laminada</span><br><span class="wfmt" data-k="p7-fmt">Propuesta esquemática · Convocatoria 2026 Microarquitecturas</span></p>
+ <figure class="lead"><img loading="lazy" src="assets/07-arquitecturas/lead.jpg" alt="modulario — mobiliario escultórico modular"><figcaption data-k="p7-cap1">modulario, render de conjunto. Estructura modular autoportante, banco urbano, cubos de juego y mueble exhibidor.</figcaption></figure>
+ <div class="wbody">
+  <div class="wtxt"><p data-k="p7-txt1">Arquitecturas es un espacio de experimentación que deriva de mi práctica de la carpintería y se despliega en el entorno digital de Rhino 3D. Allí especulo sobre espacios pedagógicos construidos en madera, inspirados en ciertos principios Montessori y en mi propia relación sensible con el material: me fascina tocarlo y olerlo, y lo considero noble, hermoso y duradero.</p><p data-k="p7-txt2">Juego libremente con las formas, como espero que puedan desarrollarse la educación y la pedagogía. Propongo espacios que mutan, cambian de lugar y favorecen la adaptación, el encuentro y el juego. Sus estructuras son modulares y emplean ensambles tradicionales de carpintería.</p><p data-k="p7-txt3">Cada propuesta es una especulación en torno al nomadismo pedagógico, la belleza y la claridad necesarias para estudiar, así como a las posibilidades visuales de la geometría. Los sistemas son reconfigurables: pueden trasladarse entre distintas geografías, montarse de manera parcial o completa y adaptarse a diferentes usos —encuentro, taller o exposición— sin alterar sus formas, únicamente su configuración y densidad.</p></div>
+  <table class="wtec"><tbody>
+   <tr><th data-k="p7-tec-k1">Componentes</th><td data-k="p7-tec-v1">estructura modular autoportante (3×3×2,5 m, 2 unidades) · banco urbano (220×60×50 cm) · 27 cubos de juego (35×35×35 cm) · mueble exhibidor (170×110×35 cm)</td></tr>
+   <tr><th data-k="p7-tec-k2">Materiales</th><td data-k="p7-tec-v2">madera laminada y techo alveolar · ensamble a media madera</td></tr>
+   <tr><th data-k="p7-tec-k3">Documento</th><td><a href="assets/07-arquitecturas/modulario_propuesta_esquematica.pdf" download="propuesta_esquematica_santiago_parada.pdf" target="_blank" rel="noopener"><span data-k="p7-dl">↓ Descargar propuesta esquemática (PDF)</span></a></td></tr>
+   <tr><th data-k="p7-tec-k4">Estado</th><td data-k="p7-tec-v4">propuesta esquemática</td></tr>
+  </tbody></table>
+ </div>
+ <div class="plate two">
+  <figure><img loading="lazy" src="assets/07-arquitecturas/plate-1.jpg" alt=""><figcaption data-k="p7-cap2">Ensamble a media madera, detalle técnico.</figcaption></figure>
+  <figure><img loading="lazy" src="assets/07-arquitecturas/plate-2.jpg" alt=""><figcaption data-k="p7-cap3">modulario en uso: encuentro, juego y montaje colectivo.</figcaption></figure>
+ </div>
+</section>
+
+<section class="work" id="luum">
+ <div class="wh">
+  <span class="wn">06</span>
+  <h2 data-k="p8-title">luum</h2>
+  <span class="wy">2026</span>
+ </div>
+ <p class="wmed"><span data-k="p8-med">Aplicación generativa · juego de generación de ideas aleatorias</span><br><span class="wfmt" data-k="p8-fmt">PWA · web y móvil · código abierto</span></p>
+ <figure class="lead"><img loading="lazy" src="assets/08-luum/lead.jpg" alt="luum"><figcaption data-k="p8-cap1">luum, estado de color 01.</figcaption></figure>
+ <div class="wbody">
+  <div class="wtxt"><p data-k="p8-txt1">Inspirado por el genial Oblique Strategies de Brian Eno y Peter Schmidt — siempre quise hacer un juego de cartas así. luum cruza detonadores conceptuales con proposiciones concretas de acción, siguiendo una lógica tomada del I Ching: tablas fijas, encuentros variables. Más de 170.000 combinaciones posibles.</p><p data-k="p8-txt2">La imagen deja de ser un archivo y se convierte en una invitación: cada toque traslada la lógica de las piezas fijas a un sistema que el espectador manipula en su propio dispositivo. Un nuevo impulso para artistas, docentes, equipos, improvisadores y procesos creativos que necesitan otro ángulo.</p></div>
+  <table class="wtec"><tbody>
+   <tr><th data-k="p8-tec-k1">Contenido</th><td data-k="p8-tec-v1">90 frases detonadoras · 64 proposiciones de acción · 15 estados de color · +170.000 combinaciones</td></tr>
+   <tr><th data-k="p8-tec-k2">Formato</th><td data-k="p8-tec-v2">navegador · instalable como PWA</td></tr>
+   <tr><th data-k="p8-tec-k3">Licencia</th><td data-k="p8-tec-v3">código abierto</td></tr>
+   <tr><th data-k="p8-tec-k4">Enlace</th><td><a href="https://santiagoparada.github.io/luum/" target="_blank" rel="noopener">santiagoparada.github.io/luum</a></td></tr>
+   <tr><th data-k="p8-tec-k5">Estado</th><td data-k="p8-tec-v5">publicada · en línea</td></tr>
+  </tbody></table>
+ </div>
+ <div class="plate two"><figure><img loading="lazy" src="assets/08-luum/plate-1.jpg" alt=""><figcaption data-k="p8-cap2">luum, estado de color 02.</figcaption></figure><figure><img loading="lazy" src="assets/08-luum/plate-2.jpg" alt=""><figcaption data-k="p8-cap3">luum, estado de color 03.</figcaption></figure></div>
+</section>
+
+<section class="work" id="trrngr">
+ <div class="wh">
+  <span class="wn">07</span>
+  <h2 data-k="p9-title">trrngr</h2>
+  <span class="wy">2020 —</span>
+ </div>
+ <p class="wmed"><span data-k="p9-med">Práctica creativa e investigación musical · sintetizador, sampler y trompeta</span><br><span class="wfmt" data-k="p9-fmt">Cinco álbumes publicados · Bandcamp y SoundCloud</span></p>
+ <div class="wbody">
+  <div class="wtxt"><p data-k="p9-txt1">trrngr es mi trabajo como artista sonoro. Tuve la oportunidad de estudiar alemán y trompeta, pero no podía aprender dos lenguajes al mismo tiempo, así que elegí el universal: la música.</p><p data-k="p9-txt2">Incorporé sintetizadores y samplers a mi práctica y me trasladé a Colombia para vivir y aprender de la música. Nunca lo hice dentro de un espacio académico o formal, sino desde la intuición y el diálogo con los lugares que he habitado. Mi trabajo imagina paisajes andinos, futuristas y subterráneos; busca comunicarse con otras especies y crear una música pop al margen del mainstream aturdidor del norte global. En ocasiones, intento escapar del estereotipo del colombiano bailador y salsero para proponer la figura de un colombiano andino que se pregunta por su territorio desde perspectivas sónicas.</p><p data-k="p9-txt3">trrngr es el nombre bajo el cual investigo la música desde 2020. Es una práctica de estudio construida con un sintetizador, un computador y un sampler, alimentada también por una trompeta que me acompaña desde antes de esta etapa digital. No es un proyecto paralelo a mi obra visual, sino uno de sus orígenes: el archivo sonoro que posteriormente alimenta clouds y otras piezas generativas nace aquí.</p><p data-k="p9-txt4">Cinco álbumes publicados entre 2020 y 2026 —micelios, laberintos, quye, andrómeda y tierranegra— conforman el trabajo realizado hasta el momento. Son ficciones andinas construidas a partir de una matriz sonora de polinización cruzada, poblada por historias persistentes, volátiles y fantásticas. Son composiciones que pueden escucharse sin seguir un orden determinado ni una secuencia lineal.</p></div>
+  <table class="wtec"><tbody>
+   <tr><th data-k="p9-tec-k1">Instrumentos</th><td data-k="p9-tec-v1">sintetizador, sampler, trompeta, pedales, computador</td></tr>
+   <tr><th data-k="p9-tec-k2">Discografía</th><td data-k="p9-tec-v2">micelios (2020) · laberintos (2023) · quye (2024) · andrómeda (2025) · tierranegra (2026)</td></tr>
+   <tr><th data-k="p9-tec-k3">Publicación</th><td><a href="https://trrngr.bandcamp.com/" target="_blank" rel="noopener">trrngr.bandcamp.com</a> · <a href="https://soundcloud.com/trrngr" target="_blank" rel="noopener">soundcloud.com/trrngr</a></td></tr>
+   <tr><th data-k="p9-tec-k4">Estado</th><td data-k="p9-tec-v4">catálogo activo · nuevas sesiones en curso</td></tr>
+  </tbody></table>
+ </div>
+ <div class="plate two">
+  <figure><img loading="lazy" src="assets/09-trrngr/plate-1.jpg" alt="tierranegra"><figcaption data-k="p9-cap2">tierranegra, 2026. Portada de álbum.</figcaption></figure>
+  <figure><img loading="lazy" src="assets/09-trrngr/plate-2.jpg" alt="andrómeda"><figcaption data-k="p9-cap3">andrómeda, 2025. Portada de álbum.</figcaption></figure>
+ </div>
+</section>
+
+<section class="work" id="malabares">
+ <div class="wh">
+  <span class="wn">08</span>
+  <h2 data-k="p11-title">Mindfoolness</h2>
+  <span class="wy" data-k="p11-year">desde siempre</span>
+ </div>
+ <p class="wmed"><span data-k="p11-med">Espectáculo propio de malabares y clown · pensado especialmente para peques</span><br><span class="wfmt" data-k="p11-fmt">Pelotas de malabar · presentaciones en vivo</span></p>
+ <figure class="lead"><img loading="lazy" src="assets/11-malabares/plate-1.jpg" alt="Mindfoolness, identidad gráfica"><figcaption data-k="p11-cap1">Mindfoolness, identidad gráfica.</figcaption></figure>
+ <div class="wbody">
+  <div class="wtxt"><p data-k="p11-txt1"><i>Mindfoolness</i> es una práctica de libertad. Es una burla al sistema. Es jugar con los niños y apropiarse de espacios no convencionales —como el salón de una casa— para que allí se instalen el absurdo y el divertimento.</p><p data-k="p11-txt2">Desarrollo esta práctica desde hace muchos años, cuando terminé mis estudios de teatro gestual en la escuela de Jacques Lecoq. Desde entonces, <i>Mindfoolness</i> ha aparecido en innumerables cumpleaños, fiestas de quince años, ferias y eventos de todo tipo: desde escenarios públicos, como el Parque Simón Bolívar, rodeado de miles de personas, hasta el comedor íntimo de una familia. El tamaño del público no importa. Lo importante es la reacción que provoca el encuentro y la libertad que comparten el payaso y quienes lo rodean.</p><p data-k="p11-txt3">Esta práctica también me ha permitido desarrollar una forma de exploración antropológica, especialmente en Catalunya, donde tuvo lugar la mayor parte de este recorrido. <i>Mindfoolness</i> es mi número; me acompaña como los números que se transmiten y transforman en la mejor tradición de las familias circenses.</p><p data-k="p11-txt4">Practico disciplinadamente el malabarismo y la pantomima como parte de mis meditaciones diarias, para estar preparado cuando el escenario lo requiera. Como muchos de mis trabajos, <i>Mindfoolness</i> no busca materializarse en un objeto acabado, sino sostener un proceso constante de práctica, transformación y aprendizaje.</p></div>
+  <table class="wtec"><tbody>
+   <tr><th data-k="p11-tec-k1">Formato de exhibición</th><td data-k="p11-tec-v1">presentación en vivo · espacio público, escenario o en casa</td></tr>
+   <tr><th data-k="p11-tec-k2">Materiales</th><td data-k="p11-tec-v2">pelotas de malabar</td></tr>
+   <tr><th data-k="p11-tec-k3">Antecedentes</th><td data-k="p11-tec-v3">beca IDARTES para la creación de obras artísticas de clown</td></tr>
+   <tr><th data-k="p11-tec-k4">Estado</th><td data-k="p11-tec-v4">práctica activa</td></tr>
+  </tbody></table>
+ </div>
+</section>
+
+<section class="work" id="pedagogica" style="border-bottom:none">
+ <div class="wh">
+  <span class="wn">09</span>
+  <h2 data-k="p12-title">Pedagogías expandidas</h2>
+  <span class="wy">2013 —</span>
+ </div>
+ <p class="wmed"><span data-k="p12-med">Talleres de pedagogía expandida · cuerpo, materiales y escucha</span><br><span class="wfmt" data-k="p12-fmt">Movimiento corporal · carpintería · atención al sonido · pensamiento abstracto</span></p>
+ <figure class="lead"><img loading="lazy" src="assets/12-experiencia-pedagogica/lead.jpg" alt="Taller de domos geodésicos, pedagogía expandida"><figcaption data-k="p12-cap1">Taller de domos geodésicos, Organizmo.</figcaption></figure>
+ <div class="wbody">
+  <div class="wtxt"><p data-k="p12-txt1">La pedagogía expandida ha sido una herramienta para compartir mis conocimientos y, al mismo tiempo, enriquecerlos con las experiencias de quienes participan. Es un ejercicio de diálogo a través del juego y una forma de aprender desde el cuerpo, los materiales, la escucha y la abstracción, fuera de los espacios académicos y formales. Es una práctica libre, nómada y subversiva.</p><p data-k="p12-txt2">En estos espacios he impartido clases de movimiento corporal, carpintería, escucha atenta y pensamiento creativo abstracto mediante ejercicios que conectan la percepción, el hacer y la reflexión colectiva.</p><p data-k="p12-txt3">Como un hacker, he insertado mis metodologías en instituciones y espacios como la Universidad de los Andes, la Escuela de Artes y Oficios Santo Domingo, el Liceo Juan Ramón Jiménez, colegios concertados de Bogotá, la Cárcel de Santa Marta, la Galería NC-Arte, Organizmo y Terreno Paisajismo. Allí he buscado sembrar semillas de inquietud y curiosidad, y propiciar una aproximación al conocimiento basada en la apertura del pensamiento, más que en la formalidad.</p><p data-k="p12-txt4">También he convertido mi propio taller en un aula experimental, donde he desarrollado encuentros de carpintería, expresión corporal y diseño de sintetizadores bajo la filosofía del "Hágalo Usted Mismo".</p><p data-k="p12-txt5">La pedagogía es una herramienta de subversión.</p></div>
+  <table class="wtec"><tbody>
+   <tr><th data-k="p12-tec-k1">Enfoque</th><td data-k="p12-tec-v1">pedagogía expandida como práctica corporal · aprendizaje colectivo desde la percepción y el hacer</td></tr>
+   <tr><th data-k="p12-tec-k2">Espacios</th><td data-k="p12-tec-v2">Universidad de los Andes · Escuela de Artes y Oficios Santo Domingo · Liceo Juan Ramón Jiménez · Colegios Concertados de Bogotá · Cárcel de Santa Marta · Galería NC-Arte · Organizmo · Terreno Paisajismo</td></tr>
+   <tr><th data-k="p12-tec-k3">Antecedentes</th><td data-k="p12-tec-v3">Tabio, territorio sónico (2019, con Felipe Cotero) · Festival Internacional de Payasos de Las Tunas, Cuba</td></tr>
+   <tr><th data-k="p12-tec-k4">Estado</th><td data-k="p12-tec-v4">práctica pedagógica activa · documentada desde Tabio, 2019</td></tr>
+  </tbody></table>
+ </div>
+ <div class="plate two">
+  <figure><img loading="lazy" src="assets/12-experiencia-pedagogica/plate-1.jpg" alt=""><figcaption data-k="p12-cap2">Ejercicio de movimiento corporal y atención, Universidad de los Andes.</figcaption></figure>
+  <figure><img loading="lazy" src="assets/12-experiencia-pedagogica/plate-2.jpg" alt=""><figcaption data-k="p12-cap3">Tabio, territorio sónico — recorrido de escucha colectiva, 2019.</figcaption></figure>
+ </div>
+</section>
+
+</div>
+
+<div class="blk"><div class="w">
+ <h3 data-k="trayLbl">Trayectoria</h3>
+ <table class="cr"><tbody>
+  <tr><th>2005</th><td data-k="tr2005">Santiago inicia su práctica de clown. Estudis de Teatre Jacques Lecoq, Barcelona (2005–2007).</td></tr>
+  <tr><th>2007</th><td data-k="tr2007a">Compañía Cromosomos — teatro físico cómico, creación de números para cabarets y teatros en España (2007–2013).</td></tr>
+  <tr><th>2007</th><td data-k="tr2007b">Comienza la práctica que da origen a arcaica_lab.</td></tr>
+  <tr><th>2009</th><td data-k="trTitulo">Título de Técnico en Fabricación a Medida e Instalación de Carpintería y Mueble, Escola Industrial del Treball, Barcelona.</td></tr>
+  <tr><th>2011</th><td data-k="trBolaRoja">Colectivo de Payasos la Bola Roja — teatro absurdo y cómico, programación semanal en el Teatre Llantiol, Barcelona (2011–2012).</td></tr>
+  <tr><th>2013</th><td data-k="tr2013">Inicio de prácticas expandidas pedagógicas en diversos espacios de Bogotá, Colombia, y en el Festival Internacional de Payasos de Las Tunas, Cuba. Esa práctica continúa actualmente con talleres de formación en el oficio de la carpintería.</td></tr>
+  <tr><th>2014</th><td data-k="trLaTorpe">Compañía La Torpe — proyectos escénicos y pedagógicos para teatros, calles y espacios no convencionales; invitado al Encuentro Internacional de Clown de Las Tunas, Cuba (2014–2016).</td></tr>
+  <tr><th>2015</th><td data-k="trGirona">Diplomado en Gestión Cultural Local, Organización de Estados Iberoamericanos / Universitat de Girona.</td></tr>
+  <tr><th>2016</th><td data-k="trMissElliot">Miss Elliot — creación, dirección e interpretación del espectáculo de clown, malabares y música experimental "Loop"; mención especial de la Secretaría de Recreación y Deportes e IDARTES (2016–2020).</td></tr>
+  <tr><th>2017</th><td data-k="tr2017">Analogías sonoras — objeto sonoro en madera. Primera pieza donde un contenedor material alberga sonido.</td></tr>
+  <tr><th>2017</th><td data-k="trArtBoTutor">Ganador de la beca ArtBo Tutor, Cámara de Comercio de Bogotá.</td></tr>
+  <tr><th>2018</th><td data-k="tr2018">Analogías sonoras se exhibe en ArtBo Tutor — primer proyecto sonoro exhibido. Inicio del archivo de grabaciones de campo en la sabana de Bogotá.</td></tr>
+  <tr><th>2018</th><td data-k="trPlatohedro">Residencia Artística Nacional, Ministerio de Cultura de Colombia, para investigar la arquitectura de la Casa Platohedro, Medellín. Perspectivas Sonoras Andinas — piezas sonoras experimentales a partir de esa investigación.</td></tr>
+  <tr><th>2018</th><td data-k="trOrganizmo">Organizmo y Jardinología, Tenjo — pedagogía para la construcción de un domo geodésico en madera de 7 m de diámetro.</td></tr>
+  <tr><th>2019</th><td data-k="trRuidoMaraca">Ruido Maraca — composición derivada de la Residencia Artística Nacional en Platohedro, publicada en Systemma, serie de International Digital Music Label and Live Cast con base en Odesa, Ucrania, activa a nivel mundial. <a href="https://soundcloud.com/systemma1/sistema-149-ruido-maraca" target="_blank" rel="noopener">soundcloud.com/systemma1/sistema-149-ruido-maraca</a></td></tr>
+  <tr><th>2019</th><td data-k="tr2019">Tabio, territorio sónico — escucha colectiva y partituras gráficas.</td></tr>
+  <tr><th>2020</th><td data-k="tr2020">Primeras composiciones bajo el nombre trrngr · música pop. <a href="https://trrngr.bandcamp.com/" target="_blank" rel="noopener">trrngr.bandcamp.com</a></td></tr>
+  <tr><th>2020</th><td data-k="trCasatrece">Casatrece Artes y Oficios, Tenjo — gestor cultural y creador de contenidos pedagógicos para este espacio rural artesanal independiente (2020–2023).</td></tr>
+  <tr><th>2021</th><td data-k="trCapitalSemilla">Ganador de Capital Semilla para Artesanías, Casatrece Tenjo / IMCTT.</td></tr>
+  <tr><th>2022</th><td data-k="trAsimtria">Parpadea — pieza sonora presentada en Pumpumyachkan, Festival Asimtria, Cusco. En colectivo con Juliana Schönwald.</td></tr>
+  <tr><th>2023</th><td data-k="trMajuy">Majuy — escultura pública en madera, instalada en el Instituto Cultural de Tenjo. En conjunto con Juliana Schönwald, Fabián Aristizábal y Ernesto Ramírez Casas, en casatrece. Ganador de la convocatoria de Escultura Pública de Tenjo.</td></tr>
+  <tr><th>2024</th><td data-k="trSantoDomingo">Docente en técnicas de carpintería tradicional, Escuela de Artes y Oficios Santo Domingo.</td></tr>
+  <tr><th>2026</th><td data-k="tr2026a">clouds — Frameworks of Behaviour, práctica en curso.</td></tr>
+  <tr><th>2026</th><td data-k="tr2026b">Publicación de luum.</td></tr>
+ </tbody></table>
+</div></div>
+
+<div class="blk"><div class="w">
+ <h3 data-k="bioLbl">Bio</h3>
+ <div class="bio">
+  <img src="assets/bio/santiago-parada.jpg" alt="Santiago Parada">
+  <div>
+   <p data-k="bio1">Santiago Parada (trrngr) vive y trabaja en Bogotá.</p>
+  </div>
+ </div>
+</div></div>
+
+<footer id="contacto"><div class="w">
+ <h3 data-k="contactLbl">Contacto</h3>
+ <div class="cx">
+  <div><b data-k="correoLbl">Correo</b><a href="mailto:parada.santi@gmail.com">parada.santi@gmail.com</a></div>
+  <div><b data-k="sitioLbl">Sitio</b><a href="https://github.com/santiagoparada" target="_blank" rel="noopener">github.com/santiagoparada</a></div>
+  <div><b data-k="bandcampLbl">Bandcamp</b><a href="https://trrngr.bandcamp.com/" target="_blank" rel="noopener">trrngr.bandcamp.com</a></div>
+  <div><b data-k="tallerLbl">Taller</b><span data-k="tallerTxt">arcaica_lab · Bogotá</span></div>
+  <div><b data-k="dossierLbl">Bonus track</b><a href="https://vimeo.com/407352661" target="_blank" rel="noopener">vimeo.com/407352661</a></div>
+ </div>
+ <p class="fin" data-k="finTxt">© 2026 Santiago Parada · Todas las imágenes son documentación de obra propia.</p>
+</div></footer>
+
+<script>
+var DICT = {
+ es: {
+  langbtn: "EN", navcontact: "Contacto",
+  tag: "Bogotá, Colombia",
+  h1: "Poly-morph.ism.",
+  state1b: "El cuerpo, la madera y los datos conforman mi material para explorar la tensión entre líneas: la disciplina y la intuición, lo tangible y lo volátil, el oficio y su consecuente disolución del ego. Es un trabajo multidisciplinario que tiene como trasfondo el rol del humano en la creación en distintos ámbitos de la percepción. Busco sistemas que se adapten y dialoguen con la naturaleza que me rodea. Una práctica entre lo material y la ficción, en una invitación a expandir el sentido de nuestra realidad.",
+  worksLbl: "Trabajos seleccionados",
+
+  "p1-title":"clouds — Frameworks of Behaviour",
+  "p1-med":"Pintura algorítmica atmosférica · ruido fractal (FBM) sembrado por audio · práctica en curso",
+  "p1-fmt":"6000 × 6000 px / 8000 × 8000 px · 254 DPI · 1 de 1 · Tezos",
+  "p1-cap1":"Iteración 030, 2026.",
+  "p1-txt1":"Investigo cómo transformar la vibración de dos cuencos tibetanos en un <i>dataframe</i> que alimenta un algoritmo generativo de nubes. El proyecto parte de una práctica diaria, personal y performativa, cuyo único propósito es aquietar la mente. Esta misma operación se traslada al ámbito computacional mediante código escrito en Python y un registro riguroso de los metadatos de cada sesión.",
+  "p1-txt2":"Es una práctica viva: atraviesa momentos de disciplina y otros de pausa. Hay sesiones dedicadas a investigar el código sin producir sonido, en las que busco el silencio dentro del ruido computacional contemporáneo. Hasta el momento se han creado treinta imágenes, mientras el código y el proyecto continúan expandiéndose.",
+  "p1-txt3":"Es un proyecto de investigación en ciencia de datos y <i>data engineering</i>, campos que constituyen mi práctica actual. Es también una búsqueda por articular mi espiritualidad con la permanencia y una nueva aproximación a las ideas que me inquietan: el polimorfismo y la conciencia.",
+  "p1-txt4":"El azar de la nube, el azar del cuenco, la meditación y el silencio atraviesan todo el trabajo.",
+  "p1-tec-k1":"Formato de exhibición","p1-tec-v1":"impresión de gran formato · o pantalla individual",
+  "p1-tec-k2":"Edición","p1-tec-v2":"1/1 por iteración",
+  "p1-tec-k3":"Serie","p1-tec-v3":"abierta, sin número de cierre previsto",
+  "p1-tec-k4":"Procedencia","p1-tec-v4":"cada obra enlaza al WAV de su sesión y a su SHA-256",
+  "p1-tec-k5":"Software","p1-tec-v5":"Python · NumPy · Pillow · pipeline propio",
+  "p1-tec-k6":"Estado","p1-tec-v6":"práctica activa",
+  "p1-cap2":"Iteración 030, detalle.",
+  "p1-cap3":"Espectrograma tridimensional de la sesión de origen.",
+
+  "p3-title":"Escultura — Majuy (P.arque Infantil)",
+  "p3-med":"Escultura pública · arcos de madera sobre estructura de vigas",
+  "p3-fmt":"Proyecto ganador, Escultura Pública de Tenjo · Instituto Cultural de Tenjo, Cundinamarca",
+  "p3-cap1":"Majuy (P.arque Infantil), instalada en el Instituto Cultural de Tenjo, Cundinamarca.",
+  "p3-txt1":"Majuy (P.arque Infantil) es un espacio de especulación entorno a la carpintería, el territorio y la arquitectura, basado en la resonancia de la montaña y los espacios de juego — nombre que remite al cerro sagrado muisca cercano a Tenjo.",
+  "p3-txt2":"Proyecto ganador de la convocatoria de Escultura Pública de Tenjo, Cundinamarca, instalado de forma permanente en el Instituto Cultural de Tenjo. Desarrollado en conjunto con Juliana Schönwald, Fabián Aristizábal y Ernesto Ramírez Casas, en casatrece.",
+  "p3-txt3":"Nos basamos en la topografía del cerro, representada mediante las curvas de nivel obtenidas en QGIS. A partir de ellas realizamos un estudio y seleccionamos aquellas que consideramos más viables para reproducir mediante el doblado de metal.",
+  "p3-txt5":"Al trasladar estas formas al taller, nos encontramos con una dificultad: reproducir nuestras curvas orgánicas dentro de las posibilidades que ofrecían las máquinas. Además, el tiempo y el presupuesto del proyecto no nos permitían experimentar demasiado, sino que nos exigían pasar directamente a la ejecución. Por ello, simplificamos los procesos y nos adaptamos a los recursos disponibles. Antes que perseguir la perfección, buscamos convertir el proceso en una oportunidad de aprendizaje para nuestro estudio.",
+  "p3-txt4":"Finalmente, quisimos plasmar en esta obra una pieza escultórica de carácter ambiental: una resonancia silente en el espectador.",
+  "p3-tec-k1":"Ubicación","p3-tec-v1":"Instituto Cultural de Tenjo, Cundinamarca",
+  "p3-tec-k2":"Materiales","p3-tec-v2":"madera · estructura metálica de soporte",
+  "p3-tec-k3":"Colaboración","p3-tec-v3":"Juliana Schönwald · Fabián Aristizábal · Ernesto Ramírez Casas — casatrece",
+  "p3-tec-k5":"Dimensiones","p3-tec-v5":"5 × 3 × 2 m",
+  "p3-tec-k4":"Estado","p3-tec-v4":"proyecto ganador, Escultura Pública de Tenjo · obra instalada, permanente",
+  "p3-cap2":"Estudio de diseño: arcos sobre vigas, variaciones de curvatura.",
+  "p3-cap3":"Render frontal, perfil de montaña.",
+
+  "p4-title":"Analogías sonoras",
+  "p4-med":"Objeto sonoro · madera de pino, audífonos, reproducción continua",
+  "p4-cap1":"Analogías sonoras, 2017. Registro de instalación.",
+  "p4-txt1":"<i>Analogías sonoras</i> fue mi primer proyecto de arte sonoro. Después de trabajar con varios artistas de Bogotá en proyectos que implicaban enviar obras de un lugar a otro del mundo, comencé a cuestionar el sistema capitalista enmascarado detrás del arte contemporáneo y de sus procesos discursivos.",
+  "p4-txt2":"Siempre he estado en conflicto con la producción absurda de objetos, aunque amo la concepción artística. Por ello abracé el sonido como un elemento del que nadie puede apropiarse por completo. No puede colgarse en un muro: viaja por el espacio, nos afecta como cualquier otra manifestación de la materia y, al igual que el aire, no puede verse.",
+  "p4-txt3":"Estas reflexiones surgieron durante una serie de caminatas por Kennedy, en Bogotá, y me llevaron a crear una composición sonora contenida en un guacal: <i>Analogías sonoras</i>. El guacal se convirtió en un objeto contestatario dentro de la exposición. El contenedor era la obra de arte: ese objeto construido con extremo cuidado para proteger una pieza durante su transporte y que, una vez cumplida su función, suele almacenarse y ocultarse. También hacía visible al operario, al trabajador que sostiene toda la cadena de circulación del arte y que, sin embargo, permanece invisible.",
+  "p4-txt4":"La obra sonora, en cambio, una vez abierto el guacal, no podía contenerse: escapaba como un genio liberado de su botella. Solo podía escucharse mediante un gesto íntimo de proximidad.",
+  "p4-txt5":"La composición fue creada para existir únicamente durante aquella exposición, no para ser almacenada. De ella solo permanece el recuerdo contenido en estas imágenes.",
+  "p4-tec-k1":"Formato de exhibición","p4-tec-v1":"exterior o sala · requiere alimentación",
+  "p4-tec-k2":"Materiales","p4-tec-v2":"pino, herrajes, audífonos, reproductor",
+  "p4-tec-k3":"Dimensiones",
+  "p4-tec-k4":"Exhibición","p4-tec-v4":"ArtBo Tutor, 2018 — primer proyecto sonoro exhibido",
+  "p4-cap2":"\"Lugares invisibles\", 2017 — publicación original, ArtBo Tutor CCB Kennedy.",
+
+  "p6-title":"arcaica_lab",
+  "p6-med":"Ebanistería fina · madera maciza · producción propia",
+  "p6-fmt":"Piezas únicas y series cortas",
+  "p6-cap1":"Mesa de centro.",
+  "p6-txt1":"<i>arcaica lab</i> es mi taller de carpintería. Durante más de quince años he fabricado muebles y objetos a medida. Después de mi formación técnica en el oficio, inicié una práctica basada en el diálogo con quienes han encargado cada pieza. El propósito ha sido no estandarizar las ideas, sino permanecer abierto a resolver los espacios que otras personas imaginan y continuar aprendiendo el oficio a través del trabajo con la madera.",
+  "p6-txt2":"Mi fascinación por los árboles comenzó cuando era muy joven. Encuentro en sus estructuras una semejanza con nuestras neuronas y, por ello, los considero una de las formas de inteligencia más extraordinarias que he podido observar. La madera es expresiva hasta la médula, literalmente.",
+  "p6-txt3":"La carpintería es una investigación sobre el pensamiento estructurado, el ahorro de energía y movimiento, la precisión y el placer de percibir el paso del tiempo. También consiste, claramente, en hacer cosas hermosas. Ha sido —y continúa siendo— mi relación más tangible con el mundo de los objetos.",
+  "p6-txt4":"Como el resto de mi práctica, <i>arcaica lab</i> no pretende consolidarse como una marca <i>fancy</i>. Por el contrario, propone una práctica libertaria: una forma de conservar saberes ancestrales y ejercer un desaceleracionismo práctico. De este trabajo han derivado investigaciones digitales, pedagógicas, culturales y éticas.",
+  "p6-tec-k1":"Inicio","p6-tec-v1":"2007 · Bogotá",
+  "p6-tec-k2":"Documentación","p6-tec-v2":"catálogo, planos y propuesta curatorial propia desde 2020",
+  "p6-tec-k3":"Líneas","p6-tec-v3":"mobiliario, escultura, mobiliario CNC (KYE)",
+  "p6-tec-k5":"Instagram",
+  "p6-tec-k4":"Estado","p6-tec-v4":"taller activo",
+  "p6-cap2":"Mesa de comedor.","p6-cap3":"Biblioteca, detalle.","p6-cap4":"Herramientas.",
+
+  "p7-title":"Arquitecturas — modulario",
+  "p7-med":"Mobiliario escultórico modular para espacios culturales · madera laminada",
+  "p7-fmt":"Propuesta esquemática · Convocatoria 2026 Microarquitecturas",
+  "p7-cap1":"modulario, render de conjunto. Estructura modular autoportante, banco urbano, cubos de juego y mueble exhibidor.",
+  "p7-txt1":"Arquitecturas es un espacio de experimentación que deriva de mi práctica de la carpintería y se despliega en el entorno digital de Rhino 3D. Allí especulo sobre espacios pedagógicos construidos en madera, inspirados en ciertos principios Montessori y en mi propia relación sensible con el material: me fascina tocarlo y olerlo, y lo considero noble, hermoso y duradero.",
+  "p7-txt2":"Juego libremente con las formas, como espero que puedan desarrollarse la educación y la pedagogía. Propongo espacios que mutan, cambian de lugar y favorecen la adaptación, el encuentro y el juego. Sus estructuras son modulares y emplean ensambles tradicionales de carpintería.",
+  "p7-txt3":"Cada propuesta es una especulación en torno al nomadismo pedagógico, la belleza y la claridad necesarias para estudiar, así como a las posibilidades visuales de la geometría. Los sistemas son reconfigurables: pueden trasladarse entre distintas geografías, montarse de manera parcial o completa y adaptarse a diferentes usos —encuentro, taller o exposición— sin alterar sus formas, únicamente su configuración y densidad.",
+  "p7-tec-k1":"Componentes","p7-tec-v1":"estructura modular autoportante (3×3×2,5 m, 2 unidades) · banco urbano (220×60×50 cm) · 27 cubos de juego (35×35×35 cm) · mueble exhibidor (170×110×35 cm)",
+  "p7-tec-k2":"Materiales","p7-tec-v2":"madera laminada y techo alveolar · ensamble a media madera",
+  "p7-tec-k3":"Documento","p7-dl":"↓ Descargar propuesta esquemática (PDF)",
+  "p7-tec-k4":"Estado","p7-tec-v4":"propuesta esquemática",
+  "p7-cap2":"Ensamble a media madera, detalle técnico.",
+  "p7-cap3":"modulario en uso: encuentro, juego y montaje colectivo.",
+
+  "p8-title":"luum",
+  "p8-med":"Aplicación generativa · juego de generación de ideas aleatorias",
+  "p8-fmt":"PWA · web y móvil · código abierto",
+  "p8-cap1":"luum, estado de color 01.",
+  "p8-txt1":"Inspirado por el genial Oblique Strategies de Brian Eno y Peter Schmidt — siempre quise hacer un juego de cartas así. luum cruza detonadores conceptuales con proposiciones concretas de acción, siguiendo una lógica tomada del I Ching: tablas fijas, encuentros variables. Más de 170.000 combinaciones posibles.",
+  "p8-txt2":"La imagen deja de ser un archivo y se convierte en una invitación: cada toque traslada la lógica de las piezas fijas a un sistema que el espectador manipula en su propio dispositivo. Un nuevo impulso para artistas, docentes, equipos, improvisadores y procesos creativos que necesitan otro ángulo.",
+  "p8-tec-k1":"Contenido","p8-tec-v1":"90 frases detonadoras · 64 proposiciones de acción · 15 estados de color · +170.000 combinaciones",
+  "p8-tec-k2":"Formato","p8-tec-v2":"navegador · instalable como PWA",
+  "p8-tec-k3":"Licencia","p8-tec-v3":"código abierto",
+  "p8-tec-k4":"Enlace",
+  "p8-tec-k5":"Estado","p8-tec-v5":"publicada · en línea",
+  "p8-cap2":"luum, estado de color 02.",
+  "p8-cap3":"luum, estado de color 03.",
+
+  "p9-title":"trrngr",
+  "p9-med":"Práctica creativa e investigación musical · sintetizador, sampler y trompeta",
+  "p9-fmt":"Cinco álbumes publicados · Bandcamp y SoundCloud",
+  "p9-txt1":"trrngr es mi trabajo como artista sonoro. Tuve la oportunidad de estudiar alemán y trompeta, pero no podía aprender dos lenguajes al mismo tiempo, así que elegí el universal: la música.",
+  "p9-txt2":"Incorporé sintetizadores y samplers a mi práctica y me trasladé a Colombia para vivir y aprender de la música. Nunca lo hice dentro de un espacio académico o formal, sino desde la intuición y el diálogo con los lugares que he habitado. Mi trabajo imagina paisajes andinos, futuristas y subterráneos; busca comunicarse con otras especies y crear una música pop al margen del mainstream aturdidor del norte global. En ocasiones, intento escapar del estereotipo del colombiano bailador y salsero para proponer la figura de un colombiano andino que se pregunta por su territorio desde perspectivas sónicas.",
+  "p9-txt3":"trrngr es el nombre bajo el cual investigo la música desde 2020. Es una práctica de estudio construida con un sintetizador, un computador y un sampler, alimentada también por una trompeta que me acompaña desde antes de esta etapa digital. No es un proyecto paralelo a mi obra visual, sino uno de sus orígenes: el archivo sonoro que posteriormente alimenta clouds y otras piezas generativas nace aquí.",
+  "p9-txt4":"Cinco álbumes publicados entre 2020 y 2026 —micelios, laberintos, quye, andrómeda y tierranegra— conforman el trabajo realizado hasta el momento. Son ficciones andinas construidas a partir de una matriz sonora de polinización cruzada, poblada por historias persistentes, volátiles y fantásticas. Son composiciones que pueden escucharse sin seguir un orden determinado ni una secuencia lineal.",
+  "p9-tec-k1":"Instrumentos","p9-tec-v1":"sintetizador, sampler, trompeta, pedales, computador",
+  "p9-tec-k2":"Discografía","p9-tec-v2":"micelios (2020) · laberintos (2023) · quye (2024) · andrómeda (2025) · tierranegra (2026)",
+  "p9-tec-k3":"Publicación",
+  "p9-tec-k4":"Estado","p9-tec-v4":"catálogo activo · nuevas sesiones en curso",
+  "p9-cap2":"tierranegra, 2026. Portada de álbum.",
+  "p9-cap3":"andrómeda, 2025. Portada de álbum.",
+
+  "p11-title":"Mindfoolness","p11-year":"desde siempre",
+  "p11-med":"Espectáculo propio de malabares y clown · pensado especialmente para peques",
+  "p11-fmt":"Pelotas de malabar · presentaciones en vivo",
+  "p11-cap1":"Mindfoolness, identidad gráfica.",
+  "p11-txt1":"<i>Mindfoolness</i> es una práctica de libertad. Es una burla al sistema. Es jugar con los niños y apropiarse de espacios no convencionales —como el salón de una casa— para que allí se instalen el absurdo y el divertimento.",
+  "p11-txt2":"Desarrollo esta práctica desde hace muchos años, cuando terminé mis estudios de teatro gestual en la escuela de Jacques Lecoq. Desde entonces, <i>Mindfoolness</i> ha aparecido en innumerables cumpleaños, fiestas de quince años, ferias y eventos de todo tipo: desde escenarios públicos, como el Parque Simón Bolívar, rodeado de miles de personas, hasta el comedor íntimo de una familia. El tamaño del público no importa. Lo importante es la reacción que provoca el encuentro y la libertad que comparten el payaso y quienes lo rodean.",
+  "p11-txt3":"Esta práctica también me ha permitido desarrollar una forma de exploración antropológica, especialmente en Catalunya, donde tuvo lugar la mayor parte de este recorrido. <i>Mindfoolness</i> es mi número; me acompaña como los números que se transmiten y transforman en la mejor tradición de las familias circenses.",
+  "p11-txt4":"Practico disciplinadamente el malabarismo y la pantomima como parte de mis meditaciones diarias, para estar preparado cuando el escenario lo requiera. Como muchos de mis trabajos, <i>Mindfoolness</i> no busca materializarse en un objeto acabado, sino sostener un proceso constante de práctica, transformación y aprendizaje.",
+  "p11-tec-k1":"Formato de exhibición","p11-tec-v1":"presentación en vivo · espacio público, escenario o en casa",
+  "p11-tec-k2":"Materiales","p11-tec-v2":"pelotas de malabar",
+  "p11-tec-k3":"Antecedentes","p11-tec-v3":"beca IDARTES para la creación de obras artísticas de clown",
+  "p11-tec-k4":"Estado","p11-tec-v4":"práctica activa",
+
+  "p12-title":"Pedagogías expandidas",
+  "p12-med":"Talleres de pedagogía expandida · cuerpo, materiales y escucha",
+  "p12-fmt":"Movimiento corporal · carpintería · atención al sonido · pensamiento abstracto",
+  "p12-cap1":"Taller de domos geodésicos, Organizmo.",
+  "p12-txt1":"La pedagogía expandida ha sido una herramienta para compartir mis conocimientos y, al mismo tiempo, enriquecerlos con las experiencias de quienes participan. Es un ejercicio de diálogo a través del juego y una forma de aprender desde el cuerpo, los materiales, la escucha y la abstracción, fuera de los espacios académicos y formales. Es una práctica libre, nómada y subversiva.",
+  "p12-txt2":"En estos espacios he impartido clases de movimiento corporal, carpintería, escucha atenta y pensamiento creativo abstracto mediante ejercicios que conectan la percepción, el hacer y la reflexión colectiva.",
+  "p12-txt3":"Como un hacker, he insertado mis metodologías en instituciones y espacios como la Universidad de los Andes, la Escuela de Artes y Oficios Santo Domingo, el Liceo Juan Ramón Jiménez, colegios concertados de Bogotá, la Cárcel de Santa Marta, la Galería NC-Arte, Organizmo y Terreno Paisajismo. Allí he buscado sembrar semillas de inquietud y curiosidad, y propiciar una aproximación al conocimiento basada en la apertura del pensamiento, más que en la formalidad.",
+  "p12-txt4":"También he convertido mi propio taller en un aula experimental, donde he desarrollado encuentros de carpintería, expresión corporal y diseño de sintetizadores bajo la filosofía del \"Hágalo Usted Mismo\".",
+  "p12-txt5":"La pedagogía es una herramienta de subversión.",
+  "p12-tec-k1":"Enfoque","p12-tec-v1":"pedagogía expandida como práctica corporal · aprendizaje colectivo desde la percepción y el hacer",
+  "p12-tec-k2":"Espacios","p12-tec-v2":"Universidad de los Andes · Escuela de Artes y Oficios Santo Domingo · Liceo Juan Ramón Jiménez · Colegios Concertados de Bogotá · Cárcel de Santa Marta · Galería NC-Arte · Organizmo · Terreno Paisajismo",
+  "p12-tec-k3":"Antecedentes","p12-tec-v3":"Tabio, territorio sónico (2019, con Felipe Cotero) · Festival Internacional de Payasos de Las Tunas, Cuba",
+  "p12-tec-k4":"Estado","p12-tec-v4":"práctica pedagógica activa · documentada desde Tabio, 2019",
+  "p12-cap2":"Ejercicio de movimiento corporal y atención, Universidad de los Andes.",
+  "p12-cap3":"Tabio, territorio sónico — recorrido de escucha colectiva, 2019.",
+
+  trayLbl:"Trayectoria",
+  tr2005:"Santiago inicia su práctica de clown. Estudis de Teatre Jacques Lecoq, Barcelona (2005–2007).",
+  tr2007a:"Compañía Cromosomos — teatro físico cómico, creación de números para cabarets y teatros en España (2007–2013).",
+  tr2007b:"Comienza la práctica que da origen a arcaica_lab.",
+  trTitulo:"Título de Técnico en Fabricación a Medida e Instalación de Carpintería y Mueble, Escola Industrial del Treball, Barcelona.",
+  trBolaRoja:"Colectivo de Payasos la Bola Roja — teatro absurdo y cómico, programación semanal en el Teatre Llantiol, Barcelona (2011–2012).",
+  tr2013:"Inicio de prácticas expandidas pedagógicas en diversos espacios de Bogotá, Colombia, y en el Festival Internacional de Payasos de Las Tunas, Cuba. Esa práctica continúa actualmente con talleres de formación en el oficio de la carpintería.",
+  trLaTorpe:"Compañía La Torpe — proyectos escénicos y pedagógicos para teatros, calles y espacios no convencionales; invitado al Encuentro Internacional de Clown de Las Tunas, Cuba (2014–2016).",
+  trGirona:"Diplomado en Gestión Cultural Local, Organización de Estados Iberoamericanos / Universitat de Girona.",
+  trMissElliot:"Miss Elliot — creación, dirección e interpretación del espectáculo de clown, malabares y música experimental \"Loop\"; mención especial de la Secretaría de Recreación y Deportes e IDARTES (2016–2020).",
+  tr2017:"Analogías sonoras — objeto sonoro en madera. Primera pieza donde un contenedor material alberga sonido.",
+  trArtBoTutor:"Ganador de la beca ArtBo Tutor, Cámara de Comercio de Bogotá.",
+  tr2018:"Analogías sonoras se exhibe en ArtBo Tutor — primer proyecto sonoro exhibido. Inicio del archivo de grabaciones de campo en la sabana de Bogotá.",
+  trPlatohedro:"Residencia Artística Nacional, Ministerio de Cultura de Colombia, para investigar la arquitectura de la Casa Platohedro, Medellín. Perspectivas Sonoras Andinas — piezas sonoras experimentales a partir de esa investigación.",
+  trOrganizmo:"Organizmo y Jardinología, Tenjo — pedagogía para la construcción de un domo geodésico en madera de 7 m de diámetro.",
+  trRuidoMaraca:'Ruido Maraca — composición derivada de la Residencia Artística Nacional en Platohedro, publicada en Systemma, serie de International Digital Music Label and Live Cast con base en Odesa, Ucrania, activa a nivel mundial. <a href="https://soundcloud.com/systemma1/sistema-149-ruido-maraca" target="_blank" rel="noopener">soundcloud.com/systemma1/sistema-149-ruido-maraca</a>',
+  tr2019:"Tabio, territorio sónico — escucha colectiva y partituras gráficas.",
+  tr2020:'Primeras composiciones bajo el nombre trrngr · música pop. <a href="https://trrngr.bandcamp.com/" target="_blank" rel="noopener">trrngr.bandcamp.com</a>',
+  trCasatrece:"Casatrece Artes y Oficios, Tenjo — gestor cultural y creador de contenidos pedagógicos para este espacio rural artesanal independiente (2020–2023).",
+  trCapitalSemilla:"Ganador de Capital Semilla para Artesanías, Casatrece Tenjo / IMCTT.",
+  trMajuy:"Majuy — escultura pública en madera, instalada en el Instituto Cultural de Tenjo. En conjunto con Juliana Schönwald, Fabián Aristizábal y Ernesto Ramírez Casas, en casatrece. Ganador de la convocatoria de Escultura Pública de Tenjo.",
+  trSantoDomingo:"Docente en técnicas de carpintería tradicional, Escuela de Artes y Oficios Santo Domingo.",
+  tr2026a:"clouds — Frameworks of Behaviour, práctica en curso.",
+  tr2026b:"Publicación de luum.",
+  trAsimtria:"Parpadea — pieza sonora presentada en Pumpumyachkan, Festival Asimtria, Cusco. En colectivo con Juliana Schönwald.",
+
+  bioLbl:"Bio",
+  bio1:"Santiago Parada (trrngr) vive y trabaja en Bogotá.",
+
+  contactLbl:"Contacto",
+  correoLbl:"Correo", sitioLbl:"Sitio", bandcampLbl:"Bandcamp",
+  tallerLbl:"Taller", tallerTxt:"arcaica_lab · Bogotá",
+  dossierLbl:"Bonus track",
+  finTxt:"© 2026 Santiago Parada · Todas las imágenes son documentación de obra propia.",
+  "ph-label":"pendiente"
+ },
+ en: {
+  langbtn: "ES", navcontact: "Contact",
+  tag: "Bogotá, Colombia",
+  h1: "Poly-morph.ism.",
+  state1b: "The body, wood, and data are my material for exploring the tension between lines: discipline and intuition, the tangible and the volatile, craft and its consequent dissolution of the ego. It is a multidisciplinary practice with the human role in creation, across different realms of perception, as its backdrop. I look for systems that adapt and converse with the nature around me. A practice between the material and fiction, an invitation to expand the sense of our reality.",
+  worksLbl: "Selected Works",
+
+  "p1-title":"clouds — Frameworks of Behaviour",
+  "p1-med":"Atmospheric algorithmic painting · audio-seeded fractal noise (FBM) · ongoing practice",
+  "p1-fmt":"6000 × 6000 px / 8000 × 8000 px · 254 DPI · 1 of 1 · Tezos",
+  "p1-cap1":"Iteration 030, 2026.",
+  "p1-txt1":"I research how to turn the vibration of two Tibetan singing bowls into a <i>dataframe</i> that feeds a generative cloud algorithm. The project grows out of a daily, personal, performative practice whose sole purpose is to quiet the mind. That same operation is carried into the computational realm through code written in Python and a rigorous record of each session's metadata.",
+  "p1-txt2":"It's a living practice: it moves through moments of discipline and others of pause. Some sessions are devoted to researching the code without producing sound, where I search for silence within contemporary computational noise. So far thirty images have been created, and the code and the project keep expanding.",
+  "p1-txt3":"It's a research project in data science and <i>data engineering</i>, fields that make up my current practice. It's also a search to articulate my spirituality with permanence, and a new approach to ideas that unsettle me: polymorphism and consciousness.",
+  "p1-txt4":"The randomness of the cloud, the randomness of the bowl, meditation, and silence run through the whole body of work.",
+  "p1-tec-k1":"Exhibition format","p1-tec-v1":"large-format print · or single screen",
+  "p1-tec-k2":"Edition","p1-tec-v2":"1/1 per iteration",
+  "p1-tec-k3":"Series","p1-tec-v3":"open, no planned closing number",
+  "p1-tec-k4":"Provenance","p1-tec-v4":"each work links to its session's WAV and SHA-256",
+  "p1-tec-k5":"Software","p1-tec-v5":"Python · NumPy · Pillow · custom pipeline",
+  "p1-tec-k6":"Status","p1-tec-v6":"active practice",
+  "p1-cap2":"Iteration 030, detail.",
+  "p1-cap3":"3D spectrogram of the originating session.",
+
+  "p3-title":"Sculpture — Majuy (P.arque Infantil)",
+  "p3-med":"Public sculpture · wooden arches over a beam structure",
+  "p3-fmt":"Winning project, Tenjo Public Sculpture competition · Instituto Cultural de Tenjo, Cundinamarca",
+  "p3-cap1":"Majuy (P.arque Infantil), installed at the Instituto Cultural de Tenjo, Cundinamarca.",
+  "p3-txt1":"Majuy (P.arque Infantil) is a space of speculation around woodworking, territory, and architecture, based on the resonance of the mountain and play spaces — a name that refers to the sacred Muisca hill near Tenjo.",
+  "p3-txt2":"Winning project of the Tenjo Public Sculpture, Cundinamarca open call, permanently installed at the Instituto Cultural de Tenjo. Developed together with Juliana Schönwald, Fabián Aristizábal, and Ernesto Ramírez Casas, at casatrece.",
+  "p3-txt3":"We based the piece on the hill's topography, represented through contour lines obtained in QGIS. From these we carried out a study and selected the ones we considered most viable to reproduce through metal bending.",
+  "p3-txt5":"When we moved these forms into the workshop, we ran into a difficulty: reproducing our organic curves within what the machines could actually do. On top of that, the project's time and budget left little room for experimentation, pushing us straight into execution. So we simplified the process and adapted to the resources at hand. Rather than chase perfection, we aimed to turn the process into a learning opportunity for our studio.",
+  "p3-txt4":"In the end, we wanted this piece to be a work of sculptural ambient character — a silent resonance in the viewer.",
+  "p3-tec-k1":"Location","p3-tec-v1":"Instituto Cultural de Tenjo, Cundinamarca",
+  "p3-tec-k2":"Materials","p3-tec-v2":"wood · metal support structure",
+  "p3-tec-k3":"Collaboration","p3-tec-v3":"Juliana Schönwald · Fabián Aristizábal · Ernesto Ramírez Casas — casatrece",
+  "p3-tec-k5":"Dimensions","p3-tec-v5":"5 × 3 × 2 m",
+  "p3-tec-k4":"Status","p3-tec-v4":"winning project, Tenjo Public Sculpture · installed, permanent",
+  "p3-cap2":"Design study: arches over beams, curvature variations.",
+  "p3-cap3":"Front render, mountain profile.",
+
+  "p4-title":"Analogías sonoras",
+  "p4-med":"Sound object · pine wood, headphones, continuous playback",
+  "p4-cap1":"Analogías sonoras, 2017. Installation documentation.",
+  "p4-txt1":"<i>Analogías sonoras</i> was my first sound-art project. After working with several artists in Bogotá on projects that involved shipping works from one part of the world to another, I began to question the capitalist system masked behind contemporary art and its discursive processes.",
+  "p4-txt2":"I've always been in conflict with the absurd production of objects, even though I love artistic conception. That's why I embraced sound as an element no one can fully appropriate. It can't be hung on a wall: it travels through space, affects us like any other manifestation of matter, and, like air, it can't be seen.",
+  "p4-txt3":"These reflections came up during a series of walks through Kennedy, in Bogotá, and led me to create a sound composition contained inside a shipping crate: <i>Analogías sonoras</i>. The crate became a defiant object within the exhibition. The container was the artwork: that object built with extreme care to protect a piece in transit, which, once its job is done, is usually stored away and hidden. It also made the handler visible — the worker who sustains the whole circulation chain of art and yet remains invisible.",
+  "p4-txt4":"The sound piece, on the other hand, once the crate was opened, couldn't be contained: it escaped like a genie freed from its bottle. It could only be heard through an intimate gesture of proximity.",
+  "p4-txt5":"The composition was created to exist only for the duration of that exhibition, not to be stored. All that remains of it is the memory held in these images.",
+  "p4-tec-k1":"Exhibition format","p4-tec-v1":"outdoor or indoor · requires power",
+  "p4-tec-k2":"Materials","p4-tec-v2":"pine, hardware, headphones, player",
+  "p4-tec-k3":"Dimensions",
+  "p4-tec-k4":"Exhibition","p4-tec-v4":"ArtBo Tutor, 2018 — first sound project exhibited",
+  "p4-cap2":"\"Lugares invisibles,\" 2017 — original post, ArtBo Tutor CCB Kennedy.",
+
+  "p6-title":"arcaica_lab",
+  "p6-med":"Fine woodworking · solid wood · in-house production",
+  "p6-fmt":"One-off pieces and short series",
+  "p6-cap1":"Center table.",
+  "p6-txt1":"<i>arcaica lab</i> is my woodworking shop. For over fifteen years I've made custom furniture and objects. After my technical training in the craft, I began a practice grounded in dialogue with the people who commission each piece. The aim has been not to standardize ideas, but to stay open to solving the spaces others imagine, and to keep learning the craft through working with wood.",
+  "p6-txt2":"My fascination with trees began when I was very young. I find in their structures a resemblance to our neurons, and for that reason I consider them one of the most extraordinary forms of intelligence I've been able to observe. Wood is expressive down to the marrow, literally.",
+  "p6-txt3":"Woodworking is an inquiry into structured thought, the economy of energy and movement, precision, and the pleasure of perceiving the passage of time. It also clearly consists of making beautiful things. It has been —and continues to be— my most tangible relationship with the world of objects.",
+  "p6-txt4":"Like the rest of my practice, <i>arcaica lab</i> doesn't aim to become a <i>fancy</i> brand. On the contrary, it proposes a libertarian practice: a way of preserving ancestral knowledge and exercising a practical degrowth. Digital, pedagogical, cultural, and ethical inquiries have all grown out of this work.",
+  "p6-tec-k1":"Start","p6-tec-v1":"2007 · Bogotá",
+  "p6-tec-k2":"Documentation","p6-tec-v2":"catalog, drawings, and in-house curatorial proposal since 2020",
+  "p6-tec-k3":"Lines","p6-tec-v3":"furniture, sculpture, CNC furniture (KYE)",
+  "p6-tec-k5":"Instagram",
+  "p6-tec-k4":"Status","p6-tec-v4":"active shop",
+  "p6-cap2":"Dining table.","p6-cap3":"Bookshelf, detail.","p6-cap4":"Tools.",
+
+  "p7-title":"Arquitecturas — modulario",
+  "p7-med":"Modular sculptural furniture for cultural spaces · laminated wood",
+  "p7-fmt":"Schematic proposal · 2026 Microarchitectures open call",
+  "p7-cap1":"modulario, ensemble render. Self-supporting modular structure, urban bench, play cubes, and display furniture.",
+  "p7-txt1":"Arquitecturas is a space of experimentation that grows out of my woodworking practice and unfolds within the digital environment of Rhino 3D. There I speculate on pedagogical spaces built in wood, inspired by certain Montessori principles and by my own sensory relationship with the material: I'm fascinated by touching and smelling it, and I consider it noble, beautiful, and durable.",
+  "p7-txt2":"I play freely with forms, the way I hope education and pedagogy could evolve. I propose spaces that mutate, change location, and favor adaptation, encounter, and play. Their structures are modular and use traditional woodworking joinery.",
+  "p7-txt3":"Each proposal is a speculation on pedagogical nomadism, on the beauty and clarity needed to study, and on the visual possibilities of geometry. The systems are reconfigurable: they can travel between different geographies, be assembled in part or in full, and adapt to different uses —gathering, workshop, or exhibition— without changing form, only configuration and density.",
+  "p7-tec-k1":"Components","p7-tec-v1":"self-supporting modular structure (3×3×2.5 m, 2 units) · urban bench (220×60×50 cm) · 27 play cubes (35×35×35 cm) · display furniture (170×110×35 cm)",
+  "p7-tec-k2":"Materials","p7-tec-v2":"laminated wood and honeycomb panel · half-lap joinery",
+  "p7-tec-k3":"Document","p7-dl":"↓ Download schematic proposal (PDF)",
+  "p7-tec-k4":"Status","p7-tec-v4":"schematic proposal",
+  "p7-cap2":"Half-lap joinery, technical detail.",
+  "p7-cap3":"modulario in use: gathering, play, and collective assembly.",
+
+  "p8-title":"luum",
+  "p8-med":"Generative app · random idea-generation game",
+  "p8-fmt":"PWA · web and mobile · open source",
+  "p8-cap1":"luum, color state 01.",
+  "p8-txt1":"Inspired by the brilliant Oblique Strategies by Brian Eno and Peter Schmidt — I always wanted to make a card game like that. luum crosses conceptual triggers with concrete action propositions, following a logic drawn from the I Ching: fixed tables, variable encounters. More than 170,000 possible combinations.",
+  "p8-txt2":"The image stops being a file and becomes an invitation: each tap translates the logic of the fixed pieces to a system the viewer manipulates on their own device. A new prompt for artists, teachers, teams, improvisers, and creative processes that need another angle.",
+  "p8-tec-k1":"Content","p8-tec-v1":"90 trigger phrases · 64 action propositions · 15 color states · +170,000 combinations",
+  "p8-tec-k2":"Format","p8-tec-v2":"browser · installable as a PWA",
+  "p8-tec-k3":"License","p8-tec-v3":"open source",
+  "p8-tec-k4":"Link",
+  "p8-tec-k5":"Status","p8-tec-v5":"published · online",
+  "p8-cap2":"luum, color state 02.",
+  "p8-cap3":"luum, color state 03.",
+
+  "p9-title":"trrngr",
+  "p9-med":"Creative practice and music research · synthesizer, sampler, and trumpet",
+  "p9-fmt":"Five albums released · Bandcamp and SoundCloud",
+  "p9-txt1":"trrngr is my work as a sound artist. I had the chance to study German and trumpet, but I couldn't learn two languages at once, so I chose the universal one: music.",
+  "p9-txt2":"I brought synthesizers and samplers into my practice and moved to Colombia to live and learn from its music. I never did it within an academic or formal setting, but through intuition and dialogue with the places I've inhabited. My work imagines Andean, futuristic, and underground landscapes; it seeks to communicate with other species and to make pop music at the margins of the numbing mainstream of the global north. At times I try to escape the stereotype of the dancing, salsa-loving Colombian, to propose instead the figure of an Andean Colombian who questions their territory from sonic perspectives.",
+  "p9-txt3":"trrngr is the name under which I've been researching music since 2020. It's a studio practice built around a synthesizer, a computer, and a sampler, also fed by a trumpet that has accompanied me since before this digital stage. It is not a project parallel to my visual work but one of its origins: the sound archive that later feeds clouds and other generative pieces is born here.",
+  "p9-txt4":"Five albums released between 2020 and 2026 —micelios, laberintos, quye, andrómeda, and tierranegra— make up the work done so far. They are Andean fictions built from a cross-pollinating sonic matrix, populated by persistent, volatile, and fantastical stories. They are compositions that can be listened to in no particular order and without a linear sequence.",
+  "p9-tec-k1":"Instruments","p9-tec-v1":"synthesizer, sampler, trumpet, pedals, computer",
+  "p9-tec-k2":"Discography","p9-tec-v2":"micelios (2020) · laberintos (2023) · quye (2024) · andrómeda (2025) · tierranegra (2026)",
+  "p9-tec-k3":"Release",
+  "p9-tec-k4":"Status","p9-tec-v4":"active catalog · new sessions in progress",
+  "p9-cap2":"tierranegra, 2026. Album cover.",
+  "p9-cap3":"andrómeda, 2025. Album cover.",
+
+  "p11-title":"Mindfoolness","p11-year":"lifelong",
+  "p11-med":"Self-devised juggling and clown show · designed especially for little ones",
+  "p11-fmt":"Juggling balls · live performances",
+  "p11-cap1":"Mindfoolness, graphic identity.",
+  "p11-txt1":"<i>Mindfoolness</i> is a practice of freedom. It's a mockery of the system. It's playing with children and taking over unconventional spaces —like a family's living room— so that the absurd and the delightful can settle in.",
+  "p11-txt2":"I've developed this practice for many years, since finishing my studies in gestural theater at the Jacques Lecoq school. Since then, <i>Mindfoolness</i> has shown up at countless birthdays, quinceañeras, fairs, and every kind of event: from public stages, like Parque Simón Bolívar, surrounded by thousands of people, to the intimate dining room of a family. The size of the audience doesn't matter. What matters is the reaction the encounter provokes and the freedom shared between the clown and those around him.",
+  "p11-txt3":"This practice has also let me develop a form of anthropological exploration, especially in Catalunya, where most of this journey took place. <i>Mindfoolness</i> is my act; it travels with me like the acts passed down and transformed in the best tradition of circus families.",
+  "p11-txt4":"I practice juggling and mime with discipline as part of my daily meditations, to be ready whenever the stage calls for it. Like much of my work, <i>Mindfoolness</i> doesn't aim to become a finished object, but to sustain an ongoing process of practice, transformation, and learning.",
+  "p11-tec-k1":"Exhibition format","p11-tec-v1":"live performance · public space, stage, or at home",
+  "p11-tec-k2":"Materials","p11-tec-v2":"juggling balls",
+  "p11-tec-k3":"Precedents","p11-tec-v3":"IDARTES grant for the creation of clown artistic works",
+  "p11-tec-k4":"Status","p11-tec-v4":"active practice",
+
+  "p12-title":"Expanded Pedagogies",
+  "p12-med":"Expanded pedagogy workshops · body, materials, and listening",
+  "p12-fmt":"Body movement · woodworking · attention to sound · abstract thinking",
+  "p12-cap1":"Geodesic dome workshop, Organizmo.",
+  "p12-txt1":"Expanded pedagogy has been a tool for sharing my knowledge and, at the same time, enriching it with the experiences of those who take part. It's an exercise in dialogue through play and a way of learning from the body, materials, listening, and abstraction, outside academic and formal spaces. It's a free, nomadic, and subversive practice.",
+  "p12-txt2":"In these spaces I have taught body movement, woodworking, attentive listening, and abstract creative thinking through exercises that connect perception, making, and collective reflection.",
+  "p12-txt3":"Like a hacker, I've inserted my methodologies into institutions and spaces such as Universidad de los Andes, Escuela de Artes y Oficios Santo Domingo, Liceo Juan Ramón Jiménez, Colegios Concertados de Bogotá, the Santa Marta prison, Galería NC-Arte, Organizmo, and Terreno Paisajismo. There I've sought to plant seeds of curiosity and unease, and to foster an approach to knowledge grounded in openness of thought rather than formality.",
+  "p12-txt4":"I've also turned my own workshop into an experimental classroom, where I've run sessions on woodworking, body expression, and synthesizer design under a \"Do It Yourself\" philosophy.",
+  "p12-txt5":"Pedagogy is a tool of subversion.",
+  "p12-tec-k1":"Approach","p12-tec-v1":"expanded pedagogy as embodied practice · collective learning through perception and making",
+  "p12-tec-k2":"Spaces","p12-tec-v2":"Universidad de los Andes · Escuela de Artes y Oficios Santo Domingo · Liceo Juan Ramón Jiménez · Colegios Concertados de Bogotá · Santa Marta prison · Galería NC-Arte · Organizmo · Terreno Paisajismo",
+  "p12-tec-k3":"Precedents","p12-tec-v3":"Tabio, territorio sónico (2019, with Felipe Cotero) · Festival Internacional de Payasos, Las Tunas, Cuba",
+  "p12-tec-k4":"Status","p12-tec-v4":"active pedagogy practice · documented since Tabio, 2019",
+  "p12-cap2":"Body-movement and attention exercise, Universidad de los Andes.",
+  "p12-cap3":"Tabio, territorio sónico — collective listening walk, 2019.",
+
+  trayLbl:"Trajectory",
+  tr2005:"Santiago begins his clown practice. Estudis de Teatre Jacques Lecoq, Barcelona (2005–2007).",
+  tr2007a:"Compañía Cromosomos — comic physical theater, creating routines for cabarets and theaters in Spain (2007–2013).",
+  tr2007b:"The practice that gives rise to arcaica_lab begins.",
+  trTitulo:"Technical degree in Custom Furniture Making and Carpentry Installation, Escola Industrial del Treball, Barcelona.",
+  trBolaRoja:"Colectivo de Payasos la Bola Roja — absurdist and comic theater, weekly program at the Teatre Llantiol, Barcelona (2011–2012).",
+  tr2013:"Start of expanded pedagogical practices across various spaces in Bogotá, Colombia, and at the Festival Internacional de Payasos in Las Tunas, Cuba. That practice continues today through training workshops in the craft of woodworking.",
+  trLaTorpe:"Compañía La Torpe — scenic and pedagogical projects for theaters, streets, and unconventional spaces; specially invited to the Encuentro Internacional de Clown in Las Tunas, Cuba (2014–2016).",
+  trGirona:"Diploma in Local Cultural Management, Organización de Estados Iberoamericanos / Universitat de Girona.",
+  trMissElliot:"Miss Elliot — creation, direction, and performance of the clown, juggling, and experimental music show \"Loop\"; special mention from Bogotá's Secretaría de Recreación y Deportes and IDARTES (2016–2020).",
+  tr2017:"Analogías sonoras — sound object in wood. First piece where a material container holds sound.",
+  trArtBoTutor:"Winner of the ArtBo Tutor grant, Cámara de Comercio de Bogotá.",
+  tr2018:"Analogías sonoras is exhibited at ArtBo Tutor — first sound project exhibited. Start of the field-recording archive in the Bogotá savanna.",
+  trPlatohedro:"Residencia Artística Nacional, Ministry of Culture of Colombia, to research the architecture of Casa Platohedro, Medellín. Perspectivas Sonoras Andinas — experimental sound pieces grown out of that research.",
+  trOrganizmo:"Organizmo y Jardinología, Tenjo — pedagogy for building a 7-meter-diameter wooden geodesic dome.",
+  trRuidoMaraca:'Ruido Maraca — composition grown out of the Residencia Artística Nacional at Platohedro, released on Systemma, an international digital music label and live-cast series based in Odesa, Ukraine, active worldwide. <a href="https://soundcloud.com/systemma1/sistema-149-ruido-maraca" target="_blank" rel="noopener">soundcloud.com/systemma1/sistema-149-ruido-maraca</a>',
+  tr2019:"Tabio, territorio sónico — collective listening and graphic scores.",
+  tr2020:'First compositions under the name trrngr · pop music. <a href="https://trrngr.bandcamp.com/" target="_blank" rel="noopener">trrngr.bandcamp.com</a>',
+  trCasatrece:"Casatrece Artes y Oficios, Tenjo — cultural manager and pedagogical content creator for this independent rural craft space (2020–2023).",
+  trCapitalSemilla:"Winner of Capital Semilla para Artesanías, Casatrece Tenjo / IMCTT.",
+  trMajuy:"Majuy — public wooden sculpture, installed at the Instituto Cultural de Tenjo. Together with Juliana Schönwald, Fabián Aristizábal, and Ernesto Ramírez Casas, at casatrece. Winner of the Tenjo Public Sculpture open call.",
+  trSantoDomingo:"Instructor in traditional woodworking techniques, Escuela de Artes y Oficios Santo Domingo.",
+  tr2026a:"clouds — Frameworks of Behaviour, ongoing practice.",
+  tr2026b:"Publication of luum.",
+  trAsimtria:"Parpadea — sound piece presented at Pumpumyachkan, Festival Asimtria, Cusco. In collective work with Juliana Schönwald.",
+
+  bioLbl:"Bio",
+  bio1:"Santiago Parada (trrngr) lives and works in Bogotá.",
+
+  contactLbl:"Contact",
+  correoLbl:"Email", sitioLbl:"Site", bandcampLbl:"Bandcamp",
+  tallerLbl:"Workshop", tallerTxt:"arcaica_lab · Bogotá",
+  dossierLbl:"Bonus track",
+  finTxt:"© 2026 Santiago Parada · All images are documentation of the artist's own work.",
+  "ph-label":"pending"
+ }
+};
+
+var curLang = 'es';
+function applyLang(){
+ var d = DICT[curLang];
+ document.documentElement.lang = curLang;
+ document.querySelectorAll('[data-k]').forEach(function(el){
+  var k = el.getAttribute('data-k');
+  if (d.hasOwnProperty(k)) { el.innerHTML = d[k]; }
+ });
+}
+function toggleLang(){
+ curLang = (curLang === 'es') ? 'en' : 'es';
+ applyLang();
+}
+applyLang();
+</script>
+
+</body></html>

@@ -73,7 +73,7 @@ header{display:flex;flex-direction:column;justify-content:flex-start;
 .hline{width:36px;height:2px;background:var(--accent);opacity:.4}
 .stag{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);
   border:1px solid var(--dimmer);padding:3px 8px;border-radius:2px}
-.gt{font-size:clamp(34px,6.5vw,78px);font-weight:700;line-height:1.0;letter-spacing:-.02em;
+.gt{font-size:clamp(40px,8vw,96px);font-weight:700;line-height:1.0;letter-spacing:-.02em;
   position:relative;display:inline-block;animation:ambg 9s infinite 3s}
 .gt::before,.gt::after{content:attr(data-text);position:absolute;inset:0;opacity:0}
 .gt::before{color:var(--gr)}.gt::after{color:var(--gb)}
@@ -97,6 +97,8 @@ header{display:flex;flex-direction:column;justify-content:flex-start;
 .hsub{margin-top:10px;font-size:10px;letter-spacing:.07em;line-height:1.9;
   color:var(--dim);max-width:54ch}
 .hsub em{color:var(--fg);font-style:normal}
+.hshape{margin-top:14px;font-size:clamp(14px,2vw,20px);letter-spacing:.02em;
+  color:var(--dim);font-weight:400}
 .scr{margin-top:20px;display:flex;align-items:center;gap:10px;opacity:.22}
 .scrl{width:1px;height:32px;background:var(--fg)}
 .scrt{font-size:8px;letter-spacing:.18em;text-transform:uppercase}
@@ -396,7 +398,8 @@ footer{padding:24px 40px;display:flex;justify-content:space-between;align-items:
     <div class="hline"></div>
     <span class="stag" data-k="htag"></span>
   </div>
-  <h1 class="gt" data-k="htitle">Data that takes shape.</h1>
+  <h1 class="gt" data-k="htitle">Poly-morph.ism</h1>
+  <p class="hshape" data-k="hshape"></p>
 
 </header>
 
@@ -513,6 +516,7 @@ const LANG = {
     nw:"woodworking", nda:"data science", nd:"experiments", nc:"citizen oversight", np:"pedagogy", na:"about",
     htag:"portfolio · Bogotá, CO",
     htitle:"Poly-morph.ism",
+    hshape:"Data that takes shape.",
     hsub:"<em>ciencia de datos</em> / <em>carpintería</em> / <em>pedagogía</em>",
     scr:"scroll",
     mftext:"I turn data, signals, and my knowledge in fine woodworking into structures that open questions, invite decisions, and grow through collaboration.<br><strong>Python · SQL · Pandas · PostgreSQL · Rhinoceros3D · a.i.</strong>",
@@ -551,6 +555,7 @@ const LANG = {
     nw:"carpintería", nda:"ciencia de datos", nd:"experimentos", nc:"veeduría ciudadana", np:"pedagogía", na:"sobre mí",
     htag:"portafolio · Bogotá, CO",
     htitle:"Poly-morph.ism",
+    hshape:"Datos que toman forma.",
     hsub:"<em>ciencia de datos</em> / <em>carpintería</em> / <em>pedagogía</em>",
     scr:"desplázate",
     mftext:"Convierto datos, señales y mis conocimientos en carpintería fina en estructuras que abren preguntas, invitan a tomar decisiones y crecen a través de la colaboración.<br><strong>Python · SQL · Pandas · PostgreSQL · Rhinoceros3D · a.i.</strong>",
@@ -589,6 +594,7 @@ const LANG = {
     nw:"ébénisterie", nda:"science des données", nd:"expériences", nc:"veille citoyenne", np:"pédagogie", na:"à propos",
     htag:"portfolio · Bogotá, CO",
     htitle:"Poly-morph.ism",
+    hshape:"Des données qui prennent forme.",
     hsub:"<em>ciencia de datos</em> / <em>carpintería</em> / <em>pedagogía</em>",
     scr:"défiler",
     mftext:"Je transforme les données, les signaux et mon savoir-faire en ébénisterie fine en structures qui ouvrent des questions, invitent à prendre des décisions et se développent grâce à la collaboration.<br><strong>Python · SQL · Pandas · PostgreSQL · Rhinoceros3D · a.i.</strong>",

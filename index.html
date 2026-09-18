@@ -14,7 +14,7 @@
   --line:rgba(216,212,200,.08);--line2:rgba(216,212,200,.15);
   --shadow:rgba(0,0,0,.6);
   --gr:#ff3366;--gb:#33aaff;
-  --cw:#c87941;--cd:#c8ff32;--cda:#60a5fa;
+  --cw:#c87941;--cd:#c8ff32;--cda:#60a5fa;--cc:#ef5da8;--cp:#22c55e;
 }
 [data-theme="light"]{
   --bg:#F9F7F2;--bg2:#F0EDE6;--bg3:#E8E4DC;
@@ -23,7 +23,7 @@
   --line:rgba(28,28,26,.09);--line2:rgba(28,28,26,.18);
   --shadow:rgba(0,0,0,.12);
   --gr:#cc0033;--gb:#0055cc;
-  --cw:#8a4a18;--cd:#3a6f00;--cda:#1d4ed8;
+  --cw:#8a4a18;--cd:#3a6f00;--cda:#1d4ed8;--cc:#be185d;--cp:#15803d;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -34,6 +34,7 @@ body{background:var(--bg);color:var(--fg);
 a{color:var(--fg);text-decoration:none;border-bottom:1px solid var(--dim);
   transition:color .15s,border-color .15s}
 a:hover{color:var(--accent);border-color:var(--accent)}
+button:focus-visible,a:focus-visible,.prow:focus-visible{outline:1px solid var(--accent);outline-offset:3px}
 
 /* ── GRAIN + SCANLINES ── */
 body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:9990;
@@ -105,6 +106,7 @@ header{display:flex;flex-direction:column;justify-content:flex-start;
 .mf-text{font-size:11px;line-height:2;color:var(--dim);max-width:72ch}
 .mf-text em{color:var(--fg);font-style:italic}
 .mf-text strong{color:var(--fg);font-weight:700;font-style:normal}
+.mf-service{display:block;margin-top:8px;color:var(--dim);max-width:78ch}
 
 /* ── SECTIONS ── */
 .section{padding:52px 40px;border-bottom:1px solid var(--line);max-width:1100px}
@@ -197,13 +199,22 @@ footer{padding:24px 40px;display:flex;justify-content:space-between;align-items:
 .ib-dim {background:rgba(100,96,90,.08);color:var(--dim);border:1px solid var(--line2)}
 .info-desc{font-size:11px;line-height:1.85;color:var(--dim);margin-bottom:24px}
 .info-div{border:none;border-top:1px solid var(--line);margin:0 0 20px}
+.info-links{display:flex;flex-wrap:wrap;gap:8px;margin:-8px 0 22px}
+.info-link{display:inline-flex;align-items:center;gap:7px;font-size:9px;font-weight:700;
+  letter-spacing:.12em;text-transform:uppercase;border:1px solid var(--line2);
+  border-radius:2px;padding:6px 9px;color:var(--fg);background:var(--bg2);
+  transition:color .15s,border-color .15s,background .15s}
+.info-link::after{content:'↗';font-size:10px;color:var(--dim);transition:color .15s}
+.info-link:hover,.info-link:focus-visible{color:var(--accent);border-color:var(--accent);background:var(--bg3)}
+.info-link:hover::after,.info-link:focus-visible::after{color:var(--accent)}
 
 /* image slots */
 .imgslots{display:flex;flex-direction:column;gap:10px}
 .imgslot{width:100%;aspect-ratio:16/9;border-radius:3px;border:1px dashed;
   display:flex;flex-direction:column;align-items:center;justify-content:center;
   gap:5px;position:relative;overflow:hidden}
-.imgslot.has-img{border-style:solid;background:var(--bg2)}
+.imgslot.has-img{border-style:solid;background:var(--bg2);cursor:zoom-in}
+.imgslot.has-img:focus-visible{outline:1px solid var(--accent);outline-offset:3px}
 .imgslot.has-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:scale-down;
   object-position:center;background:var(--bg2)}
 .imgslot.has-img::after{content:'';position:absolute;inset:0;
@@ -217,6 +228,20 @@ footer{padding:24px 40px;display:flex;justify-content:space-between;align-items:
 .imgslot.has-img .imgslot-lbl{position:absolute;left:12px;right:12px;bottom:10px;color:#fff;
   text-shadow:0 1px 8px rgba(0,0,0,.65);z-index:2;text-align:left}
 .imgslot-add{font-size:8px;letter-spacing:.08em;color:var(--dimmer);position:relative;z-index:1}
+
+/* image lightbox */
+#imglightbox{position:fixed;inset:0;z-index:9200;background:rgba(0,0,0,.92);
+  display:none;align-items:center;justify-content:center;padding:44px}
+#imglightbox.open{display:flex}
+.lightbox-img{max-width:100%;max-height:100%;object-fit:contain;
+  box-shadow:0 18px 60px rgba(0,0,0,.5)}
+.lightbox-caption{position:absolute;left:44px;right:86px;bottom:22px;
+  font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(255,255,255,.75);text-shadow:0 1px 10px rgba(0,0,0,.8)}
+.lightbox-close{position:absolute;top:18px;right:20px;width:34px;height:34px;
+  border:1px solid rgba(255,255,255,.3);background:rgba(0,0,0,.2);color:#fff;
+  font-family:'Space Mono',monospace;font-size:20px;line-height:1;cursor:pointer;border-radius:2px}
+.lightbox-close:hover,.lightbox-close:focus-visible{border-color:#fff;outline:none}
 
 /* tree svg classes */
 .tlink{fill:none;stroke-width:1}
@@ -380,7 +405,7 @@ footer{padding:24px 40px;display:flex;justify-content:space-between;align-items:
   <p class="mf-text" data-k="mftext"></p>
 </div>
 
-<!-- 01 DATA SCIENCE / APPS -->
+<!-- 01 DATA SCIENCE -->
 <div class="section" id="data">
   <div class="shd">
     <span class="slbl" style="color:var(--cda)" data-k="sda"></span>
@@ -390,17 +415,7 @@ footer{padding:24px 40px;display:flex;justify-content:space-between;align-items:
   <div class="plist" id="list-data"></div>
 </div>
 
-<!-- 02 ARTE GENERATIVO -->
-<div class="section" id="dig">
-  <div class="shd">
-    <span class="slbl" style="color:var(--cd)" data-k="sd"></span>
-    <span class="ssub" data-k="sdsub"></span>
-    <span class="snote" data-k="snote"></span>
-  </div>
-  <div class="plist" id="list-dig"></div>
-</div>
-
-<!-- 03 CARPINTERÍA -->
+<!-- 02 WOODWORKING -->
 <div class="section" id="wood">
   <div class="shd">
     <span class="slbl" style="color:var(--cw)" data-k="sw"></span>
@@ -410,7 +425,27 @@ footer{padding:24px 40px;display:flex;justify-content:space-between;align-items:
   <div class="plist" id="list-wood"></div>
 </div>
 
-<!-- ABOUT -->
+<!-- 03 EXPERIMENTS -->
+<div class="section" id="dig">
+  <div class="shd">
+    <span class="slbl" style="color:var(--cd)" data-k="sd"></span>
+    <span class="ssub" data-k="sdsub"></span>
+    <span class="snote" data-k="snote"></span>
+  </div>
+  <div class="plist" id="list-dig"></div>
+</div>
+
+<!-- 05 PEDAGOGY -->
+<div class="section" id="pedagogy">
+  <div class="shd">
+    <span class="slbl" style="color:var(--cp)" data-k="sp"></span>
+    <span class="ssub" data-k="spsub"></span>
+    <span class="snote" data-k="snote"></span>
+  </div>
+  <div class="plist" id="list-pedagogy"></div>
+</div>
+
+<!-- 06 ABOUT -->
 <div class="section" id="about">
   <div class="shd"><span class="slbl" data-k="sab"></span></div>
   <p class="abp" data-k="abp"></p>
@@ -435,9 +470,9 @@ footer{padding:24px 40px;display:flex;justify-content:space-between;align-items:
   <span class="fcp" data-k="fcp"></span>
   <div class="flnks">
     <a href="mailto:parada.santi@gmail.com" data-k="fe"></a>
-    <a href="https://instagram.com/arcaica_lab" target="_blank">instagram</a>
-    <a href="https://objkt.com/users/tz2VFLV73CMFhHG4osnLCsUfd87Nin5ouKqn/created" target="_blank">objkt</a>
-    <a href="https://github.com/santiagoparada" target="_blank">github</a>
+    <a href="https://instagram.com/arcaica_lab" target="_blank" rel="noopener noreferrer">instagram</a>
+    <a href="https://objkt.com/users/tz2VFLV73CMFhHG4osnLCsUfd87Nin5ouKqn/created" target="_blank" rel="noopener noreferrer">objkt</a>
+    <a href="https://github.com/santiagoparada" target="_blank" rel="noopener noreferrer">github</a>
   </div>
 </footer>
 
@@ -464,23 +499,30 @@ footer{padding:24px 40px;display:flex;justify-content:space-between;align-items:
   </div>
 </div>
 <div id="tip"></div>
+<div id="imglightbox" aria-hidden="true">
+  <button class="lightbox-close" type="button" aria-label="Close image">×</button>
+  <img class="lightbox-img" src="" alt="">
+  <div class="lightbox-caption"></div>
+</div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js" onerror="window._d3Failed=true"></script>
 <script>
 /* ══ LANGUAGE ═══════════════════════════════════════════ */
 const LANG = {
   en:{
-    nw:"wood", nda:"data", nd:"gen. art", na:"about",
+    nw:"woodworking", nda:"data science", nd:"experiments", nc:"citizen oversight", np:"pedagogy", na:"about",
     htag:"portfolio · Bogotá, CO",
     htitle:"Data that takes shape.",
-    hsub:"<em>data science</em> · <em>generative art</em> · <em>woodworking</em>",
+    hsub:"<em>ciencia de datos</em> / <em>carpintería</em> / <em>pedagogía</em>",
     scr:"scroll",
-    mftext:"I turn data, signals, and my knowledge in fine woodworking into structures that open questions, invite decisions, and grow through collaboration.<br><strong>Python · SQL · Pandas · PostgreSQL · Rhinoceros3D · a.i. |</strong>",
-    sda:"01 — data science.", sdasub:"patterns",
-    sd:"02 — generative art",       sdsub:"experiments",
-    sw:"03 — woodworking",          swsub:"objects",
+    mftext:"I turn data, signals, and my knowledge in fine woodworking into structures that open questions, invite decisions, and grow through collaboration.<br><strong>Python · SQL · Pandas · PostgreSQL · Rhinoceros3D · a.i. |</strong><span class=\"mf-service\">I help clean databases so that information can become statistics and metrics for decision-making. I can update your systems and communication flows through the creation of database management systems.</span>",
+    sda:"01 — data science", sdasub:"patterns",
+    sw:"02 — woodworking",          swsub:"objects and architectures",
+    sd:"03 — experiments",          sdsub:"sound · image · systems",
+    sc:"04 — citizen oversight",    scsub:"public evidence",
+    sp:"05 — pedagogy",             spsub:"workshops",
     snote:"click any project to open its data tree →",
-    sab:"04 — about",
+    sab:"06 — about",
     abp:"I work with data, code, and physical materials to explore how patterns emerge, persist, and evolve. My practice combines statistical analysis, computational modeling, and systems design with a long-standing interest in making, observation, and experimentation. Based in Bogotá.",
     ab1l:"location", ab2l:"currently",  ab2v:"clouds #— · daily",
     ab3l:"also",     ab3v:"Maker Rituals workshop",
@@ -490,27 +532,35 @@ const LANG = {
     stlive:"live", stwip:"in progress", stdone:"done",
     imgadd:"+ add image",
     images:"images",
+    treeoffline:"tree unavailable offline",
+    notreedata:"no tree data",
     cats:{
       Materials:"Materials",Process:"Process",Specs:"Specs",Reference:"Reference",
       Status:"Status",Joinery:"Joinery",Concept:"Concept",Notes:"Notes",Format:"Format",
       Exercises:"Exercises",Output:"Output",Pipeline:"Pipeline",Attributes:"Attributes",
       Platform:"Platform",Stack:"Stack",Philosophy:"Philosophy",Medium:"Medium",
       Content:"Content",Research:"Research",Question:"Question",Tools:"Tools",Dataset:"Dataset",Method:"Method",
-      Finding:"Finding",Technique:"Technique"
+      Finding:"Finding",Technique:"Technique",Design:"Design",Architecture:"Architecture",Features:"Features",
+      Deploy:"Deploy","Research Question":"Research Question","Public Data":"Public Data","Time-Series Preparation":"Time-Series Preparation",
+      "Trend and Seasonality":"Trend and Seasonality",Stationarity:"Stationarity","Exogenous Variables":"Exogenous Variables",
+      "SARIMAX Model":"SARIMAX Model",Validation:"Validation",Metrics:"Metrics",Forecast:"Forecast",Findings:"Findings",
+      Limitations:"Limitations",Repository:"Repository"
     }
   },
   es:{
-    nw:"madera", nda:"datos", nd:"arte gen.", na:"sobre mí",
+    nw:"carpintería", nda:"ciencia de datos", nd:"experimentos", nc:"veeduría ciudadana", np:"pedagogía", na:"sobre mí",
     htag:"portafolio · Bogotá, CO",
     htitle:"Datos que toman forma.",
-    hsub:"<em>ciencia de datos</em> · <em>arte generativo</em> · <em>carpintería</em>",
+    hsub:"<em>ciencia de datos</em> / <em>carpintería</em> / <em>pedagogía</em>",
     scr:"desplázate",
-    mftext:"Transformo datos, señales y mi conocimiento en ebanistería fina en estructuras con las que las personas pueden dialogar, comprender mejor y construir juntas.<br><strong>Python · SQL · Pandas · PostgreSQL · Rhinoceros3D · a.i. |</strong>",
-    sda:"01 — ciencia de datos.", sdasub:"patrones",
-    sd:"02 — arte generativo",          sdsub:"experimentos",
-    sw:"03 — carpintería",              swsub:"objetos",
+    mftext:"Convierto datos, señales y mis conocimientos en carpintería fina en estructuras que abren preguntas, invitan a tomar decisiones y crecen a través de la colaboración.<br><strong>Python · SQL · Pandas · PostgreSQL · Rhinoceros3D · a.i. |</strong><span class=\"mf-service\">Te ayudo a limpiar bases de datos para hacer que de esta información saquemos estadísticas y métricas que sirven para tomar decisiones. Puedo hacer updates a tus sistemas y flujos de comunicación a partir de la creación de database management systems.</span>",
+    sda:"01 — ciencia de datos", sdasub:"patrones",
+    sw:"02 — carpintería",              swsub:"objetos y arquitecturas",
+    sd:"03 — experimentos",             sdsub:"sonido · imagen · sistemas",
+    sc:"04 — veeduría ciudadana",       scsub:"evidencia pública",
+    sp:"05 — pedagogía",                spsub:"talleres",
     snote:"haz click en cualquier proyecto para abrir su árbol de datos →",
-    sab:"04 — sobre mí",
+    sab:"06 — sobre mí",
     abp:"Trabajo con datos, código y materiales físicos para explorar cómo los patrones emergen, persisten y evolucionan. Mi práctica combina análisis estadístico, modelado computacional y diseño de sistemas con un interés permanente en el hacer, la observación y la experimentación. Basado en Bogotá.",
     ab1l:"ubicación", ab2l:"actualmente", ab2v:"clouds #— · diario",
     ab3l:"también",   ab3v:"taller Maker Rituals",
@@ -520,27 +570,35 @@ const LANG = {
     stlive:"activo", stwip:"en proceso", stdone:"terminado",
     imgadd:"+ agregar imagen",
     images:"imágenes",
+    treeoffline:"árbol no disponible sin conexión",
+    notreedata:"sin datos de árbol",
     cats:{
       Materials:"Materiales",Process:"Proceso",Specs:"Detalles",Reference:"Referencia",
       Status:"Estado",Joinery:"Ensamble",Concept:"Concepto",Notes:"Notas",Format:"Formato",
       Exercises:"Ejercicios",Output:"Te llevas",Pipeline:"Pipeline",Attributes:"Atributos",
       Platform:"Plataforma",Stack:"Stack",Philosophy:"Filosofía",Medium:"Medio",
       Content:"Contenido",Research:"Investigación",Question:"Pregunta",Tools:"Herramientas",Dataset:"Dataset",Method:"Método",
-      Finding:"Hallazgo",Technique:"Técnica"
+      Finding:"Hallazgo",Technique:"Técnica",Design:"Diseño",Architecture:"Arquitectura",Features:"Funciones",
+      Deploy:"Despliegue","Research Question":"Pregunta de Investigación","Public Data":"Datos Públicos","Time-Series Preparation":"Preparación de la Serie Temporal",
+      "Trend and Seasonality":"Tendencia y Estacionalidad",Stationarity:"Estacionariedad","Exogenous Variables":"Variables Exógenas",
+      "SARIMAX Model":"Modelo SARIMAX",Validation:"Validación",Metrics:"Métricas",Forecast:"Pronóstico",Findings:"Hallazgos",
+      Limitations:"Limitaciones",Repository:"Repositorio"
     }
   },
   fr:{
-    nw:"bois", nda:"données", nd:"art gén.", na:"à propos",
+    nw:"ébénisterie", nda:"science des données", nd:"expériences", nc:"veille citoyenne", np:"pédagogie", na:"à propos",
     htag:"portfolio · Bogotá, CO",
     htitle:"Des données qui prennent forme.",
-    hsub:"<em>science des données</em> · <em>art génératif</em> · <em>menuiserie</em>",
+    hsub:"<em>ciencia de datos</em> / <em>carpintería</em> / <em>pedagogía</em>",
     scr:"défiler",
-    mftext:"Je transforme les données, les signaux et mon savoir-faire en ébénisterie fine en structures avec lesquelles les personnes peuvent dialoguer, mieux comprendre et construire ensemble.<br><strong>Python · SQL · Pandas · PostgreSQL · Rhinoceros3D · a.i. |</strong>",
-    sda:"01 — science des données.", sdasub:"motifs",
-    sd:"02 — art génératif",               sdsub:"expériences",
-    sw:"03 — menuiserie",                  swsub:"objets",
+    mftext:"Je transforme les données, les signaux et mon savoir-faire en ébénisterie fine en structures qui ouvrent des questions, invitent à prendre des décisions et se développent grâce à la collaboration.<br><strong>Python · SQL · Pandas · PostgreSQL · Rhinoceros3D · a.i. |</strong><span class=\"mf-service\">Je vous aide à nettoyer des bases de données pour transformer cette information en statistiques et métriques utiles à la prise de décision. Je peux mettre à jour vos systèmes et flux de communication grâce à la création de database management systems.</span>",
+    sda:"01 — science des données", sdasub:"motifs",
+    sw:"02 — ébénisterie",                  swsub:"objets et architectures",
+    sd:"03 — expériences",                  sdsub:"son · image · systèmes",
+    sc:"04 — veille citoyenne",             scsub:"données publiques",
+    sp:"05 — pédagogie",                    spsub:"ateliers",
     snote:"cliquez sur un projet pour ouvrir son arbre de données →",
-    sab:"04 — à propos",
+    sab:"06 — à propos",
     abp:"Je travaille avec des données, du code et des matériaux physiques pour explorer comment les patterns émergent, persistent et évoluent. Ma pratique combine analyse statistique, modélisation computationnelle et conception de systèmes avec un intérêt durable pour le faire, l'observation et l'expérimentation. Basé à Bogotá.",
     ab1l:"lieu", ab2l:"actuellement", ab2v:"clouds #— · quotidien",
     ab3l:"aussi", ab3v:"atelier Maker Rituals",
@@ -550,67 +608,28 @@ const LANG = {
     stlive:"actif", stwip:"en cours", stdone:"terminé",
     imgadd:"+ ajouter une image",
     images:"images",
+    treeoffline:"arbre indisponible hors ligne",
+    notreedata:"aucune donnée d'arbre",
     cats:{
       Materials:"Matériaux",Process:"Processus",Specs:"Détails",Reference:"Référence",
       Status:"Statut",Joinery:"Assemblage",Concept:"Concept",Notes:"Notes",Format:"Format",
       Exercises:"Exercices",Output:"À emporter",Pipeline:"Pipeline",Attributes:"Attributs",
       Platform:"Plateforme",Stack:"Stack",Philosophy:"Philosophie",Medium:"Médium",
       Content:"Contenu",Research:"Recherche",Question:"Question",Tools:"Outils",Dataset:"Dataset",Method:"Méthode",
-      Finding:"Résultat",Technique:"Technique"
+      Finding:"Résultat",Technique:"Technique",Design:"Design",Architecture:"Architecture",Features:"Fonctions",
+      Deploy:"Déploiement","Research Question":"Question de Recherche","Public Data":"Données Publiques","Time-Series Preparation":"Préparation de la Série Temporelle",
+      "Trend and Seasonality":"Tendance et Saisonnalité",Stationarity:"Stationnarité","Exogenous Variables":"Variables Exogènes",
+      "SARIMAX Model":"Modèle SARIMAX",Validation:"Validation",Metrics:"Métriques",Forecast:"Prévision",Findings:"Résultats",
+      Limitations:"Limites",Repository:"Dépôt"
     }
   }
 };
 
 /* ══ PROJECT DATA ════════════════════════════════════════ */
 const MODULES = [
-  { id:"01", sec:"wood", cssColor:"--cw",
+  { id:"01", sec:"data", cssColor:"--cda",
     projects:[
-{ id:"01.01", status:"live", year:"2014—", type:"fine woodworking",
-        imgSlots:[
-          {src:"assets/arcaica-lab/arcaica-biblioteca-detalle.jpg",en:"bookshelf",es:"biblioteca",fr:"bibliothèque"},
-          {src:"assets/arcaica-lab/arcaica-mesa-centro.jpg",en:"center table",es:"mesa de centro",fr:"table basse"},
-          {src:"assets/arcaica-lab/arcaica-mesa-comedor.jpg",en:"dining table",es:"mesa de comedor",fr:"table à manger"}
-        ],
-        name:{en:"arcaica_lab",es:"arcaica_lab",fr:"arcaica_lab"},
-        desc:{en:"Arcaica_Lab is Santiago Parada's fine woodworking practice, built from more than ten years of custom furniture experience. The work combines contemporary carpentry, hand joinery, structural geometry and spatial exploration, while expanding toward sound research, pedagogy and computational systems applied to space and materials.",
-              es:"Arcaica_Lab es la práctica de Santiago Parada, ebanista con más de diez años de experiencia en mobiliario fino por encargo. Su trabajo combina carpintería contemporánea, ensambles manuales, geometría estructural y exploración espacial, mientras expande el hacer manual hacia investigación en sonido, pedagogía y sistemas computacionales aplicados al espacio y los materiales.",
-              fr:"Arcaica_Lab est la pratique d'ébénisterie de Santiago Parada, construite à partir de plus de dix ans d'expérience en mobilier fin sur commande. Le travail combine menuiserie contemporaine, assemblages manuels, géométrie structurelle et exploration spatiale, tout en s'étendant vers la recherche sonore, la pédagogie et les systèmes computationnels appliqués à l'espace et aux matériaux."},
-        tree:[
-          {n:"Concept",  c:[{n:"Custom fine furniture"},{n:"Contemporary carpentry + manual joinery"},{n:"Structural geometry as visual language"},{n:"Space, material and use as one system"}]},
-          {n:"Materials",c:[{n:"Solid wood"},{n:"Veneers and sheet goods when needed"},{n:"Hand-finished surfaces"},{n:"Hardware selected per commission"}]},
-          {n:"Process",  c:[{n:"Observation of use and space"},{n:"Sketches, measurements and proportion studies"},{n:"Structural geometry and joinery planning"},{n:"Manual fabrication and fit"},{n:"Finish, installation and long-term use"}]},
-          {n:"Research", c:[{n:"Parametric design tools"},{n:"Sound analysis as spatial input"},{n:"Data science for material and process systems"},{n:"Pedagogy through making"}]},
-          {n:"Platform", c:[{n:"Instagram — @arcaica_lab"},{n:"https://www.instagram.com/arcaica_lab/"}]},
-          {n:"Status",   d:{en:"Active practice · custom work and research",es:"Práctica activa · encargos e investigación",fr:"Pratique active · commandes et recherche"}}
-        ]
-      },
-
-      { id:"01.02", status:"live", year:"2025—", type:"CNC furniture",
-        imgSlots:[
-          {src:"assets/kye/frente.jpg",en:"front view",es:"vista frontal",fr:"vue de face"},
-          {src:"assets/kye/lateral.jpg",en:"side view",es:"vista lateral",fr:"vue latérale"},
-          {src:"assets/kye/armado.jpg",en:"assembly",es:"armado",fr:"assemblage"}
-        ],
-        name:{en:"KYE Minimal Bed",es:"Cama KYE Minimal",fr:"Lit KYE Minimal"},
-        desc:{
-          en:"Tool-free, hardware-free platform bed fabricated from 18mm pine plywood via CNC router. Assembles in under 10 minutes through a three-tier slot-and-tab joinery system. Multiple sizes (single to king). Industrial design registration in process at Colombia's SIC.",
-          es:"Cama plataforma sin herramientas ni tornillería, fabricada en triplex pino 18mm por corte CNC. Se arma en menos de 10 minutos mediante un sistema de ensambles de tres niveles. Disponible en múltiples tamaños. Registro de diseño industrial en trámite ante la SIC.",
-          fr:"Lit plateforme sans outils ni visserie, fabriqué en contreplaqué de pin 18mm par découpe CNC. S'assemble en moins de 10 minutes via un système d'assemblage à trois niveaux. Plusieurs tailles disponibles. Enregistrement design industriel en cours auprès de la SIC colombienne."
-        },
-        tree:[
-          {n:"Design",    c:[{n:"Low-profile platform — 16cm off floor"},{n:"Organic viga profile — double-curve side elevation"},{n:"28.20cm structural module — slatted deck"},{n:"3 component types: vigas · tablas · sujeciones piso"},{n:"5 size variants: sencilla to king"},{n:"Companion ecosystem: nightstand · table · bookshelf"}]},
-          {n:"Materials", c:[{n:"Triplex pino 18mm — pine plywood"},{n:"Sheet size 244×122cm"},{n:"Matte lacquer finish"},{n:"Flor morado variant — premium"},{n:"Local sourcing — Colombia"}]},
-          {n:"Process",   c:[{n:"Rhino 3DM — parametric CAD"},{n:"DXF export for CNC routing"},{n:"2.5-axis CNC router — Arte Ligero Colombia"},{n:"CutList optimization — 58% material utilization"},{n:"3-step tool-free assembly — under 10 min"}]},
-          {n:"Platform",  c:[{n:"Arcaica Lab — Santiago Parada Rodriguez"},{n:"Bogotá, Colombia"},{n:"SIC industrial design registration NC2025/0010176"},{n:"Pop-up retail — Gran Estación mall, Nov 2025"},{n:"Sales via Instagram · Servientrega delivery"}]},
-          {n:"Status",    d:{en:"Active · early commercial phase · 2025—",es:"Activo · fase comercial temprana · 2025—",fr:"Actif · phase commerciale précoce · 2025—"}}
-        ]
-      }
-    ]
-  },
-
-  { id:"02", sec:"data", cssColor:"--cda",
-    projects:[
-      { id:"02.01", status:"done", year:"2026", type:"web app",
+      { id:"01.01", status:"done", year:"2026", type:{en:"web app",es:"aplicación web",fr:"application web"},
         imgSlots:[
           {src:"assets/sofa2026/screenshot_01_dashboard_overview.png",en:"dashboard overview",es:"vista general del dashboard",fr:"vue générale du tableau de bord"},
           {src:"assets/sofa2026/screenshot_02_pavilion_tracking.png",en:"pavilion tracking",es:"seguimiento de pabellones",fr:"suivi des pavillons"},
@@ -641,15 +660,15 @@ const MODULES = [
           {n:"Status",       d:{en:"Built · SOFA 2026",es:"Construido · SOFA 2026",fr:"Construit · SOFA 2026"}}
         ]
       },
-      { id:"02.02", status:"done", year:"2025", type:"analysis",
+      { id:"01.02", status:"done", year:"2025", type:{en:"analysis",es:"análisis",fr:"analyse"},
         imgSlots:[
           {src:"assets/ice/ice-platform-sales-concentration.png",en:"platform sales concentration",es:"concentración de ventas por plataforma",fr:"concentration des ventes par plateforme"},
           {src:"assets/ice/ice-genre-sales-distribution.png",en:"total sales distribution by genre",es:"distribución de ventas totales por género",fr:"distribution des ventes totales par genre"},
           {src:"assets/ice/ice-user-score-by-platform.png",en:"user score by platform",es:"user score por plataforma",fr:"user score par plateforme"}
         ],
-        name:{en:"ICE — Video Game Market Analysis",
-              es:"ICE — Análisis de Mercado de Videojuegos",
-              fr:"ICE — Analyse du Marché des Jeux Vidéo"},
+        name:{en:"Video Game Market Analysis",
+              es:"Análisis de Mercado de Videojuegos",
+              fr:"Analyse du Marché des Jeux Vidéo"},
         desc:{en:"Exploratory analysis of 16,715 video game titles to support advertising planning for 2017. Identifies commercially relevant patterns across platforms, genres, and regions using sales data through 2016.",
               es:"Análisis exploratorio de 16.715 títulos de videojuegos para apoyar la planificación publicitaria de 2017. Identifica patrones comerciales relevantes por plataforma, género y región usando datos de ventas hasta 2016.",
               fr:"Analyse exploratoire de 16 715 titres de jeux vidéo pour soutenir la planification publicitaire de 2017. Identifie des patterns commerciaux pertinents par plateforme, genre et région à partir des données de ventes jusqu'en 2016."},
@@ -661,7 +680,7 @@ const MODULES = [
           {n:"Status",   d:{en:"Completed · 2025 · TripleTen bootcamp",es:"Completado · 2025 · bootcamp TripleTen",fr:"Complété · 2025 · bootcamp TripleTen"}}
         ]
       },
-      { id:"02.03", status:"done", year:"2026", type:"machine learning",
+      { id:"01.03", status:"done", year:"2026", type:{en:"machine learning",es:"machine learning",fr:"machine learning"},
         imgSlots:[
           {src:"assets/ml-case-studies/ml-megaline-test-metrics.png",en:"Megaline — final test metrics",es:"Megaline — métricas finales de prueba",fr:"Megaline — métriques finales de test"},
           {src:"assets/ml-case-studies/ml-betabank-roc-curve.png",en:"Beta Bank — ROC curve, test set",es:"Beta Bank — curva ROC, conjunto de prueba",fr:"Beta Bank — courbe ROC, jeu de test"},
@@ -698,13 +717,199 @@ const MODULES = [
           {n:"Stack",  c:[{n:"Python 3"},{n:"pandas · NumPy · scikit-learn"},{n:"Matplotlib"},{n:"JupyterLab"}]},
           {n:"Status", d:{en:"Completed · 2026",es:"Completado · 2026",fr:"Complété · 2026"}}
         ]
+      },
+
+      { id:"01.04", status:"done", year:"2026", type:{en:"time-series forecasting",es:"pronóstico de series temporales",fr:"prévision de séries temporelles"},
+        imgSlots:[
+          {src:"assets/sarimax/sarimax-trend-seasonality-decomposition.png",
+           en:"trend, daily seasonality, and residual decomposition",
+           es:"descomposición de tendencia, estacionalidad diaria y residuo",
+           fr:"décomposition de la tendance, de la saisonnalité quotidienne et du résidu"},
+          {src:"assets/sarimax/sarimax-acf-pacf.png",
+           en:"ACF and PACF through 48 hourly lags",
+           es:"ACF y PACF hasta 48 rezagos horarios",
+           fr:"ACF et PACF jusqu'à 48 retards horaires"},
+          {src:"assets/sarimax/sarimax-forecast-vs-actual.png",
+           en:"actual values versus linear regression and SARIMAX predictions",
+           es:"valores reales frente a predicciones de regresión lineal y SARIMAX",
+           fr:"valeurs réelles face aux prédictions de régression linéaire et SARIMAX"}
+        ],
+        name:{en:"SARIMAX Time Series Forecasting",
+              es:"Pronóstico de Series Temporales con SARIMAX",
+              fr:"Prévision de Séries Temporelles avec SARIMAX"},
+        desc:{
+          es:"Proyecto de pronóstico horario de pedidos de taxi para Sweet Lift Taxi en aeropuertos. La pregunta central fue anticipar la demanda de la siguiente etapa operativa para distribuir mejor a los conductores en horas pico. Se usó SARIMAX porque la serie mostraba tendencia creciente y una estacionalidad diaria fuerte; el modelo final no incluyó variables exógenas. La validación respetó el orden temporal: entrenamiento con el tramo inicial y prueba sobre el 10% final de la serie. El modelo se evaluó con RECM y la evidencia del notebook apoya SARIMAX(1,1,1)(1,0,1,24) como el mejor modelo probado, aunque la regresión lineal con lags quedó cerca con menor complejidad.",
+          en:"Hourly taxi-order forecasting project for Sweet Lift Taxi at airports. The central question was how to anticipate upcoming demand so drivers can be distributed more effectively during peak hours. SARIMAX was used because the series showed a rising trend and strong daily seasonality; the final model did not include exogenous variables. Validation preserved time order: the model trained on the initial span and tested on the final 10% of the series. RMSE was used for evaluation, and the notebook evidence supports SARIMAX(1,1,1)(1,0,1,24) as the best tested model, while linear regression with lag features remained a simpler close alternative.",
+          fr:"Projet de prévision horaire des commandes de taxi pour Sweet Lift Taxi dans les aéroports. La question centrale était d'anticiper la demande à venir afin de mieux répartir les chauffeurs pendant les heures de pointe. SARIMAX a été utilisé parce que la série présentait une tendance croissante et une forte saisonnalité quotidienne ; le modèle final n'incluait pas de variables exogènes. La validation a respecté l'ordre temporel : entraînement sur la première partie et test sur les 10 % finaux de la série. Le modèle a été évalué avec la RMSE, et les preuves du notebook soutiennent SARIMAX(1,1,1)(1,0,1,24) comme meilleur modèle testé, même si la régression linéaire avec variables retardées reste une alternative plus simple et proche."
+        },
+        tree:[
+          {id:"research-question", n:{en:"Research Question",es:"Pregunta de Investigación",fr:"Question de Recherche"}, c:[
+            {id:"forecast-hourly-demand", n:{en:"Forecast hourly taxi demand for airport operations",es:"Pronosticar la demanda horaria de taxis para operaciones aeroportuarias",fr:"Prévoir la demande horaire de taxis pour les opérations aéroportuaires"}},
+            {id:"driver-allocation", n:{en:"Support driver distribution during peak hours",es:"Apoyar la distribución de conductores en horas pico",fr:"Soutenir la répartition des chauffeurs pendant les heures de pointe"}}
+          ]},
+          {id:"dataset", n:{en:"Dataset",es:"Dataset",fr:"Dataset"}, c:[
+            {id:"source", n:{en:"Source documented as ../datasets/taxi.csv",es:"Fuente documentada como ../datasets/taxi.csv",fr:"Source documentée comme ../datasets/taxi.csv"}},
+            {id:"subject", n:{en:"Sweet Lift Taxi orders",es:"Pedidos de Sweet Lift Taxi",fr:"Commandes de Sweet Lift Taxi"}},
+            {id:"raw-size", n:{en:"26,496 rows at 10-minute intervals",es:"26.496 filas en intervalos de 10 minutos",fr:"26 496 lignes à intervalles de 10 minutes"}},
+            {id:"target", n:{en:"Target: num_orders",es:"Variable objetivo: num_orders",fr:"Variable cible : num_orders"}},
+            {id:"time-column", n:{en:"Time column: datetime",es:"Columna temporal: datetime",fr:"Colonne temporelle : datetime"}}
+          ]},
+          {id:"time-series-preparation", n:{en:"Time-Series Preparation",es:"Preparación de la Serie Temporal",fr:"Préparation de la Série Temporelle"}, c:[
+            {id:"hourly-resample", n:{en:"Resampled to 1-hour sums",es:"Remuestreo a sumas de 1 hora",fr:"Rééchantillonnage en sommes horaires"}},
+            {id:"hourly-size", n:{en:"4,416 hourly records from 2018-03-01 00:00 to 2018-08-31 23:00",es:"4.416 registros horarios de 2018-03-01 00:00 a 2018-08-31 23:00",fr:"4 416 enregistrements horaires du 2018-03-01 00:00 au 2018-08-31 23:00"}},
+            {id:"missing", n:{en:"0 null values and 0 missing hours",es:"0 valores nulos y 0 horas faltantes",fr:"0 valeur nulle et 0 heure manquante"}},
+            {id:"feature-drop", n:{en:"Lag features removed the first 48 rows for modeling",es:"Las variables rezagadas eliminaron las primeras 48 filas para modelar",fr:"Les variables retardées ont supprimé les 48 premières lignes pour la modélisation"}}
+          ]},
+          {id:"trend-seasonality", n:{en:"Trend and Seasonality",es:"Tendencia y Estacionalidad",fr:"Tendance et Saisonnalité"}, c:[
+            {id:"trend", n:{en:"Rising demand trend across March-August 2018",es:"Tendencia creciente de demanda entre marzo y agosto de 2018",fr:"Tendance croissante de la demande entre mars et août 2018"}},
+            {id:"daily-seasonality", n:{en:"Daily seasonality with period 24 hours",es:"Estacionalidad diaria con periodo de 24 horas",fr:"Saisonnalité quotidienne avec période de 24 heures"}},
+            {id:"peak-hour", n:{en:"Peak hour: 00:00, average 144.4 orders",es:"Hora pico: 00:00, promedio de 144,4 pedidos",fr:"Heure de pointe : 00:00, moyenne de 144,4 commandes"}},
+            {id:"peak-day", n:{en:"Highest average weekday: Friday, 91.1 orders/hour",es:"Día semanal promedio más alto: viernes, 91,1 pedidos/hora",fr:"Jour moyen le plus élevé : vendredi, 91,1 commandes/heure"}}
+          ]},
+          {id:"stationarity", n:{en:"Stationarity",es:"Estacionariedad",fr:"Stationnarité"}, c:[
+            {id:"differencing", n:{en:"First differencing used in ARIMA/SARIMAX: d=1",es:"Primera diferenciación usada en ARIMA/SARIMAX: d=1",fr:"Différenciation première utilisée dans ARIMA/SARIMAX : d=1"}},
+            {id:"acf-pacf", n:{en:"ACF/PACF calculated through 48 hourly lags",es:"ACF/PACF calculadas hasta 48 rezagos horarios",fr:"ACF/PACF calculées jusqu'à 48 retards horaires"}},
+            {id:"lag-evidence", n:{en:"Key PACF values: lag 1 = 0.62, lag 24 = 0.34, lag 48 = 0.32",es:"Valores PACF clave: rezago 1 = 0,62; rezago 24 = 0,34; rezago 48 = 0,32",fr:"Valeurs PACF clés : retard 1 = 0,62 ; retard 24 = 0,34 ; retard 48 = 0,32"}}
+          ]},
+          {id:"exogenous-variables", n:{en:"Exogenous Variables",es:"Variables Exógenas",fr:"Variables Exogènes"}, c:[
+            {id:"no-exog", n:{en:"No exogenous variables were passed to the final SARIMAX model",es:"No se pasaron variables exógenas al modelo SARIMAX final",fr:"Aucune variable exogène n'a été transmise au modèle SARIMAX final"}}
+          ]},
+          {id:"sarimax-model", n:{en:"SARIMAX Model",es:"Modelo SARIMAX",fr:"Modèle SARIMAX"}, c:[
+            {id:"order", n:{en:"order=(1,1,1)",es:"order=(1,1,1)",fr:"order=(1,1,1)"}},
+            {id:"seasonal-order", n:{en:"seasonal_order=(1,0,1,24)",es:"seasonal_order=(1,0,1,24)",fr:"seasonal_order=(1,0,1,24)"}},
+            {id:"stationarity-flags", n:{en:"enforce_stationarity=False; enforce_invertibility=False",es:"enforce_stationarity=False; enforce_invertibility=False",fr:"enforce_stationarity=False ; enforce_invertibility=False"}}
+          ]},
+          {id:"validation", n:{en:"Validation",es:"Validación",fr:"Validation"}, c:[
+            {id:"chronological", n:{en:"Chronological split with no shuffle",es:"División cronológica sin mezclar datos",fr:"Division chronologique sans mélange"}},
+            {id:"train-period", n:{en:"SARIMAX train period: 2018-03-03 00:00 to 2018-08-13 19:00",es:"Periodo de entrenamiento SARIMAX: 2018-03-03 00:00 a 2018-08-13 19:00",fr:"Période d'entraînement SARIMAX : 2018-03-03 00:00 à 2018-08-13 19:00"}},
+            {id:"test-period", n:{en:"SARIMAX test period: 2018-08-13 20:00 to 2018-08-31 23:00",es:"Periodo de prueba SARIMAX: 2018-08-13 20:00 a 2018-08-31 23:00",fr:"Période de test SARIMAX : 2018-08-13 20:00 à 2018-08-31 23:00"}},
+            {id:"horizon", n:{en:"Forecast horizon: 436 final hours",es:"Horizonte de pronóstico: 436 horas finales",fr:"Horizon de prévision : 436 dernières heures"}}
+          ]},
+          {id:"metrics", n:{en:"Metrics",es:"Métricas",fr:"Métriques"}, c:[
+            {id:"sarimax-rmse", n:{en:"SARIMAX RMSE / RECM: 41.46",es:"SARIMAX RECM / RMSE: 41,46",fr:"SARIMAX RMSE / RECM : 41,46"}},
+            {id:"linear-rmse", n:{en:"Linear Regression + lag_48 RMSE: 43.42",es:"Regresión Lineal + lag_48 RECM: 43,42",fr:"Régression linéaire + lag_48 RMSE : 43,42"}},
+            {id:"baseline-rmse", n:{en:"Previous-hour baseline RMSE: 59.02",es:"Línea base de hora anterior RECM: 59,02",fr:"Baseline heure précédente RMSE : 59,02"}},
+            {id:"objective", n:{en:"Project threshold: RMSE <= 48",es:"Umbral del proyecto: RECM <= 48",fr:"Seuil du projet : RMSE <= 48"}}
+          ]},
+          {id:"findings", n:{en:"Findings",es:"Hallazgos",fr:"Résultats"}, c:[
+            {id:"best-tested", n:{en:"SARIMAX was the best tested model in the notebook",es:"SARIMAX fue el mejor modelo probado en el notebook",fr:"SARIMAX a été le meilleur modèle testé dans le notebook"}},
+            {id:"seasonality-matters", n:{en:"Ignoring the 24-hour cycle hurt ARIMA performance",es:"Ignorar el ciclo de 24 horas perjudicó el desempeño de ARIMA",fr:"Ignorer le cycle de 24 heures a dégradé la performance d'ARIMA"}}
+          ]},
+          {id:"limitations", n:{en:"Limitations",es:"Limitaciones",fr:"Limites"}, c:[
+            {id:"close-linear", n:{en:"Linear regression with lag features was close and simpler to maintain",es:"La regresión lineal con rezagos quedó cerca y es más simple de mantener",fr:"La régression linéaire avec variables retardées était proche et plus simple à maintenir"}},
+            {id:"no-formal-residuals", n:{en:"Notebook does not include formal residual diagnostics",es:"El notebook no incluye diagnóstico formal de residuos",fr:"Le notebook n'inclut pas de diagnostic formel des résidus"}}
+          ]},
+          {id:"stack", n:{en:"Stack",es:"Stack",fr:"Stack"}, c:[
+            {id:"python", n:{en:"Python",es:"Python",fr:"Python"}},
+            {id:"pandas", n:{en:"pandas · NumPy",es:"pandas · NumPy",fr:"pandas · NumPy"}},
+            {id:"statsmodels", n:{en:"statsmodels SARIMAX",es:"statsmodels SARIMAX",fr:"statsmodels SARIMAX"}},
+            {id:"sklearn", n:{en:"scikit-learn metrics and comparison models",es:"métricas y modelos comparativos con scikit-learn",fr:"métriques et modèles comparatifs avec scikit-learn"}},
+            {id:"matplotlib", n:{en:"Matplotlib",es:"Matplotlib",fr:"Matplotlib"}}
+          ]},
+          {id:"status", n:{en:"Status",es:"Estado",fr:"Statut"}, d:{en:"Completed · SARIMAX workflow, validation, and final comparison",es:"Completado · flujo SARIMAX, validación y comparación final",fr:"Terminé · flux SARIMAX, validation et comparaison finale"}}
+        ]
+      }
+    ]
+  },
+
+  { id:"02", sec:"wood", cssColor:"--cw",
+    projects:[
+{ id:"02.01", status:"live", year:"2014—", type:{en:"fine woodworking",es:"ebanistería fina",fr:"ébénisterie fine"},
+        imgSlots:[
+          {src:"assets/arcaica-lab/arcaica-biblioteca-detalle.jpg",en:"bookshelf",es:"biblioteca",fr:"bibliothèque"},
+          {src:"assets/arcaica-lab/arcaica-mesa-centro.jpg",en:"center table",es:"mesa de centro",fr:"table basse"},
+          {src:"assets/arcaica-lab/arcaica-mesa-comedor.jpg",en:"dining table",es:"mesa de comedor",fr:"table à manger"}
+        ],
+        name:{en:"arcaica_lab",es:"arcaica_lab",fr:"arcaica_lab"},
+        links:[
+          {url:"https://www.instagram.com/arcaica_lab/",
+           label:{en:"Instagram @arcaica_lab",es:"Instagram @arcaica_lab",fr:"Instagram @arcaica_lab"}}
+        ],
+        desc:{en:"Arcaica_Lab is my woodworking practice. I learned the craft in Catalonia and I love it. I like making things with my hands, and I have made custom furniture by commission. I keep discovering woodworking joints and I am still learning. What a beautiful craft.",
+              es:"Arcaica_Lab es mi oficio en la carpintería. Lo aprendí en Catalunya y me encanta. Me gusta hacer cosas con mis manos y he hecho mobiliario por encargo. Sigo descubriendo las uniones de carpintería y aún aprendiendo. Qué oficio más bello.",
+              fr:"Arcaica_Lab est mon métier dans la menuiserie. Je l'ai appris en Catalogne et je l'aime profondément. J'aime faire des choses avec mes mains, et j'ai réalisé du mobilier sur commande. Je continue à découvrir les assemblages de menuiserie et j'apprends encore. Quel beau métier."},
+        tree:[
+          {n:"Concept",  c:[{n:"Custom fine furniture"},{n:"Contemporary carpentry + manual joinery"},{n:"Structural geometry as visual language"},{n:"Space, material and use as one system"}]},
+          {n:"Materials",c:[{n:"Solid wood"},{n:"Veneers and sheet goods when needed"},{n:"Hand-finished surfaces"},{n:"Hardware selected per commission"}]},
+          {n:"Process",  c:[{n:"Observation of use and space"},{n:"Sketches, measurements and proportion studies"},{n:"Structural geometry and joinery planning"},{n:"Manual fabrication and fit"},{n:"Finish, installation and long-term use"}]},
+          {n:"Research", c:[{n:"Parametric design tools"},{n:"Sound analysis as spatial input"},{n:"Data science for material and process systems"},{n:"Pedagogy through making"}]},
+          {n:"Platform", c:[{n:"Instagram — @arcaica_lab"},{n:"https://www.instagram.com/arcaica_lab/"}]},
+          {n:"Status",   d:{en:"Active practice · custom work and research",es:"Práctica activa · encargos e investigación",fr:"Pratique active · commandes et recherche"}}
+        ]
+      },
+
+      { id:"02.02", status:"live", year:"2025—", type:{en:"CNC furniture",es:"mobiliario CNC",fr:"mobilier CNC"},
+        imgSlots:[
+          {src:"assets/kye/frente.jpg",en:"front view",es:"vista frontal",fr:"vue de face"},
+          {src:"assets/kye/lateral.jpg",en:"side view",es:"vista lateral",fr:"vue latérale"},
+          {src:"assets/kye/armado.jpg",en:"assembly",es:"armado",fr:"assemblage"}
+        ],
+        name:{en:"Balsa Bed",es:"Cama Balsa",fr:"Lit Balsa"},
+        desc:{
+          en:"Tool-free, hardware-free platform bed fabricated from 18mm pine plywood via CNC router. Assembles in under 10 minutes through a three-tier slot-and-tab joinery system. Multiple sizes (single to king). Industrial design registration in process at Colombia's SIC.",
+          es:"Cama plataforma sin herramientas ni tornillería, fabricada en triplex pino 18mm por corte CNC. Se arma en menos de 10 minutos mediante un sistema de ensambles de tres niveles. Disponible en múltiples tamaños. Registro de diseño industrial en trámite ante la SIC.",
+          fr:"Lit plateforme sans outils ni visserie, fabriqué en contreplaqué de pin 18mm par découpe CNC. S'assemble en moins de 10 minutes via un système d'assemblage à trois niveaux. Plusieurs tailles disponibles. Enregistrement design industriel en cours auprès de la SIC colombienne."
+        },
+        tree:[
+          {n:"Design",    c:[{n:"Low-profile platform — 16cm off floor"},{n:"Organic viga profile — double-curve side elevation"},{n:"28.20cm structural module — slatted deck"},{n:"3 component types: vigas · tablas · sujeciones piso"},{n:"5 size variants: sencilla to king"},{n:"Companion ecosystem: nightstand · table · bookshelf"}]},
+          {n:"Materials", c:[{n:"Triplex pino 18mm — pine plywood"},{n:"Sheet size 244×122cm"},{n:"Matte lacquer finish"},{n:"Flor morado variant — premium"},{n:"Local sourcing — Colombia"}]},
+          {n:"Process",   c:[{n:"Rhino 3DM — parametric CAD"},{n:"DXF export for CNC routing"},{n:"2.5-axis CNC router — Arte Ligero Colombia"},{n:"CutList optimization — 58% material utilization"},{n:"3-step tool-free assembly — under 10 min"}]},
+          {n:"Platform",  c:[{n:"Arcaica Lab — Santiago Parada Rodriguez"},{n:"Bogotá, Colombia"},{n:"SIC industrial design registration NC2025/0010176"},{n:"Pop-up retail — Gran Estación mall, Nov 2025"},{n:"Sales via Instagram · Servientrega delivery"}]},
+          {n:"Status",    d:{en:"Active · early commercial phase · 2025—",es:"Activo · fase comercial temprana · 2025—",fr:"Actif · phase commerciale précoce · 2025—"}}
+        ]
+      },
+
+      { id:"02.03", status:"wip", year:"2026", type:{en:"microarchitecture proposal",es:"propuesta de microarquitectura",fr:"proposition de microarchitecture"},
+        imgSlots:[
+          {src:"assets/arquitecturas/modulario-vista-general.jpg",
+           en:"modulario system overview",
+           es:"vista general del sistema modulario",
+           fr:"vue générale du système modulario"},
+          {src:"assets/arquitecturas/modulario-uso-comunitario.jpg",
+           en:"community play and use scenario",
+           es:"escenario de uso comunitario y juego",
+           fr:"scénario d’usage communautaire et de jeu"},
+          {src:"assets/arquitecturas/modulario-estructura-ensamble.jpg",
+           en:"half-lap timber assembly study",
+           es:"estudio de estructura y ensamble a media madera",
+           fr:"étude de structure et d’assemblage à mi-bois"}
+        ],
+        name:{en:"modulario — Play Microarchitectures",
+              es:"modulario — Microarquitecturas de Juego",
+              fr:"modulario — Microarchitectures de Jeu"},
+        desc:{
+          en:"Schematic 2026 proposal for a modular outdoor play and exhibition system. The project connects fine woodworking with community play spaces through three pieces: an exterior exhibition structure, an urban bench, and a set of cubic modules for collective play.",
+          es:"Propuesta esquemática 2026 para un sistema modular exterior de juego y exhibición. El proyecto conecta la ebanistería con espacios de juego en comunidad mediante tres piezas: un mueble exterior para exhibición, un banco urbano y un conjunto de cubos para juego colectivo.",
+          fr:"Proposition schématique 2026 pour un système extérieur modulaire de jeu et d’exposition. Le projet relie l’ébénisterie à des espaces de jeu communautaires à travers trois pièces : une structure extérieure d’exposition, un banc urbain et un ensemble de modules cubiques pour le jeu collectif."
+        },
+        tree:[
+          {id:"concept", n:{en:"Concept",es:"Concepto",fr:"Concept"}, c:[
+            {id:"modular-system", n:{en:"Modular outdoor play and exhibition system",es:"Sistema modular exterior de juego y exhibición",fr:"Système extérieur modulaire de jeu et d’exposition"}},
+            {id:"woodcraft-play-connection", n:{en:"Fine woodworking connected to community play",es:"Ebanistería conectada con juego en comunidad",fr:"Ébénisterie reliée au jeu communautaire"}}
+          ]},
+          {id:"pieces", n:{en:"Pieces",es:"Piezas",fr:"Pièces"}, c:[
+            {id:"exhibition-furniture", n:{en:"Exterior exhibition furniture: 170 x 110 x 35 cm · 1 unit",es:"Mueble exterior para exhibición: 170 x 110 x 35 cm · 1 unidad",fr:"Mobilier extérieur d’exposition : 170 x 110 x 35 cm · 1 unité"}},
+            {id:"urban-bench", n:{en:"Urban exterior bench: 220 x 60 x 50 cm · 1 unit",es:"Banco exterior urbano: 220 x 60 x 50 cm · 1 unidad",fr:"Banc extérieur urbain : 220 x 60 x 50 cm · 1 unité"}},
+            {id:"play-cubes", n:{en:"Community play cubes: 35 x 35 x 35 cm · 27 units",es:"Cubos para juego en comunidad: 35 x 35 x 35 cm · 27 unidades",fr:"Cubes pour jeu communautaire : 35 x 35 x 35 cm · 27 unités"}}
+          ]},
+          {id:"construction", n:{en:"Construction",es:"Construcción",fr:"Construction"}, c:[
+            {id:"half-lap", n:{en:"Half-lap timber assemblies",es:"Ensambles a media madera",fr:"Assemblages à mi-bois"}},
+            {id:"stick-sizes", n:{en:"Four slat sizes and one cube size",es:"Cuatro tamaños de listones y un tamaño de cubo",fr:"Quatre tailles de lattes et une taille de cube"}},
+            {id:"reinforcement", n:{en:"Self-supporting structure with possible nut-and-bolt reinforcements",es:"Estructura autoportante con posibles refuerzos de tuerca y tornillo",fr:"Structure autoportante avec possibles renforts par écrous et boulons"}}
+          ]},
+          {id:"process", n:{en:"Process",es:"Proceso",fr:"Processus"}, c:[
+            {id:"schematic-proposal", n:{en:"Schematic proposal for a 2026 microarchitecture call",es:"Propuesta esquemática para convocatoria de microarquitecturas 2026",fr:"Proposition schématique pour un appel à microarchitectures 2026"}},
+            {id:"community-use", n:{en:"Spatial system tested through use, rest, display, and play",es:"Sistema espacial pensado para uso, descanso, exhibición y juego",fr:"Système spatial pensé pour l’usage, le repos, l’exposition et le jeu"}}
+          ]},
+          {id:"status", n:{en:"Status",es:"Estado",fr:"Statut"}, d:{en:"Schematic proposal · 2026",es:"Propuesta esquemática · 2026",fr:"Proposition schématique · 2026"}}
+        ]
       }
     ]
   },
 
   { id:"03", sec:"dig", cssColor:"--cd",
     projects:[
-      { id:"03.01", status:"live", year:"2026—", type:"audio-driven FBM",
+      { id:"03.01", status:"live", year:"2026—", type:{en:"audio-driven FBM",es:"FBM guiado por audio",fr:"FBM guidé par l'audio"},
         imgSlots:[
           {src:"assets/clouds/clouds-030-01.jpg",en:"clouds #030 — I",es:"clouds #030 — I",fr:"clouds #030 — I"},
           {src:"assets/clouds/clouds-030-02.jpg",en:"clouds #030 — II",es:"clouds #030 — II",fr:"clouds #030 — II"},
@@ -727,13 +932,17 @@ const MODULES = [
         ]
       },
 
-      { id:"03.02", status:"live", year:"2026", type:"generative app",
+      { id:"03.02", status:"live", year:"2026", type:{en:"generative app",es:"app generativa",fr:"application générative"},
         imgSlots:[
           {src:"assets/luum/luum-render-01.png",en:"app state 01",es:"estado app 01",fr:"état app 01"},
           {src:"assets/luum/luum-render-02.png",en:"app state 02",es:"estado app 02",fr:"état app 02"},
           {src:"assets/luum/luum-render-03.png",en:"app state 03",es:"estado app 03",fr:"état app 03"}
         ],
         name:{en:"luum",es:"luum",fr:"luum"},
+        links:[
+          {url:"https://santiagoparada.github.io/luum/",
+           label:{en:"Open LUUM",es:"Abrir LUUM",fr:"Ouvrir LUUM"}}
+        ],
         desc:{en:"Generative app for creative strategies with more than 170,000 possible combinations. Each tap crosses conceptual triggers, concrete action propositions and pop color states, producing a new prompt for artists, teachers, teams, improvisers and creative processes that need another angle.",
               es:"App generativa de estrategias creativas con más de 170.000 combinaciones posibles. Cada toque cruza detonadores conceptuales, proposiciones concretas de acción y estados de color pop para producir un nuevo impulso para artistas, docentes, equipos, improvisadores y procesos creativos que necesitan otro ángulo.",
               fr:"Application générative de stratégies créatives avec plus de 170 000 combinaisons possibles. Chaque toucher croise des déclencheurs conceptuels, des propositions d'action concrètes et des états de couleur pop pour produire une nouvelle impulsion pour artistes, enseignants, équipes, improvisateurs et processus créatifs."},
@@ -744,6 +953,175 @@ const MODULES = [
           {n:"Stack",    c:[{n:"HTML + CSS + vanilla JS"},{n:"manifest.json + service worker"},{n:"GitHub Pages"},{n:"No localStorage, no personal data"}]},
           {n:"Reference",c:[{n:"Joseph Kosuth — Art after Philosophy"},{n:"Richard Sennett — The Craftsman"},{n:"McLuhan / Carpenter — Auditory Space"},{n:"Jean Baudrillard — objects"},{n:"Brian Eno / Peter Schmidt — Oblique Strategies"}]},
           {n:"Status",   d:{en:"PWA published · 2026",es:"PWA publicada · 2026",fr:"PWA publiée · 2026"}}
+        ]
+      },
+
+      { id:"03.03", status:"live", year:"ongoing", type:{en:"sound matrix",es:"matriz sonora",fr:"matrice sonore"},
+        imgSlots:[
+          {src:"assets/trrngr/trrngr-tierranegra.jpg",en:"tierranegra cover",es:"carátula tierranegra",fr:"pochette tierranegra"},
+          {src:"assets/trrngr/trrngr-andromeda.jpg",en:"Andrómeda cover",es:"carátula Andrómeda",fr:"pochette Andrómeda"},
+          {src:"assets/trrngr/trrngr-quye.jpg",en:"Quye cover",es:"carátula Quye",fr:"pochette Quye"},
+          {src:"assets/trrngr/trrngr-bio.jpg",en:"TRRNGR portrait image",es:"imagen de perfil TRRNGR",fr:"image de profil TRRNGR"},
+          {src:"assets/trrngr/trrngr-header.png",en:"Bandcamp header image",es:"imagen de cabecera en Bandcamp",fr:"image d’en-tête Bandcamp"}
+        ],
+        name:{en:"TRRNGR — cross_pollination",
+              es:"TRRNGR — cross_pollination",
+              fr:"TRRNGR — cross_pollination"},
+        links:[
+          {url:"https://trrngr.bandcamp.com/",
+           label:{en:"Open Bandcamp",es:"Abrir Bandcamp",fr:"Ouvrir Bandcamp"}}
+        ],
+        desc:{en:"cross_pollination sound matrix based on persistent, volatile and fantastic stories. TRRNGR gathers releases, images and listening fragments into a sonic ecology where memory, atmosphere and fiction keep circulating.",
+              es:"cross_pollination sound matrix based on persistent, volatile and fantastic stories. TRRNGR reúne lanzamientos, imágenes y fragmentos de escucha en una ecología sonora donde memoria, atmósfera y ficción siguen circulando.",
+              fr:"cross_pollination sound matrix based on persistent, volatile and fantastic stories. TRRNGR réunit des sorties, des images et des fragments d’écoute dans une écologie sonore où mémoire, atmosphère et fiction continuent de circuler."},
+        tree:[
+          {id:"concept", n:{en:"Concept",es:"Concepto",fr:"Concept"}, c:[
+            {id:"cross-pollination", n:{en:"cross_pollination sound matrix",es:"cross_pollination sound matrix",fr:"cross_pollination sound matrix"}},
+            {id:"stories", n:{en:"Persistent, volatile and fantastic stories",es:"Historias persistentes, volátiles y fantásticas",fr:"Histoires persistantes, volatiles et fantastiques"}},
+            {id:"ecology", n:{en:"Sonic ecology of memory, atmosphere and fiction",es:"Ecología sonora de memoria, atmósfera y ficción",fr:"Écologie sonore de mémoire, atmosphère et fiction"}}
+          ]},
+          {id:"releases", n:{en:"Releases",es:"Lanzamientos",fr:"Sorties"}, c:[
+            {id:"tierranegra", n:{en:"tierranegra",es:"tierranegra",fr:"tierranegra"}},
+            {id:"andromeda", n:{en:"Andrómeda",es:"Andrómeda",fr:"Andrómeda"}},
+            {id:"quye", n:{en:"Quye.",es:"Quye.",fr:"Quye."}},
+            {id:"laberintos", n:{en:"laberintos",es:"laberintos",fr:"laberintos"}},
+            {id:"micelios", n:{en:"micelios",es:"micelios",fr:"micelios"}}
+          ]},
+          {id:"platform", n:{en:"Platform",es:"Plataforma",fr:"Plateforme"}, c:[
+            {id:"bandcamp", n:{en:"trrngr.bandcamp.com",es:"trrngr.bandcamp.com",fr:"trrngr.bandcamp.com"}},
+            {id:"bogota", n:{en:"Bogotá, Colombia",es:"Bogotá, Colombia",fr:"Bogotá, Colombie"}}
+          ]},
+          {id:"materials", n:{en:"Materials",es:"Materiales",fr:"Matériaux"}, c:[
+            {id:"sound", n:{en:"Sound releases",es:"Lanzamientos sonoros",fr:"Sorties sonores"}},
+            {id:"cover-art", n:{en:"Album cover images from Bandcamp",es:"Carátulas originales de Bandcamp",fr:"Pochettes originales de Bandcamp"}},
+            {id:"bio-image", n:{en:"Artist image and visual identity",es:"Imagen de artista e identidad visual",fr:"Image d’artiste et identité visuelle"}}
+          ]},
+          {id:"status", n:{en:"Status",es:"Estado",fr:"Statut"}, d:{en:"Live Bandcamp project",es:"Proyecto activo en Bandcamp",fr:"Projet actif sur Bandcamp"}}
+        ]
+      }
+    ]
+  },
+
+  { id:"04", sec:"data", cssColor:"--cda",
+    projects:[
+      { id:"04.01", status:"done", year:"2026", type:{en:"forensic data analysis",es:"análisis forense de datos",fr:"analyse forensique de données"},
+        imgSlots:[
+          {src:"assets/extractivismo/extractivismo-portada-analisis.jpg",
+           en:"project cover visualization",
+           es:"visual de portada del proyecto",
+           fr:"visuel de couverture du projet"},
+          {src:"assets/extractivismo/extractivismo-paradoja-territorial.jpg",
+           en:"territorial paradox analysis",
+           es:"análisis de la paradoja territorial",
+           fr:"analyse du paradoxe territorial"},
+          {src:"assets/extractivismo/extractivismo-concentracion-corporativa.jpg",
+           en:"corporate concentration analysis",
+           es:"análisis de concentración corporativa",
+           fr:"analyse de la concentration corporative"}
+        ],
+        name:{en:"Citizen Oversight: Colombia Extractive Balance",
+              es:"Veeduría ciudadana: Balance del Extractivismo en Colombia",
+              fr:"Veille citoyenne : Bilan de l’Extractivisme en Colombie"},
+        links:[
+          {url:"https://github.com/santiagoparada/colombia-extractive-balance",
+           label:{en:"Open GitHub repository",es:"Abrir repositorio en GitHub",fr:"Ouvrir le dépôt GitHub"}}
+        ],
+        desc:{
+          en:"A source-auditable investigation into who captures the benefits and who bears the costs of Colombia’s extractive economy. It examines public evidence on production, exports, fiscal returns, and territorial impacts while making the limits of the available data explicit.",
+          es:"Una investigación auditable desde sus fuentes sobre quién captura los beneficios y quién asume los costos de la economía extractiva colombiana. Examina evidencia pública sobre producción, exportaciones, retornos fiscales e impactos territoriales, haciendo explícitos los límites de los datos disponibles.",
+          fr:"Une recherche vérifiable à partir de ses sources sur les acteurs qui captent les bénéfices et ceux qui supportent les coûts de l’économie extractive colombienne. Elle examine les données publiques relatives à la production, aux exportations, aux retombées fiscales et aux impacts territoriaux, tout en rendant explicites les limites des données disponibles."
+        },
+        tree:[
+          {id:"research-question", n:{en:"Research Question",es:"Pregunta de Investigación",fr:"Question de Recherche"}, c:[
+            {id:"benefits-costs", n:{en:"Who captures the benefits and who bears the costs?",es:"¿Quién captura los beneficios y quién asume los costos?",fr:"Qui capte les bénéfices et qui supporte les coûts ?"}}
+          ]},
+          {id:"public-data", n:{en:"Public Data",es:"Datos Públicos",fr:"Données Publiques"}, c:[
+            {id:"production", n:{en:"Production",es:"Producción",fr:"Production"}},
+            {id:"exports", n:{en:"Exports",es:"Exportaciones",fr:"Exportations"}},
+            {id:"fiscal-returns", n:{en:"Fiscal returns",es:"Retornos fiscales",fr:"Retombées fiscales"}},
+            {id:"territorial-impacts", n:{en:"Territorial impacts",es:"Impactos territoriales",fr:"Impacts territoriaux"}}
+          ]},
+          {id:"method", n:{en:"Method",es:"Método",fr:"Méthode"}, c:[
+            {id:"source-audit", n:{en:"Source-auditable analysis",es:"Análisis auditable desde las fuentes",fr:"Analyse vérifiable à partir des sources"}},
+            {id:"limits-explicit", n:{en:"Explicit data-limit notes",es:"Límites de datos explícitos",fr:"Limites des données explicites"}}
+          ]},
+          {id:"outputs", n:{en:"Outputs",es:"Salidas",fr:"Sorties"}, c:[
+            {id:"investigation", n:{en:"Public-evidence investigation",es:"Investigación de evidencia pública",fr:"Recherche fondée sur des données publiques"}}
+          ]},
+          {id:"repository", n:{en:"Repository",es:"Repositorio",fr:"Dépôt"}, c:[
+            {id:"github-url", n:{en:"github.com/santiagoparada/colombia-extractive-balance",es:"github.com/santiagoparada/colombia-extractive-balance",fr:"github.com/santiagoparada/colombia-extractive-balance"}}
+          ]},
+          {id:"status", n:{en:"Status",es:"Estado",fr:"Statut"}, d:{en:"Done · source-auditable public evidence project",es:"Terminado · proyecto de evidencia pública auditable desde sus fuentes",fr:"Terminé · projet de données publiques vérifiable depuis ses sources"}}
+        ]
+      }
+    ]
+  },
+
+  { id:"05", sec:"pedagogy", cssColor:"--cp",
+    projects:[
+      { id:"05.01", status:"live", year:"2019—", type:{en:"expanded pedagogy workshop",es:"taller de pedagogías expandidas",fr:"atelier de pédagogies élargies"},
+        imgSlots:[
+          {src:"assets/pedagogia/pedagogias-expandidas-movimiento-corporal.jpg",
+           en:"body movement and attention exercise",
+           es:"ejercicio de movimiento corporal y atención",
+           fr:"exercice de mouvement corporel et d’attention"},
+          {src:"assets/pedagogia/pedagogias-expandidas-taller-material.jpg",
+           en:"material workshop and collective making",
+           es:"taller material y hacer colectivo",
+           fr:"atelier matériel et fabrication collective"},
+          {src:"assets/pedagogia/pedagogias-expandidas-carpinteria.jpg",
+           en:"woodworking and spatial construction",
+           es:"carpintería y construcción espacial",
+           fr:"travail du bois et construction spatiale"},
+          {src:"assets/pedagogia/pedagogias-expandidas-domos-geodesicos.jpg",
+           en:"geodesic dome workshop",
+           es:"taller de domos geodésicos",
+           fr:"atelier de dômes géodésiques"}
+        ],
+        name:{en:"Expanded Pedagogies Workshop",
+              es:"Taller de Pedagogías Expandidas",
+              fr:"Atelier de Pédagogies Élargies"},
+        links:[
+          {url:"https://felipecotero8c00.myportfolio.com/sutatausa",
+           label:{en:"Felipe Camacho",es:"Felipe Camacho",fr:"Felipe Camacho"}},
+          {url:"https://www.instagram.com/casatrecetenjo/",
+           label:{en:"Casa Trece Tenjo",es:"Casa Trece Tenjo",fr:"Casa Trece Tenjo"}},
+          {url:"https://www.facebook.com/diana.leon.90260",
+           label:{en:"Diana León",es:"Diana León",fr:"Diana León"}}
+        ],
+        desc:{en:"Workshop practice where expanded pedagogy becomes a way to learn through the body, materials, listening, and abstraction. I have taught body movement, woodworking, attention to sound, and abstract creative thinking through exercises that connect perception, making, and collective reflection. The practice includes carpentry classes at Universidad de los Andes, teaching carpentry at Escuela de Artes y Oficios Santo Domingo, woodworking classes made in collaboration with Casa Trece Tenjo, a carpentry workshop for children at Liceo Juan Ramón Jiménez from sixth through eleventh grade, body-movement workshops with Colegios Concertados de Bogotá for children ages 8 to 10 together with dancer and teacher Diana León, an outdoor furniture workshop with Terreno Paisajismo, and a geodesic dome workshop at Organizmo. Tabio, territorio sónico was created together with artist Felipe Camacho.",
+              es:"Práctica de taller donde la pedagogía expandida se convierte en una forma de aprender desde el cuerpo, los materiales, la escucha y la abstracción. En estos espacios he dado clases de movimiento corporal, carpintería, atención al sonido y pensamiento creativo abstracto mediante ejercicios que conectan percepción, hacer y reflexión colectiva. La práctica incluye clases de carpintería en la Universidad de los Andes, docencia de carpintería en la Escuela de Artes y Oficios Santo Domingo, clases de carpintería realizadas en conjunto con Casa Trece Tenjo, un taller de carpintería para niños en el Liceo Juan Ramón Jiménez de sexto a once, talleres de movimiento corporal con los Colegios Concertados de Bogotá para niños de 8 a 10 años junto a la bailarina y docente Diana León, un taller de mobiliario exterior con Terreno Paisajismo y un taller de domos geodésicos en Organizmo. Tabio, territorio sónico fue un proyecto creado en conjunto con el artista Felipe Camacho.",
+              fr:"Pratique d’atelier où la pédagogie élargie devient une manière d’apprendre par le corps, les matériaux, l’écoute et l’abstraction. J’y ai donné des cours de mouvement corporel, de travail du bois, d’attention au son et de pensée créative abstraite à travers des exercices qui relient perception, fabrication et réflexion collective. La pratique inclut des cours de travail du bois à l’Universidad de los Andes, l’enseignement du travail du bois à l’Escuela de Artes y Oficios Santo Domingo, des cours de menuiserie réalisés avec Casa Trece Tenjo, un atelier de menuiserie pour enfants au Liceo Juan Ramón Jiménez de la sixième à la onzième classe, des ateliers de mouvement corporel avec les Colegios Concertados de Bogotá pour des enfants de 8 à 10 ans avec la danseuse et enseignante Diana León, un atelier de mobilier extérieur avec Terreno Paisajismo et un atelier de dômes géodésiques à Organizmo. Tabio, territorio sónico a été créé avec l’artiste Felipe Camacho."},
+        tree:[
+          {id:"approach", n:{en:"Approach",es:"Enfoque",fr:"Approche"}, c:[
+            {id:"expanded-pedagogy", n:{en:"Expanded pedagogy as embodied practice",es:"Pedagogía expandida como práctica corporal",fr:"Pédagogie élargie comme pratique incarnée"}},
+            {id:"collective-learning", n:{en:"Collective learning through perception and making",es:"Aprendizaje colectivo desde la percepción y el hacer",fr:"Apprentissage collectif par la perception et la fabrication"}}
+          ]},
+          {id:"classes", n:{en:"Classes",es:"Clases",fr:"Cours"}, c:[
+            {id:"body-movement", n:{en:"Body movement",es:"Movimiento corporal",fr:"Mouvement corporel"}},
+            {id:"woodworking", n:{en:"Woodworking",es:"Carpintería",fr:"Travail du bois"}},
+            {id:"sound-attention", n:{en:"Attention to sound",es:"Atención al sonido",fr:"Attention au son"}},
+            {id:"abstract-thinking", n:{en:"Abstract creative thinking",es:"Pensamiento creativo abstracto",fr:"Pensée créative abstraite"}},
+            {id:"universidad-andes", n:{en:"Woodworking classes at Universidad de los Andes",es:"Clases de carpintería en la Universidad de los Andes",fr:"Cours de travail du bois à l’Universidad de los Andes"}},
+            {id:"escuela-artes-oficios", n:{en:"Carpentry teacher at Escuela de Artes y Oficios Santo Domingo",es:"Docente de carpintería en la Escuela de Artes y Oficios Santo Domingo",fr:"Enseignant de travail du bois à l’Escuela de Artes y Oficios Santo Domingo"}},
+            {id:"casa-trece", n:{en:"Woodworking classes made in collaboration with Casa Trece Tenjo",es:"Clases de carpintería realizadas en conjunto con Casa Trece Tenjo",fr:"Cours de menuiserie réalisés avec Casa Trece Tenjo"}},
+            {id:"liceo-juan-ramon", n:{en:"Children’s carpentry workshop at Liceo Juan Ramón Jiménez, grades 6-11",es:"Taller de carpintería para niños en el Liceo Juan Ramón Jiménez, de sexto a once",fr:"Atelier de menuiserie pour enfants au Liceo Juan Ramón Jiménez, de la sixième à la onzième classe"}},
+            {id:"colegios-concertados", n:{en:"Body-movement workshops with Colegios Concertados de Bogotá, children ages 8-10, with dancer and teacher Diana León",es:"Talleres de movimiento corporal con los Colegios Concertados de Bogotá, niños de 8 a 10 años, junto a la bailarina y docente Diana León",fr:"Ateliers de mouvement corporel avec les Colegios Concertados de Bogotá, enfants de 8 à 10 ans, avec la danseuse et enseignante Diana León"}},
+            {id:"terreno-paisajismo", n:{en:"Outdoor furniture workshop with Terreno Paisajismo",es:"Taller de mobiliario exterior con Terreno Paisajismo",fr:"Atelier de mobilier extérieur avec Terreno Paisajismo"}},
+            {id:"organizmo", n:{en:"Geodesic dome workshop at Organizmo",es:"Taller de domos geodésicos en Organizmo",fr:"Atelier de dômes géodésiques à Organizmo"}}
+          ]},
+          {id:"tabio", n:{en:"Tabio Territory",es:"Tabio Territorio",fr:"Territoire de Tabio"}, c:[
+            {id:"collective-listening", n:{en:"Collective listening in Tabio, Cundinamarca",es:"Escucha colectiva en Tabio, Cundinamarca",fr:"Écoute collective à Tabio, Cundinamarca"}},
+            {id:"graphic-scores", n:{en:"Graphic scores and territory mapping",es:"Partituras gráficas y cartografía del territorio",fr:"Partitions graphiques et cartographie du territoire"}},
+            {id:"felipe-camacho", n:{en:"Created together with artist Felipe Camacho",es:"Proyecto creado en conjunto con el artista Felipe Camacho",fr:"Projet créé avec l’artiste Felipe Camacho"}}
+          ]},
+          {id:"materials", n:{en:"Materials",es:"Materiales",fr:"Matériaux"}, c:[
+            {id:"body", n:{en:"Body",es:"Cuerpo",fr:"Corps"}},
+            {id:"wood", n:{en:"Wood",es:"Madera",fr:"Bois"}},
+            {id:"sound", n:{en:"Sound",es:"Sonido",fr:"Son"}},
+            {id:"drawing", n:{en:"Drawing and notation",es:"Dibujo y notación",fr:"Dessin et notation"}}
+          ]},
+          {id:"status", n:{en:"Status",es:"Estado",fr:"Statut"}, d:{en:"Active pedagogy practice · documented since Tabio, 2019",es:"Práctica pedagógica activa · documentada desde Tabio, 2019",fr:"Pratique pédagogique active · documentée depuis Tabio, 2019"}}
         ]
       }
     ]
@@ -781,23 +1159,38 @@ function applyLang() {
 }
 
 function t(k)   { return LANG[curLang][k] || k; }
-function catN(n){ return (LANG[curLang].cats||{})[n] || n; }
+function catN(n){ return (typeof n==='object'&&n!==null) ? rs(n) : ((LANG[curLang].cats||{})[n] || n); }
 function rs(v)  { return (typeof v==='object'&&v!==null)?(v[curLang]||v.en||''):(v||''); }
+function nodeId(v, fallback) {
+  return String(v || fallback || '').toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+    .replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'') || 'node';
+}
 
 /* ══ RENDER PROJECT ROWS ═════════════════════════════════ */
-const secOrder = ['data','dig','wood'];
-const modMap   = { wood:'01', data:'02', dig:'03' };
+const secOrder = ['data','wood','dig','pedagogy'];
+const modMap   = { data:'01', wood:'02', dig:'03', pedagogy:'05' };
 
 function renderLists() {
   secOrder.forEach(sec => {
-    const mod = MODULES.find(m => m.id === modMap[sec]);
     const el  = document.getElementById('list-'+sec);
-    if(!mod||!el) return;
+    const mods = MODULES.filter(m => m.sec === sec || m.id === modMap[sec]);
+    if(!mods.length||!el) return;
     el.innerHTML = '';
-    mod.projects.forEach((p,i) => {
+    let i = 0;
+    mods.forEach(mod => mod.projects.forEach((p) => {
       const div = document.createElement('div');
       div.className = 'prow';
+      div.tabIndex = 0;
+      div.setAttribute('role','button');
+      div.setAttribute('aria-label', rs(p.name));
       div.onclick = () => openTree(mod, p);
+      div.onkeydown = e => {
+        if(e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          openTree(mod, p);
+        }
+      };
       const sc = p.status==='live'?'live':p.status==='wip'?'wip':'';
       const sl = p.status==='live'?t('stlive'):p.status==='wip'?t('stwip'):t('stdone');
       div.innerHTML =
@@ -807,13 +1200,14 @@ function renderLists() {
            <div class="pdsc">${rs(p.desc)}</div>
            <div class="ptags">
              <span class="pt ${sc}">${sl}</span>
-             <span class="pt">${p.type}</span>
+             <span class="pt">${rs(p.type)}</span>
            </div>
          </div>
          <span class="pyr">${p.year}</span>
          <span class="parr">⊞</span>`;
       el.appendChild(div);
-    });
+      i++;
+    }));
   });
   setupReveal();
 }
@@ -844,7 +1238,7 @@ function openTree(mod, proj) {
     document.body.style.overflow = 'hidden';
     buildInfoPanel(proj, col);
     const svg = document.getElementById('ovsvg');
-    svg.innerHTML = `<text x="20" y="40" fill="var(--dim)" font-size="11" font-family="'Space Mono','Courier New',monospace">tree unavailable offline</text>`;
+    svg.innerHTML = `<text x="20" y="40" fill="var(--dim)" font-size="11" font-family="'Space Mono','Courier New',monospace">${t('treeoffline')}</text>`;
     return;
   }
   activeMod = mod; activeProj = proj;
@@ -866,16 +1260,25 @@ function closeTree() {
 }
 
 /* ── Info panel (right side) ── */
+function escAttr(v) {
+  return String(v || '').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');
+}
+
 function buildInfoPanel(proj, col) {
   const el = document.getElementById('ovinfo');
   const L  = LANG[curLang];
   const sc = proj.status==='live'?'ib-live':proj.status==='wip'?'ib-wip':'ib-dim';
   const sl = proj.status==='live'?L.stlive:proj.status==='wip'?L.stwip:L.stdone;
 
+  const links = (proj.links||[]).map(link =>
+    `<a class="info-link" href="${link.url}" target="_blank" rel="noopener noreferrer">${rs(link.label)}</a>`
+  ).join('');
+
   const slots = (proj.imgSlots||[]).map(lbl => {
     const label = rs(lbl);
-    const img = lbl.src ? `<img src="${lbl.src}" alt="${label}" loading="lazy">` : '';
-    return `<div class="imgslot ${lbl.src?'has-img':''}" style="border-color:${col};color:${col}">
+    const attrLabel = escAttr(label);
+    const img = lbl.src ? `<img src="${lbl.src}" alt="${attrLabel}" loading="lazy">` : '';
+    return `<div class="imgslot ${lbl.src?'has-img':''}" ${lbl.src?`tabindex="0" role="button" aria-label="${attrLabel}" data-full="${lbl.src}" data-label="${attrLabel}"`:''} style="border-color:${col};color:${col}">
       ${img || '<div class="imgslot-bg"></div>'}
       <span class="imgslot-lbl">${label}</span>
       ${lbl.src ? '' : `<span class="imgslot-add">${L.imgadd}</span>`}
@@ -887,14 +1290,45 @@ function buildInfoPanel(proj, col) {
     <div class="info-title">${rs(proj.name)}</div>
     <div class="info-badges">
       ${proj.status?`<span class="ibadge ${sc}">${sl}</span>`:''}
-      ${proj.type ?`<span class="ibadge ib-dim">${proj.type}</span>`:''}
+      ${proj.type ?`<span class="ibadge ib-dim">${rs(proj.type)}</span>`:''}
       ${proj.year ?`<span class="ibadge ib-dim">${proj.year}</span>`:''}
     </div>
     <p class="info-desc">${rs(proj.desc)}</p>
-    <hr class="info-div">
+    ${links ? `<div class="info-links">${links}</div>` : ''}
+    ${slots ? `<hr class="info-div">
     <div style="font-size:9px;letter-spacing:.14em;text-transform:uppercase;
       color:var(--dimmer);margin-bottom:12px">${L.images}</div>
-    <div class="imgslots">${slots}</div>`;
+    <div class="imgslots">${slots}</div>` : ''}`;
+
+  el.querySelectorAll('.imgslot.has-img').forEach(slot => {
+    const open = () => openImageLightbox(slot.dataset.full, slot.dataset.label);
+    slot.addEventListener('click', open);
+    slot.addEventListener('keydown', e => {
+      if(e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        open();
+      }
+    });
+  });
+}
+
+function openImageLightbox(src, label) {
+  const lb = document.getElementById('imglightbox');
+  const img = lb.querySelector('.lightbox-img');
+  img.src = src;
+  img.alt = label || '';
+  lb.querySelector('.lightbox-caption').textContent = label || '';
+  lb.classList.add('open');
+  lb.setAttribute('aria-hidden','false');
+}
+
+function closeImageLightbox() {
+  const lb = document.getElementById('imglightbox');
+  if(!lb.classList.contains('open')) return false;
+  lb.classList.remove('open');
+  lb.setAttribute('aria-hidden','true');
+  lb.querySelector('.lightbox-img').src = '';
+  return true;
 }
 
 /* ── D3 Tree (left side) ── */
@@ -925,7 +1359,7 @@ function buildTree(proj, col) {
     gD3.append('text').attr('x',20).attr('y',40)
       .attr('fill','var(--dim)').attr('font-size',11)
       .attr('font-family',"'Space Mono','Courier New',monospace")
-      .text('no tree data');
+      .text(t('notreedata'));
     return;
   }
 
@@ -933,8 +1367,13 @@ function buildTree(proj, col) {
   const rootDat = {
     id: proj.id, name: rs(proj.name),
     children: proj.tree.map(tn => {
-      const cat = { id:tn.n, name:catN(tn.n), desc:rs(tn.d) };
-      if(tn.c) cat.children = tn.c.map(ch => ({id:ch.n, name:ch.n, desc:rs(ch.d)}));
+      const catId = tn.id || nodeId(typeof tn.n === 'object' ? (tn.n.en || tn.n[curLang]) : tn.n, proj.id);
+      const cat = { id:catId, name:catN(tn.n), desc:rs(tn.d) };
+      if(tn.c) cat.children = tn.c.map((ch, i) => ({
+        id:ch.id || `${catId}-${nodeId(typeof ch.n === 'object' ? (ch.n.en || ch.n[curLang]) : ch.n, i)}`,
+        name:rs(ch.n),
+        desc:rs(ch.d)
+      }));
       return cat;
     })
   };
@@ -1077,7 +1516,15 @@ function setupReveal(){
   });
 }
 
-document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeTree(); });
+document.getElementById('imglightbox').addEventListener('click', e => {
+  if(e.target.id === 'imglightbox' || e.target.classList.contains('lightbox-close')) closeImageLightbox();
+});
+document.addEventListener('keydown',e=>{
+  if(e.key === 'Escape') {
+    if(closeImageLightbox()) return;
+    closeTree();
+  }
+});
 
 /* ══ INIT ════════════════════════════════════════════════ */
 (function(){
